@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import thead from "../Data/Tableheadingrider";
 import orderdata from "../Data/Riderdata";
-import Modaltest from "../Modal/ModalOrder";
+import Modaltest from "../Modal/ModalRider";
 
 const OrderTable = () => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
@@ -33,7 +33,7 @@ const OrderTable = () => {
                   onClick={() => {
                     setmodal({ show: true, datamodal: data });
                   }}
-                  className=" px-4 py-2 gap-6"
+                  className=" px-4 py-2 gap-6 cursor-pointer"
                 >
                   {data.RiderId}
                   {data.RiderName}

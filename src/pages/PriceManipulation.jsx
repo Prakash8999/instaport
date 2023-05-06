@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
 import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import InputComp from "../components/InputComp";
 import Buttons from "../components/Buttons";
+import ModalPriceManipulation from "../components/Modal/ModalPriceManipulation";
+import Search from "../components/Search";
 const PriceManipulation = () => {
+
+const [modal, setmodal] = useState({show:false, datamodal:{} })
   return (
+    <>
+    {
+      modal.show && ( <ModalPriceManipulation
+      datamodal ={modal.show && modal.datamodal}
+      setmodal={setmodal}
+      />)
+    }
     <div>
       <Layout>
         <SideNav></SideNav>
         <div className="flex justify-between pt-12 gap-x-80 pr-6 pl-80 " >
         <h1 className="text-4xl pt-3 ">Price Manipulation</h1>
-        <InputComp
-placeholder={"Search"}
-className={"p-3"}
-
-/>
+        <Search divclass={"w-80 h-10"} className={"w-80 h-12"}/>
         </div>
         <Layout2>
 
@@ -64,13 +71,16 @@ className={"p-2"}
 </div>
 <div className="w-full flex justify-center mt-6">
 
-<Buttons buttonText={"Save"} className={"text-white border-yellow-300 self-center bg-yellow-400 px-14 py-1 rounded-3xl"}>
+<Buttons buttonText={"Save"} onclick={()=>{
+  setmodal({show:true, datamodal: null})
+}} className={"text-white border-yellow-300 self-center bg-yellow-400 px-14 py-1 rounded-3xl"}>
 </Buttons>
 </div>
 
         </Layout2>
       </Layout>
     </div>
+</>
   );
 };
 
