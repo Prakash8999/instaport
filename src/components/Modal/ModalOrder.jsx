@@ -3,7 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import orderdata from "../Data/Orderdata";
 
 const ModalOrder = ({ datamodal, setmodal }) => {
-	console.log(datamodal.OrderId);
+  console.log(datamodal.OrderId);
   return (
     <>
       <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] ">
@@ -17,26 +17,15 @@ const ModalOrder = ({ datamodal, setmodal }) => {
           >
             <AiOutlineClose />
           </button>
-<div>
-
-{
-
-orderdata?.map((data,index)=>{
-	return(
-
-		<div key={index}>
- <p className="text-black">Order No- {data?.OrderId}</p>
-
-
-</div>
-	)
-
-
-
-})
-}
-</div> 
-
+          <div>
+            {orderdata?.map((data, index) => {
+              return (
+                <div key={index}>
+                  <p className="text-black">Order No- {data?.OrderId}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </>
