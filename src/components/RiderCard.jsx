@@ -3,8 +3,8 @@ import Avtar from "../images/Avtar.png";
 
 const RiderCard = ({ RiderName, RiderAge, VechileNumber }) => {
   return (
-    <div className="flex flex-col w-[23vw] h-[21vh] gap-5 bg-slate-100 rounded-xl px-4 py-3  border-2 border-gray-400">
-      <div className="flex justify-items-start  gap-8 py-2">
+    <div className="relative flex flex-col w-[23vw] h-[21vh] gap-5 bg-slate-100 rounded-xl px-4 py-3  border-2 border-gray-400 hover:shadow-lg">
+      <div className="flex justify-center items-start  gap-8 py-2">
         <div>
           <img src={Avtar} alt="" />
         </div>

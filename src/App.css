@@ -42,6 +42,8 @@
 }
 .active {
   background-color: #ffd12e;
+  font-size: large;
+  box-shadow: #111828;
 }
 
 .icon:hover {

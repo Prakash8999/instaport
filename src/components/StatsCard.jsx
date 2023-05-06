@@ -3,14 +3,14 @@ import { BiCube } from "react-icons/bi";
 
 const StatsCard = ({ Number, Value }) => {
   return (
-    <div className="flex h-20 w-44 bg-slate-200 items-center justify-center gap-4 rounded-md">
+    <div className="flex h-32 w-60  bg-white items-center justify-center gap-8 rounded-lg shadow-sm hover:shadow-lg hover:font-bold cursor-pointer ">
       <div className="">
         <BiCube
           style={{
-            fontSize: "2.5em",
+            fontSize: "4em",
             backgroundColor: "#E6FFCC",
-            borderRadius: "25px",
-            padding: "6px",
+            borderRadius: "100px",
+            padding: "8px",
           }}
         />
       </div>
