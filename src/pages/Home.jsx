@@ -27,6 +27,11 @@ const Home = () => {
           placeholder={"enter your name"}
           className={"w-[34vw]"}
         ></InputComp>
+        <InputComp
+          label={"Enter UserName:"}
+          placeholder={"enter your name"}
+          className={"w-[34vw]"}
+        ></InputComp>
         <Buttons
           className={`rounded-lg border-2 shadow-md border-yellow-300 p-1 lg:w-[23vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center gap-4 hover:font-semibold`}
           buttonIcon={<FcGoogle style={{ fontSize: "1.5em" }} />}
