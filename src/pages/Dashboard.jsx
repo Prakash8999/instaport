@@ -9,10 +9,13 @@ const Dashboard = () => {
     <div>
       <Layout>
         <SideNav></SideNav>
-        <div className=" pt-14 gap-x-80 pr-10 pl-96 ">
-          <Search divclass={"w-96 h-10"} className={"w-96 h-12"}></Search>
+        <div className=" pt-14 gap-x-64 pl-80 flex justify-between  ">
+          
+        <div className="  ">
+          <Search  className={"w-96 h-12"}></Search>
         </div>
-        <div className="absolute h-[80vh] w-[76vw]    top-48 right-4">
+        </div>
+        <div className="absolute h-fit w-[76vw]    top-48 right-4">
           <div className="flex items-center justify-around my-8">
             <StatsCard Number={"54202"} Value={"Total Order"}></StatsCard>
             <StatsCard Number={"54202"} Value={"Avilable Order"}></StatsCard>

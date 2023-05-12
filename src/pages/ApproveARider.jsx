@@ -10,7 +10,7 @@ const ApproveARider = () => {
     <div>
       <Layout>
         <SideNav></SideNav>
-        <div className=" pt-14 gap-x-64 pr-10 pl-96 flex justify-start  ">
+        <div className=" pt-14 gap-x-64 pl-80 flex justify-between  ">
           <div className="flex gap-4  ">
             <NavLink
               to="/approvearider"
@@ -25,9 +25,9 @@ const ApproveARider = () => {
               Approved Riders
             </NavLink>
           </div>
-          <div className="pl-5">
-            <Search divclass={"w-96 h-10"} className={"w-96 h-12"}></Search>
-          </div>
+          <div className="  pr-6">
+              <Search className={"w-[20vw] h-12"}></Search>
+            </div>
         </div>
         <Layout2>
           <div className="flex items-center justify-center my-8">

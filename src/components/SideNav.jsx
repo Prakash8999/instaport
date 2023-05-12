@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 
 const SideNav = ({ className }) => {
   return (
+    <>
     <div
       className={`w-[20vw] h-[96vh] py-8  top-5 left-4 absolute bg-white  flex flex-col items-center justify-start  shadow-lg rounded-lg  ${className}`}
     >
@@ -20,55 +21,56 @@ const SideNav = ({ className }) => {
         <Profile></Profile>
         <NavLink
           to="/dashboard"
-          className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
+          className={`rounded-lg border-2 text-base font-semibold shadow hover:drop-shadow-xl duration-300   border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 -black flex  items-center py-[6px] gap-4 `}
         >
           <RiDashboardFill style={{ fontSize: "1.5em" }} />
           Dashboard
         </NavLink>
         <NavLink
           to="/orders"
-          className={`rounded-lg border-2 text-base font-semibold hover:font-bold shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
+          className={`rounded-lg border-2 text-base font-semibold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
         >
           <BsBoxFill style={{ fontSize: "1.5em" }} />
           Orders
         </NavLink>
         <NavLink
           to="/riders"
-          className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
+          className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
         >
           <RiEBike2Fill style={{ fontSize: "1.5em" }} />
           Riders
         </NavLink>
         <NavLink
           to="/pricemanipulation"
-          className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
+          className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
         >
           <MdPriceChange style={{ fontSize: "1.5em" }} />
           Price Manipulation
         </NavLink>
         <NavLink
           to="/approvearider"
-          className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
+          className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
         >
           <MdFileDownloadDone style={{ fontSize: "1.5em" }} />
           Approve A Rider
         </NavLink>
         <NavLink
           to="/transaction"
-          className={`rounded-lg border-2 text-base font-semibold hover:font-bold shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
-        >
+          className={`rounded-lg border-2 text-base font-semibold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
+          >
           <FaWallet style={{ fontSize: "1.5em" }} />
           Transaction
         </NavLink>
         <NavLink
           to="/couponsandoffer"
-          className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
+          className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center py-[6px] gap-4 `}
         >
           <RiCoupon2Fill style={{ fontSize: "1.5em" }} />
           Coupons And Offer
         </NavLink>
       </div>
     </div>
+          </>
   );
 };
 

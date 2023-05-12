@@ -11,8 +11,8 @@ const Orders = () => {
     <div>
       <Layout>
         <SideNav></SideNav>
-        <div className=" pt-14 gap-x-[20rem]  pr-10 pl-[22rem] flex justify-start  ">
-          <div className="flex items-center justify-around">
+        <div className=" pt-14 gap-x-[20rem]   pl-[20rem] flex  ">
+          <div className="flex items-center justify-between w-full">
             <div className="flex gap-4  ">
               <NavLink
                 to="/orders"
@@ -33,12 +33,9 @@ const Orders = () => {
                 Order Histoty
               </NavLink>
             </div>
-          </div>
-          <div className="pl-5">
-            <Search
-              divclass={"w-[21rem] h-10"}
-              className={"w-96 h-12"}
-            ></Search>
+            <div className="  pr-6">
+              <Search className={"w-[20vw] h-12"}></Search>
+            </div>
           </div>
         </div>
         <Layout2>
