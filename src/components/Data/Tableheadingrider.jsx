@@ -1,21 +1,19 @@
-
 const ridersthead = [
-	{
-	  tablehead: "Rider Id",
-	},
-	{
-	  tablehead: "Rider Name",
-	},
-	{
-	  tablehead: "Rider No",
-	},
-  
-	{
-	  tablehead: "Date",
-	},
-	{
-	  tablehead: "Time",
-	},
-  ];
+  {
+    riderTablehead: "Rider Id",
+  },
+  {
+    riderTablehead: "Rider Name",
+  },
+  {
+    riderTablehead: "Rider No",
+  },
+  {
+    riderTablehead: "Date",
+  },
+  {
+    riderTablehead: "Time",
+  },
+];
 
-  export default ridersthead
+export default ridersthead;

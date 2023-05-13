@@ -20,8 +20,8 @@ const SideNav = ({ className }) => {
           <LogoComp className={"w-[15vw]"}></LogoComp>
           <Profile></Profile>
           <NavLink
-            to="/dashboard"
-            className={`rounded-lg border-2 text-base font-semibold shadow hover:drop-shadow-xl duration-300   border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 -black flex  items-center py-[6px] gap-4 `}
+            to="/"
+            className={`rounded-lg border-2 text-base font-semibold shadow hover:drop-shadow-xl  duration-300   border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 -black flex  items-center py-[6px] gap-4 `}
           >
             <RiDashboardFill style={{ fontSize: "1.5em" }} />
             Dashboard

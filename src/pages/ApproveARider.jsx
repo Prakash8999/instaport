@@ -33,7 +33,7 @@ const ApproveARider = () => {
         </div>
         <Layout2>
           <div className="flex items-center justify-center my-8">
-            <div className="grid grid-cols-3 gap-y-16 gap-x-10">
+            <div className="grid grid-cols-3 gap-y-16 gap-x-16">
               <RiderCard
                 RiderName={"Nitish mangesh Dalvi"}
                 RiderAge={"21"}
