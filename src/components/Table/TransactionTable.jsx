@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import thead from "../Data/TableheadingOrder";
-import orderdata from "../Data/Orderdata";
+import transactionHead from "../Data/TransactionHeader";
+import transactionData from "../Data/TransactionData";
 import Modaltest from "../Modal/ModalOrder";
 
-const OrderTable = () => {
+const TransactionTable = () => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
   return (
-    <>
+    <div>
       {modal.show && (
         <Modaltest
           datamodal={modal.show && modal?.datamodal}
@@ -19,15 +19,15 @@ const OrderTable = () => {
           <table className="w-[100%] ">
             <thead>
               <tr className=" border-b-2 border-slate-200">
-                {thead.map((head, index) => (
-                  <th key={index} className=" px-4 py-2 gap-2">
+                {transactionHead.map((head, index) => (
+                  <th key={index} className=" px-4 py-2 gap-2 ">
                     {head.tablehead}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody className="text-center mt-4">
-              {orderdata.map((data, index) => {
+              {transactionData.map((data, index) => {
                 return (
                   <tr
                     key={index}
@@ -37,31 +37,31 @@ const OrderTable = () => {
                     className="border-b-2 border-slate-100"
                   >
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                      {data?.TransactionId}
+                    </td>
+                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                       {data?.OrderId}
                     </td>
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.CustomerName}
+                      {data?.RiderName}
                     </td>
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.CustomerNo}
-                    </td>
-                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.OrderType}
-                    </td>
-                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.PickupCity}
-                    </td>
-                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.DropCity}
-                    </td>
-                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.Date}
-                    </td>
-                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.Time}
+                      {data?.RiderNo}
                     </td>
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                       {data?.PaymentType}
+                    </td>
+                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                      {data?.InstaPortCharges}
+                    </td>
+                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                      {data?.RiderCharges}
+                    </td>
+                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                      {data?.SecurityFees}
+                    </td>
+                    <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                      {data?.Date}
                     </td>
                   </tr>
                 );
@@ -70,8 +70,8 @@ const OrderTable = () => {
           </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default OrderTable;
+export default TransactionTable;

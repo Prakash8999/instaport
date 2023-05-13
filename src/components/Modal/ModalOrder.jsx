@@ -22,6 +22,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
               return (
                 <div key={index}>
                   <p className="text-black">Order No- {data?.OrderId}</p>
+                  <p className="text-black">Order No- {data?.CustomerName}</p>
                 </div>
               );
             })}

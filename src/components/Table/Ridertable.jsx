@@ -37,19 +37,19 @@ const OrderTable = () => {
                   className="border-b-2 border-slate-100"
                 >
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                    {data.RiderId}
+                    {data?.RiderId}
                   </td>
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                    {data.RiderName}
+                    {data?.RiderName}
                   </td>
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                    {data.RiderNo}
+                    {data?.RiderNo}
                   </td>
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                    {data.Date}
+                    {data?.Date}
                   </td>
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                    {data.Time}
+                    {data?.Time}
                   </td>
                 </tr>
               );
