@@ -19,10 +19,10 @@ const RiderCard = ({ RiderName, RiderAge, VechileNumber }) => {
           </div>
         </div>
         <div className="flex  items-center gap-[1vw]">
-          <button className="border-2 bg-[#FFFDE6] text-black px-6 py-2 rounded-xl  border-green-400 hover:border-green-500 hover:border-dashed hover:bg-green-100 hover:font-semibold hover:shadow-lg ">
+          <button className="border-2 bg-[#FFFDE6] text-black px-6 py-2 rounded-xl  border-green-400 hover:border-green-500 hover:border-dashed hover:bg-green-100  hover:shadow-lg ">
             Confirm
           </button>
-          <button className="border-2 bg-[#FFFDE6] text-black px-8 py-2 rounded-xl   border-red-600 hover:border-red-500 hover:border-dashed hover:bg-red-100 hover:font-semibold hover:shadow-lg">
+          <button className="border-2 bg-[#FFFDE6] text-black px-8 py-2 rounded-xl   border-red-600 hover:border-red-500 hover:border-dashed hover:bg-red-100  hover:shadow-lg">
             Delete
           </button>
         </div>
