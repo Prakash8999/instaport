@@ -1,5 +1,4 @@
 const orderdata = [
-  
   {
     OrderId: "#09393",
   },
@@ -13,7 +12,7 @@ const orderdata = [
     OrderType: "Current order",
   },
   {
-    PickuoCity: "Thane",
+    PickupCity: "Thane",
   },
   {
     DropCity: "Ghansoli",

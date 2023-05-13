@@ -3,7 +3,7 @@ import Avtar from "../images/Avtar.png";
 
 const Profile = () => {
   return (
-    <div className="flex w-[15vw] h-[10vh] gap-x-5 bg-[#FFFDE6] justify-center items-center rounded-lg border-2 shadow-md p-2 my-4">
+    <div className="flex w-[15vw] h-[12vh] gap-x-5 bg-[#FFFDE6] justify-center items-center rounded-lg border-2 shadow-md p-1 my-2">
       <div className="h-10 ">
         <img src={Avtar} alt="" />
       </div>

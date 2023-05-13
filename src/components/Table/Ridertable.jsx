@@ -25,15 +25,15 @@ const OrderTable = () => {
               ))}
             </tr>
           </thead>
-          <tbody className="flex justify-around items-center mt-4 ">
-            <tr className="border-b-2 border-slate-100 ">
+          <tbody className="flex justify-center items-center mt-4 border-spacing-x-2 ">
+            <tr className="border-b-2 border-slate-100 border-spacing-x-[4vw] ">
               {orderdata.map((data, index) => (
                 <td
                   key={index}
                   onClick={() => {
                     setmodal({ show: true, datamodal: data });
                   }}
-                  className=" px-4 py-2 gap-6 cursor-pointer"
+                  className=" px-4 py-2 text-center cursor-pointer"
                 >
                   {data.RiderId}
                   {data.RiderName}

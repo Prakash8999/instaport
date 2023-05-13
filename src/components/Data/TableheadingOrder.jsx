@@ -12,7 +12,7 @@ const thead = [
     tablehead: "Order Type",
   },
   {
-    tablehead: "Pickuo City",
+    tablehead: "Pickup City",
   },
   {
     tablehead: "Drop City",
@@ -28,4 +28,4 @@ const thead = [
   },
 ];
 
-export  default thead;
+export default thead;

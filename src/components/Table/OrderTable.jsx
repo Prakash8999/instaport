@@ -40,7 +40,7 @@ const OrderTable = () => {
                     {data.CustomerName}
                     {data.CustomerNo}
                     {data.OrderType}
-                    {data.PickuoCity}
+                    {data.PickupCity}
                     {data.DropCity}
                     {data.Date}
                     {data.Time}
