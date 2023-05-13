@@ -17,11 +17,12 @@ const orderdata = [
     Time: "8am",
 
     PaymentType: "UPI",
+    ParcelValue:"Rs 2000.00"
   },
   {
-    OrderId: "#09393",
+    OrderId: "#09394",
 
-    CustomerName: "Nitish Dalvi",
+    CustomerName: "Nitish m Dalvi",
 
     CustomerNo: "9987274285",
 
