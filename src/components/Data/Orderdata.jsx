@@ -12,17 +12,357 @@ const orderdata = [
 
     DropCity: "Ghansoli",
 
+    Date: "7/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
     Date: "6/05/2023",
 
     Time: "8am",
 
     PaymentType: "UPI",
-    ParcelValue:"Rs 2000.00"
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
+  },
+  {
+    OrderId: "#75423",
+
+    CustomerName: "shradha ",
+
+    CustomerNo: "7303030702",
+
+    OrderType: "Current order",
+
+    PickupCity: "Thane",
+
+    DropCity: "Ghansoli",
+
+    Date: "6/05/2023",
+
+    Time: "8am",
+
+    PaymentType: "UPI",
+    ParcelValue: "Rs 2000.00",
   },
   {
     OrderId: "#09394",
 
-    CustomerName: "Nitish m Dalvi",
+    CustomerName: "Sarika",
 
     CustomerNo: "9987274285",
 

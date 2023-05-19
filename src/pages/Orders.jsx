@@ -4,6 +4,7 @@ import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import OrderTable from "../components/Table/OrderTable";
 import { NavLink } from "react-router-dom";
+import orderdata from "../components/Data/Orderdata";
 import Search from "../components/Search";
 
 const Orders = () => {
@@ -45,7 +46,7 @@ const Orders = () => {
           </div>
         </div>
         <Layout2>
-          <OrderTable></OrderTable>
+          <OrderTable data={orderdata}></OrderTable>
         </Layout2>
       </Layout>
     </div>

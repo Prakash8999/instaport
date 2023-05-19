@@ -10,12 +10,14 @@ import ApproveARider from './pages/ApproveARider';
 import Transaction from './pages/Transaction';
 import CouponsAndOffer from './pages/CouponsAndOffer';
 import Layouttest from './components/Layouttest';
+import Home from './pages/Home';
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+          <Route path="/home" element={<Home />} />
           <Route path="/" element={<Dashboard />} />
           <Route path="/layout" element={<Layouttest />} />
           <Route path="/login" element={<Login />} />
