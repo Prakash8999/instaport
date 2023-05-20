@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import Ridertable from "../components/Table/Ridertable";
 import Search from "../components/Search";
 import { NavLink } from "react-router-dom";
+import riderdata from "../components/Data/Riderdata";
 const Riders = () => {
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    setSearchResults(riderdata);
+  }, [riderdata]);
+
+  const handleSearch = (e) => {
+    const filteredData = riderdata.filter(
+      (data) =>
+        data.RiderName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        data.RiderId.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setSearchResults(filteredData);
+  };
   return (
     <>
       <div>
@@ -28,12 +45,12 @@ const Riders = () => {
                 </NavLink>
               </div>
               <div className="  pr-6">
-                <Search className={"w-[20vw] h-12"}></Search>
+                <Search className={"w-[20vw] h-12"} onchange={handleSearch} />
               </div>
             </div>
           </div>
           <Layout2>
-            <Ridertable />
+            <Ridertable dataArray={searchResults} />
           </Layout2>
         </Layout>
       </div>

@@ -13,7 +13,7 @@ const riderdata = [
   {
     RiderId: "#123456",
 
-    RiderName: "Prakash jha",
+    RiderName: "Mrudul ",
 
     RiderNo: "12345678",
 

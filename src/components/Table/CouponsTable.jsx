@@ -2,7 +2,7 @@ import React from "react";
 import couponsTableHead from "../Data/CouponsHeader";
 import couponData from "../Data/CouponData";
 
-const CouponsTable = () => {
+const CouponsTable = ({ dataArray }) => {
   return (
     <div>
       <div className="relative flex justify-center items-center w-full ">
@@ -18,9 +18,12 @@ const CouponsTable = () => {
               </tr>
             </thead>
             <tbody className="text-center mt-4">
-              {couponData.map((data, index) => {
+              {dataArray.map((data, index) => {
                 return (
-                  <tr key={index} className="border-b-2 border-slate-100">
+                  <tr
+                    key={index}
+                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
+                  >
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                       {data?.CouponId}
                     </td>

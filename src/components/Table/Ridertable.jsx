@@ -4,7 +4,7 @@ import Modaltest from "../Modal/ModalRider";
 import riderdata from "../Data/Riderdata";
 import ridersthead from "../Data/Tableheadingrider";
 
-const OrderTable = () => {
+const OrderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
   return (
@@ -27,14 +27,14 @@ const OrderTable = () => {
             </tr>
           </thead>
           <tbody className="text-center mt-4 border-spacing-x-2 ">
-            {riderdata.map((data, index) => {
+            {dataArray.map((data, index) => {
               return (
                 <tr
                   key={index}
                   onClick={() => {
                     setmodal({ show: true, datamodal: data });
                   }}
-                  className="border-b-2 border-slate-100"
+                  className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
                 >
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                     {data?.RiderId}

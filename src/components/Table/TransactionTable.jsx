@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import transactionHead from "../Data/TransactionHeader";
-import transactionData from "../Data/TransactionData";
 import Modaltest from "../Modal/ModalOrder";
 
-const TransactionTable = () => {
+const TransactionTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
   return (
@@ -27,14 +26,14 @@ const TransactionTable = () => {
               </tr>
             </thead>
             <tbody className="text-center mt-4">
-              {transactionData.map((data, index) => {
+              {dataArray.map((data, index) => {
                 return (
                   <tr
                     key={index}
                     onClick={() => {
                       setmodal({ show: true, datamodal: data });
                     }}
-                    className="border-b-2 border-slate-100"
+                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
                   >
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                       {data?.TransactionId}

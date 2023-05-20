@@ -9,7 +9,7 @@ import StatsCard from "../components/StatsCard";
 import RiderCard from "../components/RiderCard";
 import ConfirnmationPopup from "../components/ConfirnmationPopup";
 // import Modal from "../components/Modal/ModalTest";
-import Search from "../components/Search";
+import Search from "../components/Test.jsx/Search";
 import OrderTable from "../components/Table/OrderTable";
 import Table from "../components/Test.jsx/Search";
 import InfiniteScrollTable from "../components/Test.jsx/Scroll";
@@ -20,6 +20,7 @@ const Home = () => {
     <>
       <Table></Table>
       <InfiniteScrollTable></InfiniteScrollTable>
+      <Search></Search>
     </>
   );
 };

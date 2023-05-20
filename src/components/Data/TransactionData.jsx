@@ -23,7 +23,7 @@ const transactionData = [
 
     OrderId: "#02458",
 
-    RiderName: "Shradha",
+    RiderName: "Nitish",
 
     RiderNo: "MH03 8756",
 
@@ -54,7 +54,7 @@ const transactionData = [
 
     SecurityFees: "13",
 
-    Date: "13/05/2023",
+    Date: "11/05/2023",
   },
   {
     TransactionId: "#09393",
