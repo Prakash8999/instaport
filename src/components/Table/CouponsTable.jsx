@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import couponsTableHead from "../Data/CouponsHeader";
 import couponData from "../Data/CouponData";
+import { AiOutlinePlus, AiOutlinePlusCircle } from "react-icons/ai";
+import ModalCouponandOffers from "../Modal/ModalCouponsandOffers"
 
 const CouponsTable = ({ dataArray }) => {
+  const [modal, setmodal] = useState({show:false, datamodal:{}})
   return (
+    <>
+    {
+      modal.show && (
+        <ModalCouponandOffers
+        datamodal ={modal.show && modal.datamodal}
+        setmodal ={setmodal}
+        />
+
+      )
+    }
     <div>
       <div className="relative flex justify-center items-center w-full ">
         <div className="w-full">
@@ -21,8 +34,8 @@ const CouponsTable = ({ dataArray }) => {
               {dataArray.map((data, index) => {
                 return (
                   <tr
-                    key={index}
-                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
+                  key={index}
+                  className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
                   >
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                       {data?.CouponId}
@@ -46,7 +59,16 @@ const CouponsTable = ({ dataArray }) => {
           </table>
         </div>
       </div>
+
+
+
+      <button onClick={()=>{
+        setmodal({show:true})
+      }} className="absolute right-6 text-5xl p-2 bottom-12 text-white bg-yellow-400 rounded-full">
+      <AiOutlinePlus/>
+      </button>
     </div>
+                  </>
   );
 };
 

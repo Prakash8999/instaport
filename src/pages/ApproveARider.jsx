@@ -22,7 +22,7 @@ const ApproveARider = () => {
                 Pending Riders
               </NavLink>
               <NavLink
-                to="/riders"
+                to="/approvedrider"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
                 Approved Riders

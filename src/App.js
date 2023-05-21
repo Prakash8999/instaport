@@ -11,6 +11,7 @@ import Transaction from './pages/Transaction';
 import CouponsAndOffer from './pages/CouponsAndOffer';
 import Layouttest from './components/Layouttest';
 import Home from './pages/Home';
+import ApprovedRider from './components/Table/ApprovedRider';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/approvearider" element={<ApproveARider />} />
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/couponsandoffer" element={<CouponsAndOffer />} />
+          <Route path="/approvedrider" element={<ApprovedRider/>}/> 
         </Routes>
       </Router>
     </>
