@@ -2,6 +2,9 @@ import React from "react";
 import Avtar from "../images/Avtar.png";
 
 const RiderCard = ({ RiderName, RiderAge, VechileNumber }) => {
+//   const deleterider = ({RiderCard})=>{
+//     this.props.delete(this.props.RiderCard)
+//   }
   return (
     <div className="relative flex flex-col w-full h-full gap-5 bg-slate-100 rounded-xl   border-2 border-gray-400 hover:shadow-lg">
       <div className=" flex flex-col w-[inherit] h-[30vh] gap-y-11 items-center justify-center p-[2vw]">
@@ -22,7 +25,7 @@ const RiderCard = ({ RiderName, RiderAge, VechileNumber }) => {
           <button className="border-2 bg-[#FFFDE6] text-black px-6 py-2 rounded-xl  border-green-400 hover:border-green-500 hover:border-dashed hover:bg-green-100  hover:shadow-lg ">
             Confirm
           </button>
-          <button className="border-2 bg-[#FFFDE6] text-black px-8 py-2 rounded-xl   border-red-600 hover:border-red-500 hover:border-dashed hover:bg-red-100  hover:shadow-lg">
+          <button  className="border-2 bg-[#FFFDE6] text-black px-8 py-2 rounded-xl   border-red-600 hover:border-red-500 hover:border-dashed hover:bg-red-100  hover:shadow-lg">
             Delete
           </button>
         </div>

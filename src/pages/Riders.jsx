@@ -5,7 +5,7 @@ import Layout2 from "../components/Layout2";
 import Ridertable from "../components/Table/Ridertable";
 import Search from "../components/Search";
 import { NavLink } from "react-router-dom";
-import riderdata from "../components/Data/Riderdata";
+import {riderdata} from "../components/Data/Riderdata";
 const Riders = () => {
   const [searchResults, setSearchResults] = useState([]);
 
@@ -21,7 +21,17 @@ const Riders = () => {
         data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    setSearchResults(filteredData);
+
+    if(filteredData){
+
+      setSearchResults(filteredData);
+    }
+    else{
+      return(
+
+        <p>No Search Found</p>
+        ) 
+    }
   };
   return (
     <>
@@ -32,10 +42,10 @@ const Riders = () => {
             <div className="flex   lg:gap-[30vw]  w-full ">
               <div className="flex gap-4  ">
                 <NavLink
-                  to="/orders"
+                  to="/"
                   className={`rounded-lg border-2 text-base font-semibold hover:shadow-lg  shadow-md border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
                 >
-                  Avilable
+                  Available
                 </NavLink>
                 <NavLink
                   to="/riders"

@@ -74,6 +74,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
               </div>
             </div>
 
+{/* /// */}
             <div className="flex">
               <div>
                 <div className="flex gap-x-1 items-center">
@@ -100,7 +101,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
               <div className="flex flex-col gap-y-2">
                 <p className="font-semibold">Additional Services</p>
                 <div className="flex gap-x-2 items-center justify-between w-full ">
-                  <p>Prefer Currier with Delivery Dog</p>
+                  <p>Prefer Currier with Delivery Bag</p>
                   <div className="flex items-center">
                     <input
                       type="checkbox"
@@ -151,6 +152,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                 </div>
               </div>
             </div>
+
           </div>
           <div className="flex justify-between pr-10 pl-10 pt-7">
             <Buttons

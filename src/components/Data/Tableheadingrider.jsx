@@ -16,4 +16,31 @@ const ridersthead = [
   },
 ];
 
-export default ridersthead;
+const riderstheadactive=[
+{
+  riderTableheadActive:"Rider ID",
+},
+{
+  riderTableheadActive:"Rider Name",
+},
+{
+  riderTableheadActive:"Rider No.",
+},
+{
+  riderTableheadActive:"Order Type",
+},
+{
+  riderTableheadActive:"Pickup City",
+},
+{
+  riderTableheadActive:"Drop City",
+},
+{
+  riderTableheadActive:"Date",
+},
+{
+  riderTableheadActive:"Time",
+},
+]
+
+export  {ridersthead ,  riderstheadactive};

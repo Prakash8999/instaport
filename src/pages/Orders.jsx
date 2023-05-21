@@ -43,22 +43,22 @@ const Orders = () => {
                 Avilable
               </NavLink>
               <NavLink
-                to="/riders"
+                to="/"
                 className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
                 Active
               </NavLink>
               <NavLink
-                to="/riders"
+                to="/"
                 className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
-                Order Histoty
+                Order History
               </NavLink>
               <NavLink
                 to="/riders"
                 className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
-                Cancal Order
+                Cancelled
               </NavLink>
             </div>
             <div className="  pr-6">

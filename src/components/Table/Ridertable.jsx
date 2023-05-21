@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import Modaltest from "../Modal/ModalRider";
-import riderdata from "../Data/Riderdata";
-import ridersthead from "../Data/Tableheadingrider";
+import {riderdata,riderdataActive} from "../Data/Riderdata";
+import {ridersthead, riderstheadactive} from "../Data/Tableheadingrider";
 
 const OrderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
@@ -19,15 +19,15 @@ const OrderTable = ({ dataArray }) => {
         <table className=" w-[100%]">
           <thead>
             <tr className=" border-b-2 border-slate-200 ">
-              {ridersthead.map((head, index) => (
+              {riderstheadactive.map((head, index) => (
                 <th key={index} className=" px-4 py-2 ">
-                  {head.riderTablehead}
+                  {head.riderTableheadActive}
                 </th>
               ))}
             </tr>
           </thead>
           <tbody className="text-center mt-4 border-spacing-x-2 ">
-            {dataArray.map((data, index) => {
+            {riderdataActive.map((data, index) => {
               return (
                 <tr
                   key={index}
@@ -44,6 +44,15 @@ const OrderTable = ({ dataArray }) => {
                   </td>
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                     {data?.RiderNo}
+                  </td>
+                  <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                    {data?.OrderType}
+                  </td>
+                  <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                    {data?.PickupCity}
+                  </td>
+                  <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                    {data?.DropCity}
                   </td>
                   <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                     {data?.Date}
