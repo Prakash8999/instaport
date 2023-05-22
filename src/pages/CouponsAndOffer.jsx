@@ -29,7 +29,7 @@ const CouponsAndOffer = () => {
           <h1 className="text-4xl pt-3 ">Coupons And Offer</h1>
           <Search
             divclass={"w-80 h-10"}
-            onchange={handleSearch}
+            onChange={handleSearch}
             className={"w-80 h-12"}
           />
         </div>

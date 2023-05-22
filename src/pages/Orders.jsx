@@ -62,7 +62,7 @@ const Orders = () => {
               </NavLink>
             </div>
             <div className="  pr-6">
-              <Search onchange={handleSearch} className={"w-[20vw] h-12"} />
+              <Search onChange={handleSearch} className={"w-[20vw] h-12"} />
             </div>
           </div>
         </div>

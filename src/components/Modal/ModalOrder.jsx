@@ -74,7 +74,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
               </div>
             </div>
 
-{/* /// */}
+            {/* /// */}
             <div className="flex">
               <div>
                 <div className="flex gap-x-1 items-center">
@@ -152,7 +152,6 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                 </div>
               </div>
             </div>
-
           </div>
           <div className="flex justify-between pr-10 pl-10 pt-7">
             <Buttons

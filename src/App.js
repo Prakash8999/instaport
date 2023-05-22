@@ -12,6 +12,7 @@ import CouponsAndOffer from './pages/CouponsAndOffer';
 import Layouttest from './components/Layouttest';
 import Home from './pages/Home';
 import ApprovedRider from './components/Table/ApprovedRider';
+import TestForm from './components/Test.jsx/TestForm';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/home" element={<Home />} />
+          <Route path="/test/create-order" element={<TestForm />} />
           <Route path="/" element={<Dashboard />} />
           <Route path="/layout" element={<Layouttest />} />
           <Route path="/login" element={<Login />} />
@@ -29,7 +31,7 @@ function App() {
           <Route path="/approvearider" element={<ApproveARider />} />
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/couponsandoffer" element={<CouponsAndOffer />} />
-          <Route path="/approvedrider" element={<ApprovedRider/>}/> 
+          <Route path="/approvedrider" element={<ApprovedRider />} />
         </Routes>
       </Router>
     </>

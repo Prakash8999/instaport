@@ -1,7 +1,7 @@
 import React from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Search = ({ className, onchange, value }) => {
+const Search = ({ className, onChange, value }) => {
   return (
     <>
       <div className="relative">
@@ -13,7 +13,7 @@ const Search = ({ className, onchange, value }) => {
           type="text"
           placeholder="Search"
           value={value}
-          onChange={onchange}
+          onChange={onChange}
         />
       </div>
     </>

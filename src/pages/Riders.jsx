@@ -5,7 +5,7 @@ import Layout2 from "../components/Layout2";
 import Ridertable from "../components/Table/Ridertable";
 import Search from "../components/Search";
 import { NavLink } from "react-router-dom";
-import {riderdata} from "../components/Data/Riderdata";
+import { riderdata } from "../components/Data/Riderdata";
 const Riders = () => {
   const [searchResults, setSearchResults] = useState([]);
 
@@ -22,15 +22,10 @@ const Riders = () => {
         data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
-    if(filteredData){
-
+    if (filteredData) {
       setSearchResults(filteredData);
-    }
-    else{
-      return(
-
-        <p>No Search Found</p>
-        ) 
+    } else {
+      return <p>No Search Found</p>;
     }
   };
   return (
@@ -55,7 +50,7 @@ const Riders = () => {
                 </NavLink>
               </div>
               <div className="  pr-6">
-                <Search className={"w-[20vw] h-12"} onchange={handleSearch} />
+                <Search className={"w-[20vw] h-12"} onChange={handleSearch} />
               </div>
             </div>
           </div>

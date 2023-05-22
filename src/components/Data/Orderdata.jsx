@@ -62,7 +62,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "mrudul ",
 
     CustomerNo: "7303030702",
 
@@ -82,7 +82,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "mrudul ",
 
     CustomerNo: "7303030702",
 
@@ -102,7 +102,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "mrudul ",
 
     CustomerNo: "7303030702",
 
@@ -122,7 +122,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "prachi ",
 
     CustomerNo: "7303030702",
 
@@ -142,7 +142,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "prachi ",
 
     CustomerNo: "7303030702",
 
@@ -162,7 +162,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "prachi ",
 
     CustomerNo: "7303030702",
 
@@ -182,7 +182,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "prakash ",
 
     CustomerNo: "7303030702",
 
@@ -202,7 +202,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "prakash ",
 
     CustomerNo: "7303030702",
 
@@ -222,7 +222,7 @@ const orderdata = [
   {
     OrderId: "#75423",
 
-    CustomerName: "shradha ",
+    CustomerName: "prakash ",
 
     CustomerNo: "7303030702",
 

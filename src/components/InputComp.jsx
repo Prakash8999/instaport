@@ -5,7 +5,7 @@ const InputComp = ({
   type,
   placeholder,
   id,
-  onchange,
+  onChange,
   value,
   className,
 }) => {
@@ -18,7 +18,7 @@ const InputComp = ({
         type={type}
         placeholder={placeholder}
         id={id}
-        onChange={onchange}
+        onChange={onChange}
         value={value}
         className={` rounded-lg border-2 shadow-md border-yellow-300 p-1 lg:w-[23vw]  focus:outline-yellow-400 focus:text-black  ${className} `}
         autoComplete="on"
