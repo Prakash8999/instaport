@@ -5,6 +5,10 @@ import Modaltest from "../Modal/ModalOrder";
 
 const OrderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
+
+
+
+  
   // const [searchQuery, setSearchQuery] = useState("");
 
   // const handleSearch = (event) => {

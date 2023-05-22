@@ -5,6 +5,20 @@ import ModalInput from "../ModalInput";
 import Buttons from "../Buttons";
 
 const ModalOrder = ({ datamodal, setmodal }) => {
+  const onButtonClick = () => {
+    // using Java Script method to get PDF file
+    fetch('SamplePDF.pdf').then(response => {
+        response.blob().then(blob => {
+            // Creating new object of PDF file
+            const fileURL = window.URL.createObjectURL(blob);
+            // Setting various property values
+            let alink = document.createElement('a');
+            alink.href = fileURL;
+            alink.download = 'SamplePDF.pdf';
+            alink.click();
+        })
+    })
+}
   console.log(datamodal.OrderId);
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckednotify, setIsCheckednotify] = useState(false);
@@ -162,6 +176,8 @@ const ModalOrder = ({ datamodal, setmodal }) => {
             />
             <Buttons
               buttonText={"Download Invoice"}
+
+              onclick={onButtonClick}
               className={
                 "text-white border-yellow-300 self-center bg-yellow-400 h-11 py-0.5 px-4 rounded-3xl"
               }

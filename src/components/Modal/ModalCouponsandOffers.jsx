@@ -22,41 +22,38 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
             <p className="font-semibold text-2xl pb-5">Add a Coupon</p>
 
             <div className="flex flex-col gap-y-7">
+              <div className="flex items-center gap-x-3 justify-between">
+                <p>Coupon Name - </p>
 
-            <div className="flex items-center gap-x-3 justify-between">
-              <p>Coupon Name - </p>
+                <input
+                  placeholder="Enter the Coupon Name"
+                  className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
+                />
+              </div>
+              <div className="flex items-center gap-x-3 justify-between">
+                <p>Coupon Code - </p>
 
-              <input
-                placeholder="Enter the Coupon Name"
-                className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
+                <input
+                  placeholder="Enter the Coupon Code"
+                  className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
+                />
+              </div>
+              <div className="flex items-center gap-x-3 justify-between">
+                <p>Discount % - </p>
+
+                <input
+                  placeholder="Enter the Coupon's Discount"
+                  className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
+                />
+              </div>
+            </div>
+
+            <div className="flex pt-8 w-[100%] justify-center">
+              <Buttons
+                buttonText={"Add Coupon"}
+                className={"bg-yellow-400 text-white rounded-2xl px-4 py-1"}
               />
             </div>
-            <div className="flex items-center gap-x-3 justify-between">
-              <p>Coupon Code - </p>
-
-              <input
-                placeholder="Enter the Coupon Code"
-                className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
-                />
-            </div>
-            <div className="flex items-center gap-x-3 justify-between">
-              <p>Discount % - </p>
-
-              <input
-                placeholder="Enter the Coupon's Discount"
-                className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
-                />
-            </div>
-
-
-                </div>
-
-<div className="flex pt-8 w-[100%] justify-center">
-<Buttons
-buttonText={"Add Coupon"}
-className={'bg-yellow-400 text-white rounded-2xl px-4 py-1'}
-/>
-</div>
           </div>
         </div>
       </div>

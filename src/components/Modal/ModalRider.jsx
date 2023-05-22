@@ -7,7 +7,7 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import DownloadInvoice from "../DownloadInvoice";
 
-const ModalRider = ({ datamodal, setmodal }) => {
+const ModalRider = ({ datamodal, setmodal , downloadPdfDocument}) => {
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckednotify, setIsCheckednotify] = useState(false);
 
@@ -33,10 +33,10 @@ const ModalRider = ({ datamodal, setmodal }) => {
   //   }
   return (
     <>
-      <DownloadInvoice downloadFileName={"custom"} rootElementId={"testid"} />
+      
 
-      <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] ">
-        <div className="relative h-[70vh]  overflow-hidden w-[45vw] pb-5 bg-[#FFFDE6] rounded-lg ">
+      <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] " >
+        <div className="relative h-[70vh]  overflow-hidden w-[45vw] pb-5 bg-[#FFFDE6] rounded-lg " id="testid">
           <button
             onClick={() => {
               setmodal({ show: false });
@@ -47,7 +47,7 @@ const ModalRider = ({ datamodal, setmodal }) => {
             <AiOutlineClose />
           </button>
           <div className=" pt-4 pl-4">
-            <div className="flex justify-center items-center  " id="testid">
+            <div className="flex justify-center items-center  " >
               <div className="grid grid-cols-2 ">
                 <div className="flex  items-center">
                   <p className="font-semibold">Order No.- </p>
@@ -214,13 +214,7 @@ const ModalRider = ({ datamodal, setmodal }) => {
                   "text-white border-yellow-300 self-center bg-gray-400 w-40 px-4 h-11 py-0.5 rounded-3xl"
                 }
               />
-              <Buttons
-                buttonText={"Download Invoice"}
-                onclick={DownloadInvoice}
-                className={
-                  "text-white border-yellow-300 self-center bg-yellow-400 w-40 h-11 py-0.5 px-4 rounded-3xl"
-                }
-              />
+              <DownloadInvoice downloadFileName={datamodal.RiderId} rootElementId={"testid"} />
             </div>
           </div>
         </div>
