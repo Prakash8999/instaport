@@ -8,6 +8,7 @@ const InputComp = ({
   onChange,
   value,
   className,
+  readOnly=false
 }) => {
   return (
     <div className="flex flex-col">
@@ -15,12 +16,13 @@ const InputComp = ({
         {label}
       </label>
       <input
+      readOnly={readOnly}
         type={type}
         placeholder={placeholder}
         id={id}
         onChange={onChange}
         value={value}
-        className={` rounded-lg border-2 shadow-md border-yellow-300 p-1 lg:w-[23vw]  focus:outline-yellow-400 focus:text-black  ${className} `}
+        className={`px-3 py-2 rounded-lg border-2 shadow-md outline-none border-yellow-300 duration-300  focus:border-yellow-400 focus:text-black  ${className} `}
         autoComplete="on"
       />
     </div>

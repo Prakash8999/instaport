@@ -4,6 +4,10 @@
   font-family: "Nunito";
 }
 
+body{
+  font-family: 'Nunito';
+}
+
 .bg::before {
   content: "";
   position: absolute;

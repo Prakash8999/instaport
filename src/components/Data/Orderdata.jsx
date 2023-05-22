@@ -1,12 +1,12 @@
 const orderdata = [
   {
+    active: true,
     OrderId: "#09393",
-
     CustomerName: "Nitish Dalvi",
 
     CustomerNo: "9987274285",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -20,13 +20,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -40,13 +41,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: false,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -60,13 +62,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "mrudul ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -80,13 +83,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "mrudul ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -100,13 +104,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: false,
     OrderId: "#75423",
 
     CustomerName: "mrudul ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -120,13 +125,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "prachi ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -140,13 +146,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "prachi ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -160,13 +167,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "prachi ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -180,13 +188,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "prakash ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -200,13 +209,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "prakash ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -220,13 +230,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "prakash ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -240,13 +251,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -260,13 +272,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -280,13 +293,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -300,13 +314,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -320,13 +335,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -340,13 +356,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#75423",
 
     CustomerName: "shradha ",
 
     CustomerNo: "7303030702",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 
@@ -360,13 +377,14 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
+    active: true,
     OrderId: "#09394",
 
     CustomerName: "Sarika",
 
     CustomerNo: "9987274285",
 
-    OrderType: "Current order",
+    PackageType: "Current order",
 
     PickupCity: "Thane",
 

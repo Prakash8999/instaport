@@ -21,51 +21,51 @@ const SideNav = ({ className }) => {
           <Profile />
           <NavLink
             to="/"
-            className={`rounded-lg border-2 text-base font-semibold shadow hover:drop-shadow-xl  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 -black flex  items-center gap-4 `}
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
-            <RiDashboardFill style={{ fontSize: "1.2em" }} />
+            {/* <RiDashboardFill style={{ fontSize: "1.2em" }} /> */}
             Dashboard
           </NavLink>
           <NavLink
             to="/orders"
-            className={`rounded-lg border-2 text-base font-semibold  shadow-md border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center gap-4 `}
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
-            <BsBoxFill style={{ fontSize: "1.2em" }} />
+            {/* <BsBoxFill style={{ fontSize: "1.2em" }} /> */}
             Orders
           </NavLink>
           <NavLink
             to="/riders"
-            className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center gap-4 `}
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
-            <RiEBike2Fill style={{ fontSize: "1.2em" }} />
+            {/* <RiEBike2Fill style={{ fontSize: "1.2em" }} /> */}
             Riders
           </NavLink>
           <NavLink
             to="/pricemanipulation"
-            className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center gap-4 `}
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
-            <MdPriceChange style={{ fontSize: "1.2em" }} />
+            {/* <MdPriceChange style={{ fontSize: "1.2em" }} /> */}
             Price Manipulation
           </NavLink>
           <NavLink
             to="/approvearider"
-            className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center gap-4 `}
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
-            <MdFileDownloadDone style={{ fontSize: "1.2em" }} />
+            {/* <MdFileDownloadDone style={{ fontSize: "1.2em" }} /> */}
             Approve A Rider
           </NavLink>
           <NavLink
             to="/transaction"
-            className={`rounded-lg border-2 text-base font-semibold  shadow-md border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center gap-4 `}
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
-            <FaWallet style={{ fontSize: "1.2em" }} />
+            {/* <FaWallet style={{ fontSize: "1.2em" }} /> */}
             Transaction
           </NavLink>
           <NavLink
             to="/couponsandoffer"
-            className={`rounded-lg border-2 text-base font-semibold   shadow-md border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center gap-4 `}
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
-            <RiCoupon2Fill style={{ fontSize: "1.2em" }} />
+            {/* <RiCoupon2Fill style={{ fontSize: "1.2em" }} /> */}
             Coupons And Offer
           </NavLink>
         </div>
