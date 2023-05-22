@@ -22,15 +22,8 @@ const ModalOrder = ({ datamodal, setmodal }) => {
       })
     })
   }
-  const [isChecked, setIsChecked] = useState(false);
+  const [isBagChecked, setBagIsChecked] = useState(false);
   const [isCheckednotify, setIsCheckednotify] = useState(false);
-
-  const handleToggledog = () => {
-    setIsChecked(!isChecked);
-  };
-  const handleTogglenotify = () => {
-    setIsCheckednotify(!isCheckednotify);
-  };
 
   return (
     <>
@@ -65,17 +58,17 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                     <input
                       type="checkbox"
                       className="hidden"
-                      checked={isChecked}
-                      onChange={handleToggledog}
-                      id="left-to-right-toggle"
+                      checked={isBagChecked}
+                      onChange={(e) => {setBagIsChecked(e.target.checked)}}
+                      id="bag"
                     />
                     <label
-                      htmlFor="left-to-right-toggle"
-                      className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isChecked ? "bg-green-400" : "bg-gray-400"
+                      htmlFor="bag"
+                      className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isBagChecked ? "bg-green-400" : "bg-gray-400"
                         }`}
                     >
                       <span
-                        className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isChecked ? "translate-x-5" : "translate-x-0"
+                        className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isBagChecked ? "translate-x-5" : "translate-x-0"
                           }`}
                       ></span>
                     </label>
@@ -89,11 +82,11 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                         type="checkbox"
                         className="hidden"
                         checked={isCheckednotify}
-                        onChange={handleTogglenotify}
-                        id="left-to-right-toggle"
+                        onChange={(e) => {setIsCheckednotify(e.target.checked)}}
+                        id="notify"
                       />
                       <label
-                        htmlFor="left-to-right-toggle"
+                        htmlFor="notify"
                         className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isCheckednotify ? "bg-green-400" : "bg-gray-400"
                           }`}
                       >
