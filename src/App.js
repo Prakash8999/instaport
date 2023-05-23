@@ -14,7 +14,7 @@ import Home from './pages/Home';
 import ApprovedRider from './components/Table/ApprovedRider';
 import TestForm from './components/Test.jsx/TestForm';
 import SideNav from './components/SideNav';
-
+import AvailableRiderTable from './components/Table/AvailableRiderTable';
 function App() {
   return (
     <>
@@ -33,6 +33,7 @@ function App() {
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/couponsandoffer" element={<CouponsAndOffer />} />
           <Route path="/approvearider/approvedrider" element={<ApprovedRider />} />
+          <Route path="/riders/availablerider" element={<AvailableRiderTable/>} />
         </Routes>
       </Router>
     </>

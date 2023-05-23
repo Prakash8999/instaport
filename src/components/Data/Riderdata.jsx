@@ -1,5 +1,6 @@
 const riderdata = [
   {
+    available:true,
     RiderId: "#123456",
 
     RiderName: "Prakash jha",
@@ -11,6 +12,7 @@ const riderdata = [
     Time: "8am",
   },
   {
+    available:true,
     RiderId: "#123456",
 
     RiderName: "Mrudul ",
@@ -22,6 +24,7 @@ const riderdata = [
     Time: "8am",
   },
   {
+    available:true,
     RiderId: "#123456",
 
     RiderName: "Prakash jha",
@@ -37,6 +40,7 @@ const riderdata = [
 const riderdataActive = [
 
   {
+    active:true,
     OrderNo:"#12345678",
     RiderId: "#123456",
 

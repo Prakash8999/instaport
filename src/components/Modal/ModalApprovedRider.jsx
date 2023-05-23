@@ -57,14 +57,19 @@ const ModalApprovedRider = ({ setmodal, datamodal }) => {
                 value={datamodal?.RiderPanCard}
                 label={"Pan No:"}
               />
+
+              
+              <InputComp
+                
+                value={datamodal?.RiderAddress}
+                label={" Rider Address: "}
+              />
+
+
             </div>
 
 
 
-            <div className="flex w-[100%] justify-center pt-3">
-              <p className="font-semibold">1. Address - </p>
-              <p>{datamodal?.RiderAddress}</p>
-            </div>
 
 
             <div className="flex flex-col w-[100%] gap-y-3 pt-3 items-center">
