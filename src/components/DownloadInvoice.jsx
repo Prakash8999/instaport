@@ -16,11 +16,11 @@ const DownloadInvoice = ({ rootElementId, downloadFileName }) => {
     <>
       <button
         className={
-          "text-white border-yellow-300 self-center bg-yellow-400 w-40 h-11 py-0.5 px-4 rounded-3xl"
+          "text-white border-yellow-300 self-center bg-yellow-400 w-44 h-10 py-0.5 px-4 rounded-3xl"
         }
         onClick={downloadPdfDocument}
       >
-        Download Pdf
+        Download Invoice
       </button>
     </>
   );

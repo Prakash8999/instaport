@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import ModalInput from "../ModalInput";
 import Buttons from "../Buttons";
 import InputComp from "../InputComp";
-
+import DownloadInvoice from "../DownloadInvoice";
 const ModalOrder = ({ datamodal, setmodal }) => {
 
   const [readOnly, setReadOnly] = useState(true)
@@ -38,7 +38,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
           >
             <AiOutlineClose />
           </button>
-          <div className="w-full grid grid-cols-2 gap-y-2 gap-x-6 pt-2 p-5">
+          <div className="w-full grid grid-cols-2 gap-y-2 gap-x-6 pt-2 p-5" id="testid">
             <InputComp readOnly={readOnly} value={datamodal?.OrderId} label={"Order No:"} />
             <InputComp readOnly={true} value={datamodal?.PaymentType} label={"Payment Type:"} />
             <InputComp readOnly={readOnly} value={datamodal?.CustomerName} label={"Customer Name:"} />
@@ -109,13 +109,9 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                 "text-white border-yellow-300 self-center bg-gray-400 px-4 h-11 py-0.5 rounded-3xl"
               }
             />
-            <Buttons
-              buttonText={"Download Invoice"}
-
-              onclick={onButtonClick}
-              className={
-                "text-white border-yellow-300 self-center bg-yellow-400 h-11 py-0.5 px-4 rounded-3xl"
-              }
+            <DownloadInvoice
+              downloadFileName={datamodal?.OrderId}
+              rootElementId={"testid"}
             />
             <Buttons
               buttonText={"Cancel Order"}

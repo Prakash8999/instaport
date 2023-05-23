@@ -35,7 +35,9 @@ const riderdata = [
 ];
 
 const riderdataActive = [
+
   {
+    OrderNo:"#12345678",
     RiderId: "#123456",
 
     RiderName: "Prakash Jha",
@@ -58,6 +60,7 @@ const riderdataActive = [
     RiderVehicleNo: "MH 05 1234",
 
     PaymentType: "UPI",
+    PackageType: "Food, Clothes",
     ParcelValue: "200rs",
   },
 ];

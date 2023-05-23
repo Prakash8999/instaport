@@ -377,7 +377,7 @@ const orderdata = [
     ParcelValue: "Rs 2000.00",
   },
   {
-    active: true,
+    cancelled: true,
     OrderId: "#09394",
 
     CustomerName: "Sarika",

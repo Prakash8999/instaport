@@ -18,22 +18,27 @@ const Orders = () => {
     setSearchResults(orderdata);
     setShowOrders(orderdata);
   }, [orderdata]);
-  
+
   useEffect(() => {
     setSearchResults(showOrders);
   }, [showOrders]);
 
   const handleFilter = (e) => {
-    console.log(e)
+    console.log(e);
     if (e[0] === "all") {
-      setShowOrders(orderdata)
+      setShowOrders(orderdata);
     } else if (e[0] === "active") {
       const data = orderdata.filter((order) => {
-        return order.active === e[1]
-      })
-      setShowOrders(data)
+        return order.active === e[1];
+      });
+      setShowOrders(data);
+    } else if (e[0] === "cancelled") {
+      const canceldata = orderdata.filter((order) => {
+        return order.cancelled === e[1];
+      });
+      setShowOrders(canceldata);
     }
-  }
+  };
 
   const handleSearch = (e) => {
     const filteredData = showOrders.filter(
@@ -56,22 +61,33 @@ const Orders = () => {
           <div className="flex lg:gap-[13vw]  w-full">
             <div className="flex gap-4  ">
               <Buttons
-                onclick={() => { handleFilter(["all"]) }}
+                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
+                onclick={() => {
+                  handleFilter(["all"]);
+                }}
                 buttonText={"Available"}
               />
               <Buttons
-                onclick={() => { handleFilter(["active", true]) }}
+                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
+                onclick={() => {
+                  handleFilter(["active", true]);
+                }}
                 buttonText={"Active"}
               />
               <Buttons
-                onclick={() => { handleFilter(["active", false]) }}
+                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
+                onclick={() => {
+                  handleFilter(["active", false]);
+                }}
                 buttonText={"Inactive"}
               />
               <Buttons
-                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
-              >
-                Cancelled
-              </Buttons>
+                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
+              onclick={()=>{
+                handleFilter(["cancelled",true])
+              }}
+                buttonText={"Cancelled"}
+              />
             </div>
             <div className="  pr-6">
               <Search onChange={handleSearch} className={"w-[20vw] h-12"} />
