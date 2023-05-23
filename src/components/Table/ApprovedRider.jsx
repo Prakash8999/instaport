@@ -8,17 +8,15 @@ import ApprovedRiderHeader from "../Data/ApprovedRiderHeader";
 import ApprovedRiderData from "../Data/ApprovedRiderData";
 import ModalApprovedRider from "../Modal/ModalApprovedRider";
 const ApprovedRider = () => {
-  const [modal,setmodal] =useState({show:false, datamodal:{}});
+  const [modal, setmodal] = useState({ show: false, datamodal: {} });
   return (
     <>
-    {
-      modal.show && (
+      {modal.show && (
         <ModalApprovedRider
-        datamodal ={modal.show && modal.datamodal}
-        setmodal ={setmodal}
+          datamodal={modal.show && modal.datamodal}
+          setmodal={setmodal}
         />
-      )
-    }
+      )}
       <Layout>
         <SideNav></SideNav>
         <div className="absolute pt-14 flex  left-[23vw]  ">
@@ -31,7 +29,7 @@ const ApprovedRider = () => {
                 Pending Riders
               </NavLink>
               <NavLink
-                to="/approvedrider"
+                to="/approvearider/approvedrider"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
                 Approved Riders
@@ -45,7 +43,7 @@ const ApprovedRider = () => {
 
         <Layout2>
           <div className="relative flex justify-center items-center w-full ">
-            <div className="w-[100%]">
+            <div className="w-full">
               <table className="w-[100%]">
                 <thead>
                   <tr className="border-b-2 border-slate-200">
@@ -59,14 +57,13 @@ const ApprovedRider = () => {
                   </tr>
                 </thead>
 
-                <tbody >
+                <tbody className="text-center mt-4">
                   {ApprovedRiderData.map((data, index) => {
                     return (
-					
                       <tr
                         key={index}
-                        onClick={()=>{
-                          setmodal({show:true, datamodal:data})
+                        onClick={() => {
+                          setmodal({ show: true, datamodal: data });
                         }}
                         className="border-b-2 border-slate-100 bg-white odd:bg-gray-100  w-[100%] cursor-pointer "
                       >

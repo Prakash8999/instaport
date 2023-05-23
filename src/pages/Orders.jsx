@@ -3,7 +3,6 @@ import Layout from "../components/Layout";
 import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import OrderTable from "../components/Table/OrderTable";
-import { NavLink } from "react-router-dom";
 import orderdata from "../components/Data/Orderdata";
 import Search from "../components/Search";
 import { useState } from "react";
@@ -13,6 +12,7 @@ import Buttons from "../components/Buttons";
 const Orders = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showOrders, setShowOrders] = useState([]);
+  const [activeButton, setActiveButton] = useState(1);
 
   useEffect(() => {
     setSearchResults(orderdata);
@@ -23,7 +23,8 @@ const Orders = () => {
     setSearchResults(showOrders);
   }, [showOrders]);
 
-  const handleFilter = (e) => {
+  const handleFilter = (e, buttonId) => {
+    setActiveButton(buttonId);
     console.log(e);
     if (e[0] === "all") {
       setShowOrders(orderdata);
@@ -46,46 +47,65 @@ const Orders = () => {
         data.CustomerName.toLowerCase().includes(
           e.target.value.toLowerCase()
         ) ||
-        data.OrderType.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        data.PackageType.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.CustomerNo.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.OrderId.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    setSearchResults(filteredData);
+    setShowOrders(filteredData);
   };
+
+  const handleButtonClick = (buttonId) => {
+    setActiveButton(buttonId);
+  };
+
+  const getButtonClass = (buttonId) => {
+    return buttonId === activeButton
+      ? "text-black  bg-yellow-400 "
+      : "bg-white";
+  };
+
   return (
     <div>
       <Layout>
         <SideNav />
         <div className="absolute pt-14 flex  left-[23vw] ">
-          <div className="flex lg:gap-[13vw]  w-full">
-            <div className="flex gap-4  ">
+          <div className="flex lg:gap-[10vw]  w-full">
+            <div className="flex gap-3 ">
               <Buttons
-                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
+                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                  1
+                )}`}
                 onclick={() => {
-                  handleFilter(["all"]);
+                  handleFilter(["all"], 1);
                 }}
                 buttonText={"Available"}
               />
               <Buttons
-                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
+                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                  2
+                )}`}
                 onclick={() => {
-                  handleFilter(["active", true]);
+                  handleFilter(["active", true], 2);
                 }}
                 buttonText={"Active"}
               />
               <Buttons
-                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
+                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                  3
+                )}`}
                 onclick={() => {
-                  handleFilter(["active", false]);
+                  handleFilter(["active", false], 3);
                 }}
                 buttonText={"Inactive"}
               />
               <Buttons
-                className={`rounded-lg border-2 text-base font-semibold hover:shadow-md  shadow-sm border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 focus:bg-yellow-400 `}
-              onclick={()=>{
-                handleFilter(["cancelled",true])
-              }}
+                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                  4
+                )}`}
+                onclick={() => {
+                  handleFilter(["cancelled", true], 4);
+                }}
                 buttonText={"Cancelled"}
               />
             </div>

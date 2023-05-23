@@ -13,6 +13,7 @@ import Layouttest from './components/Layouttest';
 import Home from './pages/Home';
 import ApprovedRider from './components/Table/ApprovedRider';
 import TestForm from './components/Test.jsx/TestForm';
+import SideNav from './components/SideNav';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           <Route path="/approvearider" element={<ApproveARider />} />
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/couponsandoffer" element={<CouponsAndOffer />} />
-          <Route path="/approvedrider" element={<ApprovedRider />} />
+          <Route path="/approvearider/approvedrider" element={<ApprovedRider />} />
         </Routes>
       </Router>
     </>

@@ -6,7 +6,6 @@ import Modaltest from "../Modal/ModalOrder";
 const OrderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
-
   // const [searchQuery, setSearchQuery] = useState("");
 
   // const handleSearch = (event) => {
@@ -62,7 +61,7 @@ const OrderTable = ({ dataArray }) => {
                       {data?.CustomerNo}
                     </td>
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                      {data?.OrderType}
+                      {data?.PackageType}
                     </td>
                     <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                       {data?.PickupCity}

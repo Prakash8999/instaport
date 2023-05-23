@@ -13,14 +13,16 @@ import Search from "../components/Test.jsx/Search";
 import OrderTable from "../components/Table/OrderTable";
 import Table from "../components/Test.jsx/Search";
 import InfiniteScrollTable from "../components/Test.jsx/Scroll";
+import ButtonGroup from "../components/Test.jsx/ButtonGroup";
 
 const Home = () => {
   //  Template Code
   return (
     <>
-      <Table></Table>
+      {/* <Table></Table>
       <InfiniteScrollTable></InfiniteScrollTable>
-      <Search></Search>
+      <Search></Search> */}
+      <ButtonGroup></ButtonGroup>
     </>
   );
 };

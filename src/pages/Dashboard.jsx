@@ -3,6 +3,7 @@ import SideNav from "../components/SideNav";
 import Layout from "../components/Layout";
 import Search from "../components/Search";
 import StatsCard from "../components/StatsCard";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -16,14 +17,32 @@ const Dashboard = () => {
         </div>
         <div className="absolute h-fit w-[76vw]    top-48 right-4">
           <div className="flex items-center justify-around my-8">
-            <StatsCard Number={"54202"} Value={"Total Order"}></StatsCard>
-            <StatsCard Number={"54202"} Value={"Avilable Order"}></StatsCard>
-            <StatsCard Number={"54202"} Value={"Active Order"}></StatsCard>
+            <Link to="/orders">
+              <StatsCard Number={"54202"} Value={"Total Order"}></StatsCard>
+            </Link>
+            <Link to="/orders">
+              <StatsCard Number={"54202"} Value={"Avilable Order"}></StatsCard>
+            </Link>
+            <Link to="/orders">
+              <StatsCard Number={"54202"} Value={"Active Order"}></StatsCard>
+            </Link>
           </div>
           <div className="flex items-center justify-around mt-14">
-            <StatsCard Number={"54202"} Value={"Order Completed"}></StatsCard>
-            <StatsCard Number={"54202"} Value={"Total Rider"}></StatsCard>
-            <StatsCard Number={"54202"} Value={"Cancal Order"}></StatsCard>
+            <Link to="/orders">
+              <StatsCard
+                Number={"54202"}
+                Value={" Order Completed"}
+              ></StatsCard>
+            </Link>
+            <Link to="/riders">
+              <StatsCard Number={"54202"} Value={"Total Rider"}></StatsCard>
+            </Link>
+            <Link to="/orders">
+              <StatsCard
+                Number={"54202"}
+                Value={" Cancelled Orders"}
+              ></StatsCard>
+            </Link>
           </div>
         </div>
       </Layout>

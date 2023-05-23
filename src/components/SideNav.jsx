@@ -1,12 +1,12 @@
 import React from "react";
 import LogoComp from "./LogoComp";
-import { RiDashboardFill } from "react-icons/ri";
-import { BsBoxFill } from "react-icons/bs";
-import { RiEBike2Fill } from "react-icons/ri";
-import { MdPriceChange } from "react-icons/md";
-import { MdFileDownloadDone } from "react-icons/md";
-import { FaWallet } from "react-icons/fa";
-import { RiCoupon2Fill } from "react-icons/ri";
+// import { RiDashboardFill } from "react-icons/ri";
+// import { BsBoxFill } from "react-icons/bs";
+// import { RiEBike2Fill } from "react-icons/ri";
+// import { MdPriceChange } from "react-icons/md";
+// import { MdFileDownloadDone } from "react-icons/md";
+// import { FaWallet } from "react-icons/fa";
+// import { RiCoupon2Fill } from "react-icons/ri";
 import Profile from "./Profile";
 import { NavLink } from "react-router-dom";
 

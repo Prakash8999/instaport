@@ -29,13 +29,17 @@ const Transaction = () => {
     <div>
       <Layout>
         <SideNav></SideNav>
-        <div className="absolute pt-14 flex items-center justify-between gap-[25vw]  left-[23vw] ">
-          <h1 className="text-4xl pt-3 ">Transaction</h1>
-          <Search
-            divclass={"w-80 h-10"}
-            onChange={handleSearch}
-            className={"w-80 h-12"}
-          />
+        <div className="absolute pt-14 flex items-center justify-around  left-[10%] w-full ">
+          <div>
+            <h1 className="text-4xl pt-3 ">Transaction</h1>
+          </div>
+          <div>
+            <Search
+              divclass={"w-80 h-10"}
+              onChange={handleSearch}
+              className={"w-80 h-12"}
+            />
+          </div>
         </div>
         <Layout2>
           <TransactionTable dataArray={searchResults} />
