@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
-
 import ModalInput from "../ModalInput";
 import Buttons from "../Buttons";
 import InputComp from "../InputComp";
