@@ -4,23 +4,24 @@ import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import Search from "../components/Search";
 import { NavLink } from "react-router-dom";
-import { riderdata } from "../components/Data/Riderdata";
+import { riderdataActive } from "../components/Data/Riderdata";
 import ActiveRiderTable from "../components/Table/Ridertable";
 const ActiveRider = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    setSearchResults(riderdata);
-  }, [riderdata]);
+    setSearchResults(riderdataActive);
+  }, [riderdataActive]);
 
   const handleSearch = (e) => {
-    const filteredData = riderdata.filter(
+    const filteredData = riderdataActive.filter(
       (data) =>
         data.RiderName.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.RiderId.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
     );
+    setSearchResults(filteredData)
   };
   return (
     <>

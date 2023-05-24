@@ -11,7 +11,7 @@ import Transaction from './pages/Transaction';
 import CouponsAndOffer from './pages/CouponsAndOffer';
 import Layouttest from './components/Layouttest';
 import Home from './pages/Home';
-import ApprovedRider from './components/Table/ApprovedRider';
+import ApprovedRiderPage from './pages/ApprovedRiderPage';
 import TestForm from './components/Test.jsx/TestForm';
 import ActiveRider from './pages/RidersActive';
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route path="/approvearider" element={<ApproveARider />} />
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/couponsandoffer" element={<CouponsAndOffer />} />
-          <Route path="/approvearider/approvedrider" element={<ApprovedRider />} />
+          <Route path="/approvearider/approvedrider" element={<ApprovedRiderPage />} />
           {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
         </Routes>
       </Router>

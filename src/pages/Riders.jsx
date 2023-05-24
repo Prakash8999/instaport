@@ -22,6 +22,7 @@ const Riders = () => {
         data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
     );
+    setSearchResults(filteredData)
   };
   return (
     <>
