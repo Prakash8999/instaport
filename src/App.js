@@ -29,10 +29,10 @@ function App() {
           <Route path="/riders/availablerider" element={<Riders />} />
           <Route path="/riders/active" element={<ActiveRider />} />
           <Route path="/pricemanipulation" element={<PriceManipulation />} />
-          <Route path="/approvearider" element={<ApproveARider />} />
+          <Route path="/approvearider/pendingrider" element={<ApproveARider />} />
+          <Route path="/approvearider/approvedrider" element={<ApprovedRiderPage />} />
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/couponsandoffer" element={<CouponsAndOffer />} />
-          <Route path="/approvearider/approvedrider" element={<ApprovedRiderPage />} />
           {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
         </Routes>
       </Router>

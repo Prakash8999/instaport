@@ -10,7 +10,7 @@ import LogoComp from "./LogoComp";
 import Profile from "./Profile";
 import { NavLink } from "react-router-dom";
 
-const SideNav = ({ className, classNameRider }) => {
+const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
   return (
     <>
       <div
@@ -48,8 +48,8 @@ const SideNav = ({ className, classNameRider }) => {
             Price Manipulation
           </NavLink>
           <NavLink
-            to="/approvearider"
-            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
+            to="/approvearider/pendingrider"
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center ${classNameApprovedrider}`}
           >
             {/* <MdFileDownloadDone style={{ fontSize: "1.2em" }} /> */}
             Approve A Rider

@@ -28,13 +28,13 @@ const ApprovedRiderPage = () => {
   return (
     <>
       <Layout>
-        <SideNav></SideNav>
+        <SideNav classNameApprovedrider={"bg-[#ffd12e]"}></SideNav>
         <div className="absolute pt-14 flex  left-[23vw]">
           <div className=" flex lg:gap-[13vw]  w-full  ">
             <div className="flex gap-4  ">
               <NavLink
-                to="/approvearider"
-                className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
+                to="/approvearider/pendingrider"
+                className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 bg-white  `}
               >
                 Pending Riders
               </NavLink>
