@@ -10,7 +10,7 @@ import LogoComp from "./LogoComp";
 import Profile from "./Profile";
 import { NavLink } from "react-router-dom";
 
-const SideNav = ({ className }) => {
+const SideNav = ({ className, classNameRider }) => {
   return (
     <>
       <div
@@ -34,8 +34,8 @@ const SideNav = ({ className }) => {
             Orders
           </NavLink>
           <NavLink
-            to="/riders"
-            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
+            to="/riders/availablerider"
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center ${classNameRider}`}
           >
             {/* <RiEBike2Fill style={{ fontSize: "1.2em" }} /> */}
             Riders

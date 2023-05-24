@@ -33,6 +33,7 @@ const Orders = () => {
         return order.active === e[1];
       });
       setShowOrders(data);
+      setSearchResults(data);
     } else if (e[0] === "cancelled") {
       const canceldata = orderdata.filter((order) => {
         return order.cancelled === e[1];
@@ -53,10 +54,7 @@ const Orders = () => {
         data.OrderId.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setShowOrders(filteredData);
-  };
-
-  const handleButtonClick = (buttonId) => {
-    setActiveButton(buttonId);
+    setSearchResults(filteredData);
   };
 
   const getButtonClass = (buttonId) => {

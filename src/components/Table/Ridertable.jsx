@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import Modaltest from "../Modal/ModalRider";
-import {riderdata,riderdataActive} from "../Data/Riderdata";
-import {ridersthead, riderstheadactive} from "../Data/Tableheadingrider";
+import { riderdataActive } from "../Data/Riderdata";
+import { riderstheadactive } from "../Data/Tableheadingrider";
 
-const OrderTable = ({ dataArray }) => {
+const ActiveRiderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
   return (
@@ -70,4 +70,4 @@ const OrderTable = ({ dataArray }) => {
   );
 };
 
-export default OrderTable;
+export default ActiveRiderTable;

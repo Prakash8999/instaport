@@ -19,9 +19,9 @@ const Home = () => {
   //  Template Code
   return (
     <>
-      {/* <Table></Table>
+      <Table></Table>
       <InfiniteScrollTable></InfiniteScrollTable>
-      <Search></Search> */}
+      <Search></Search>
       <ButtonGroup></ButtonGroup>
     </>
   );

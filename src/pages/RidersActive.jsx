@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
-import Ridertable from "../components/Table/Ridertable";
 import Search from "../components/Search";
 import { NavLink } from "react-router-dom";
 import { riderdata } from "../components/Data/Riderdata";
-import AvailableRiderTable from "../components/Table/AvailableRiderTable";
-const Riders = () => {
+import ActiveRiderTable from "../components/Table/Ridertable";
+const ActiveRider = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const Riders = () => {
     <>
       <div>
         <Layout>
-          <SideNav></SideNav>
+          <SideNav classNameRider={"bg-[#ffd12e]"}></SideNav>
           <div className="absolute pt-14 flex  left-[23vw]  ">
             <div className="flex   lg:gap-[30vw]  w-full ">
               <div className="flex gap-4  ">
@@ -50,7 +49,7 @@ const Riders = () => {
             </div>
           </div>
           <Layout2>
-            <AvailableRiderTable dataArray={searchResults} />
+            <ActiveRiderTable dataArray={searchResults} />
           </Layout2>
         </Layout>
       </div>
@@ -58,4 +57,4 @@ const Riders = () => {
   );
 };
 
-export default Riders;
+export default ActiveRider;
