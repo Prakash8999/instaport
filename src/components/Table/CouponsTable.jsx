@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import couponsTableHead from "../Data/CouponsHeader";
-import couponData from "../Data/CouponData";
-import { AiOutlinePlus, AiOutlinePlusCircle } from "react-icons/ai";
+import { AiOutlinePlus } from "react-icons/ai";
 import ModalCouponandOffers from "../Modal/ModalCouponsandOffers";
 import datanotfound from "../../images/datanotfound (2).svg";
 

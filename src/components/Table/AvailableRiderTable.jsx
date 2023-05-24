@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { riderdata } from "../Data/Riderdata";
+import React from "react";
 import { ridersthead } from "../Data/Tableheadingrider";
-import Layout from "../Layout";
-import SideNav from "../SideNav";
-import { NavLink } from "react-router-dom";
-import Search from "../Search";
-import Layout2 from "../Layout2";
 import datanotfound from "../../images/datanotfound (2).svg";
 const AvailableRiderTable = ({ dataArray }) => {
   return (
