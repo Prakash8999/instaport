@@ -9,9 +9,17 @@ import Search from "../components/Search";
 
 const ApprovedRiderPage = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const [isLoading,setLoading] = useState(true)
 
   useEffect(() => {
     setSearchResults(ApprovedRiderData);
+    const timeout = setTimeout(() => {
+      setLoading(false)
+    }, 500);
+
+    return () =>{
+      clearTimeout(timeout)
+    }
   }, [ApprovedRiderData]);
 
   const handleSearch = (e) => {
@@ -33,13 +41,13 @@ const ApprovedRiderPage = () => {
           <div className=" flex lg:gap-[13vw]  w-full  ">
             <div className="flex gap-4  ">
               <NavLink
-                to="/approvearider/pendingrider"
+                to="/approve-rider/pending"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 bg-white  `}
               >
                 Pending Riders
               </NavLink>
               <NavLink
-                to="/approvearider/approvedrider"
+                to="/approve-rider/approved"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
                 Approved Riders
@@ -53,7 +61,7 @@ const ApprovedRiderPage = () => {
             </div>
           </div>
         </div>
-        <Layout2>
+        <Layout2 loading={isLoading}>
           <ApprovedRiderTable dataArray={searchResults} />
         </Layout2>
       </Layout>

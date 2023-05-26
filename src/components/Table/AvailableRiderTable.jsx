@@ -1,8 +1,10 @@
 import React from "react";
 import { ridersthead } from "../Data/Tableheadingrider";
 import datanotfound from "../../images/datanotfound (2).svg";
+
 const AvailableRiderTable = ({ dataArray }) => {
   return (
+    
     <>
       <div className="relative flex justify-center items-center w-full ">
         <table className="w-[100%]">
@@ -17,6 +19,7 @@ const AvailableRiderTable = ({ dataArray }) => {
               })}
             </tr>
           </thead>
+
 
           {dataArray.length > 0 ? (
             <tbody className="text-center mt-4">

@@ -11,9 +11,18 @@ import ridercardData from "../components/Data/RiderCardData";
 
 const ApproveARider = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setLoading] = useState(true);  
 
   useEffect(() => {
     setSearchResults(ridercardData);
+    const timeout = setTimeout (()=>{
+      setLoading(false)
+    },500)
+
+return () =>{
+  clearTimeout(timeout)
+}
+
   }, [ridercardData]);
 
   const handleSearch = (e) => {
@@ -33,13 +42,13 @@ const ApproveARider = () => {
           <div className=" flex lg:gap-[13vw]  w-full  ">
             <div className="flex gap-4  ">
               <NavLink
-                to="/approvearider/pendingrider"
+                to="/approve-rider/pending"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
                 Pending Riders
               </NavLink>
               <NavLink
-                to="/approvearider/approvedrider"
+                to="/approve-rider/approved"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
                 Approved Riders
@@ -53,7 +62,7 @@ const ApproveARider = () => {
             </div>
           </div>
         </div>
-        <Layout2>
+        <Layout2 loading={isLoading}>
           {searchResults.length > 0 ? (
             <div className="flex items-center justify-center my-8">
               <div className="grid grid-cols-3 gap-y-16 gap-x-16">

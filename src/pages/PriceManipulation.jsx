@@ -21,7 +21,7 @@ const PriceManipulation = () => {
           <SideNav></SideNav>
           <div className="absolute pt-14 flex items-center justify-between gap-[25vw]  left-[23vw] ">
             <h1 className="text-4xl pt-3 ">Price Manipulation</h1>
-            <Search divclass={"w-80 h-10"} className={"w-80 h-12"} />
+            <Search  className={"w-80 h-12"} />
           </div>
           <Layout2>
             <div className="flex flex-col justify-center">

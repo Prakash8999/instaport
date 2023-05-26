@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Modaltest from "../Modal/ModalRider";
 import { riderdataActive } from "../Data/Riderdata";
 import { riderstheadactive } from "../Data/Tableheadingrider";

@@ -34,21 +34,21 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
             Orders
           </NavLink>
           <NavLink
-            to="/riders/availablerider"
+            to="/riders/available"
             className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center ${classNameRider}`}
           >
             {/* <RiEBike2Fill style={{ fontSize: "1.2em" }} /> */}
             Riders
           </NavLink>
           <NavLink
-            to="/pricemanipulation"
+            to="/price-manipulation"
             className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
             {/* <MdPriceChange style={{ fontSize: "1.2em" }} /> */}
             Price Manipulation
           </NavLink>
           <NavLink
-            to="/approvearider/pendingrider"
+            to="/approve-rider/pending"
             className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center ${classNameApprovedrider}`}
           >
             {/* <MdFileDownloadDone style={{ fontSize: "1.2em" }} /> */}
@@ -62,7 +62,7 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
             Transaction
           </NavLink>
           <NavLink
-            to="/couponsandoffer"
+            to="/coupons-and-offers"
             className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
             {/* <RiCoupon2Fill style={{ fontSize: "1.2em" }} /> */}
