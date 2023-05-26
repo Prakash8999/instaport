@@ -8,9 +8,16 @@ import { riderdataActive } from "../components/Data/Riderdata";
 import ActiveRiderTable from "../components/Table/Ridertable";
 const ActiveRider = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setSearchResults(riderdataActive);
+    const timeout = setTimeout(() => {
+      setLoading(false)
+    }, 1000)
+    return () => {
+      clearTimeout(timeout)
+    }
   }, [riderdataActive]);
 
   const handleSearch = (e) => {
@@ -23,6 +30,7 @@ const ActiveRider = () => {
     );
     setSearchResults(filteredData)
   };
+
   return (
     <>
       <div>
@@ -49,7 +57,7 @@ const ActiveRider = () => {
               </div>
             </div>
           </div>
-          <Layout2>
+          <Layout2 loading={loading}>
             <ActiveRiderTable dataArray={searchResults} />
           </Layout2>
         </Layout>
