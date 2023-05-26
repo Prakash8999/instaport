@@ -7,9 +7,16 @@ import CouponsTable from "../components/Table/CouponsTable";
 import couponData from "../components/Data/CouponData";
 const CouponsAndOffer = () => {
   const [searchResults, setSearchResults] = useState([]);
-
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setSearchResults(couponData);
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+return () =>{
+  clearTimeout(timeout)
+}
+
   }, [couponData]);
 
   const handleSearch = (e) => {
@@ -27,9 +34,9 @@ const CouponsAndOffer = () => {
         <SideNav></SideNav>
         <div className="absolute pt-14 flex items-center justify-around  left-[10%] w-full ">
           <div>
-            <h1 className="text-4xl pt-3 ">Coupons And Offer</h1>
+            <h1 className="text-4xl pt-3 pl-6">Coupons And Offer</h1>
           </div>
-          <div>
+          <div className="pl-24">
             <Search
               divclass={"w-80 h-10"}
               onChange={handleSearch}
@@ -37,7 +44,7 @@ const CouponsAndOffer = () => {
             />
           </div>
         </div>
-        <Layout2>
+        <Layout2 loading={isLoading}>
           <CouponsTable dataArray={searchResults}></CouponsTable>
         </Layout2>
       </Layout>

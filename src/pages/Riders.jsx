@@ -54,7 +54,7 @@ const Riders = () => {
                   Active
                 </NavLink>
               </div>
-              <div className="  pl-14">
+              <div className="  pl-16">
                 <Search className={"w-[20vw] h-12"} onChange={handleSearch} />
               </div>
             </div>

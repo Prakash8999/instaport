@@ -13,10 +13,17 @@ const Orders = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showOrders, setShowOrders] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
-
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     setSearchResults(orderdata);
     setShowOrders(orderdata);
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () =>{
+      clearTimeout(timeout)
+    }
   }, [orderdata]);
 
   useEffect(() => {
@@ -107,12 +114,12 @@ const Orders = () => {
                 buttonText={"Cancelled"}
               />
             </div>
-            <div className="  pr-6">
+            <div className="  pr-6 pl-3">
               <Search onChange={handleSearch} className={"w-[20vw] h-12"} />
             </div>
           </div>
         </div>
-        <Layout2>
+        <Layout2 loading={isLoading}>
           <OrderTable dataArray={searchResults} />
         </Layout2>
       </Layout>

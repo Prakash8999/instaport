@@ -7,9 +7,17 @@ import Search from "../components/Search";
 import transactionData from "../components/Data/TransactionData";
 const Transaction = () => {
   const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     setSearchResults(transactionData);
+    const timeout = setTimeout(() => {
+      setLoading(false)
+    }, 500);
+return () =>{
+  clearTimeout(timeout)
+}
+
   }, [transactionData]);
 
   const handleSearch = (e) => {
@@ -31,9 +39,9 @@ const Transaction = () => {
         <SideNav></SideNav>
         <div className="absolute pt-14 flex items-center justify-around  left-[10%] w-full ">
           <div>
-            <h1 className="text-4xl pt-3 ">Transaction</h1>
+            <h1 className="text-4xl pt-3 pl-6">Transaction</h1>
           </div>
-          <div>
+          <div className="pl-56">
             <Search
               divclass={"w-80 h-10"}
               onChange={handleSearch}
@@ -41,7 +49,7 @@ const Transaction = () => {
             />
           </div>
         </div>
-        <Layout2>
+        <Layout2 loading={isLoading}>
           <TransactionTable dataArray={searchResults} />
         </Layout2>
       </Layout>

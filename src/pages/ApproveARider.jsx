@@ -54,7 +54,7 @@ return () =>{
                 Approved Riders
               </NavLink>
             </div>
-            <div className="  pr-6">
+            <div className=" pl-40 pr-6">
               <Search
                 onChange={handleSearch}
                 className={"w-[20vw] h-12"}
@@ -68,10 +68,10 @@ return () =>{
               <div className="grid grid-cols-3 gap-y-16 gap-x-16">
                 {searchResults.map((data, index) => {
                   return (
-                    <div className="relative flex flex-col w-full h-full gap-5 bg-slate-100 rounded-xl   border-2 border-gray-400 hover:shadow-lg">
+                    <div   key={index} className="relative flex flex-col w-full h-full gap-5 bg-slate-100 rounded-xl   border-2 border-gray-400 hover:shadow-lg">
                       <div
                         className=" flex flex-col w-[inherit] h-[30vh] gap-y-11 items-center justify-center p-[2vw]"
-                        key={index}
+                      
                       >
                         <div className="flex  items-start  gap-8">
                           <div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Layout from "../components/Layout";
 import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
@@ -8,6 +8,17 @@ import ModalPriceManipulation from "../components/Modal/ModalPriceManipulation";
 import Search from "../components/Search";
 const PriceManipulation = () => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
+const [isLoading, setLoading] =useState(true)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false)
+    }, 100);
+  
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [])
+  
   return (
     <>
       {modal.show && (
@@ -19,11 +30,14 @@ const PriceManipulation = () => {
       <div>
         <Layout>
           <SideNav></SideNav>
-          <div className="absolute pt-14 flex items-center justify-between gap-[25vw]  left-[23vw] ">
+          <div className="absolute pt-14 flex items-center justify-between gap-[25vw]  left-[23vw] pl-1">
             <h1 className="text-4xl pt-3 ">Price Manipulation</h1>
+            <div className="pl-16">
+
             <Search  className={"w-80 h-12"} />
+            </div>
           </div>
-          <Layout2>
+          <Layout2 loading={isLoading}>
             <div className="flex flex-col justify-center">
               <div className="grid grid-cols-2 p-6 gap-x-36 gap-y-4">
                 <InputComp label={"Per Kilometer Charge"} className={"p-2"} />
