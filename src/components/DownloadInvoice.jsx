@@ -16,7 +16,7 @@ const DownloadInvoice = ({ rootElementId, downloadFileName }) => {
     <>
       <button
         className={
-          "text-white border-yellow-300 self-center bg-yellow-400 w-44 h-10 py-0.5 px-4 rounded-3xl"
+          "text-white border-yellow-300 self-center bg-yellow-400 rounded-3xl w-48 px-6 py-3  h-11 "
         }
         onClick={downloadPdfDocument}
       >

@@ -1,14 +1,14 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import Button from "../Buttons";
-import Search from "../../components/Search";
-import ModalInput from "../ModalInput";
+// import Button from "../Buttons";
+// import Search from "../../components/Search";
+// import ModalInput from "../ModalInput";
 import Buttons from "../Buttons";
 const CouponsandOffers = ({ setmodal, datamodal }) => {
   return (
     <>
       <div className="h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed left-0 top-0 z-[100]">
-        <div className="relative h-[56vh] overflow-hidden w-[38vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
+        <div className="relative h-[55vh] overflow-hidden w-[40vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
           <button
             onClick={() => {
               setmodal({ show: false });
@@ -51,7 +51,7 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
             <div className="flex pt-8 w-[100%] justify-center">
               <Buttons
                 buttonText={"Add Coupon"}
-                className={"bg-yellow-400 text-white rounded-2xl px-4 py-1"}
+                className={"bg-yellow-400 text-white rounded-2xl px-6 py-2"}
               />
             </div>
           </div>

@@ -8,7 +8,7 @@ const Buttons = ({
   onclick,
 }) => {
   return (
-    <div className="flex justify-start items-start ">
+    <div>
       <button onClick={onclick} className={`${className}`}>
         <div>{buttonIcon}</div>
         {buttonText}

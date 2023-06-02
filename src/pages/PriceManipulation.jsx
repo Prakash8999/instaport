@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
@@ -8,17 +8,17 @@ import ModalPriceManipulation from "../components/Modal/ModalPriceManipulation";
 import Search from "../components/Search";
 const PriceManipulation = () => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
-const [isLoading, setLoading] =useState(true)
+  const [isLoading, setLoading] = useState(true);
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setLoading(false)
+      setLoading(false);
     }, 100);
-  
+
     return () => {
-      clearTimeout(timeout)
-    }
-  }, [])
-  
+      clearTimeout(timeout);
+    };
+  }, []);
+
   return (
     <>
       {modal.show && (
@@ -33,8 +33,7 @@ const [isLoading, setLoading] =useState(true)
           <div className="absolute pt-14 flex items-center justify-between gap-[25vw]  left-[23vw] pl-1">
             <h1 className="text-4xl pt-3 ">Price Manipulation</h1>
             <div className="pl-16">
-
-            <Search  className={"w-80 h-12"} />
+              <Search className={"w-80 h-12"} />
             </div>
           </div>
           <Layout2 loading={isLoading}>
@@ -67,14 +66,14 @@ const [isLoading, setLoading] =useState(true)
                 />
               </div>
             </div>
-            <div className="w-full flex justify-center mt-6">
+            <div className=" flex justify-center  mt-7">
               <Buttons
                 buttonText={"Save"}
                 onclick={() => {
                   setmodal({ show: true, datamodal: null });
                 }}
                 className={
-                  "text-white border-yellow-300 self-center bg-yellow-400 px-14 py-1 rounded-3xl"
+                  "text-white border-yellow-300 self-center bg-yellow-400 px-10 py-2  w-48  h-11 rounded-3xl"
                 }
               ></Buttons>
             </div>

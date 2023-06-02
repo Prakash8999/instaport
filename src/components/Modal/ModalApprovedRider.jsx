@@ -7,7 +7,7 @@ const ModalApprovedRider = ({ setmodal, datamodal }) => {
   return (
     <>
       <div className="h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed left-0 top-0 z-[100]">
-        <div className="relative h-[56vh] overflow-auto w-[38vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
+        <div className="relative h-[68vh] overflow-auto w-[45vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
           <button
             onClick={() => {
               setmodal({ show: false });
@@ -19,86 +19,54 @@ const ModalApprovedRider = ({ setmodal, datamodal }) => {
 
           <div className="p-5">
             <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+              <InputComp value={datamodal?.RiderId} label={"Rider ID:"} />
               <InputComp
-                
-                value={datamodal?.RiderId}
-                label={"Rider ID:"}
-              />
-              <InputComp
-                
                 value={datamodal?.RiderVehicleNo}
                 label={"Rider Vehicle No:"}
               />
+              <InputComp value={datamodal?.RiderName} label={"Rider Name:"} />
               <InputComp
-                
-                value={datamodal?.RiderName}
-                label={"Rider Name:"}
-              />
-              <InputComp
-            
                 value={datamodal?.RiderVehicleType}
                 label={"Vehicle Type:"}
               />
-              <InputComp
-                
-                value={datamodal?.RiderNo}
-                label={"Rider No:"}
-              />
-            
+              <InputComp value={datamodal?.RiderNo} label={"Rider No:"} />
 
-            
               <InputComp
-              
                 value={datamodal?.RiderAadharNumber}
                 label={"Aadhar No:"}
               />
-              <InputComp
-                
-                value={datamodal?.RiderPanCard}
-                label={"Pan No:"}
-              />
+              <InputComp value={datamodal?.RiderPanCard} label={"Pan No:"} />
 
-              
               <InputComp
-                
                 value={datamodal?.RiderAddress}
                 label={" Rider Address: "}
               />
-
-
             </div>
-
-
-
-
 
             <div className="flex flex-col w-[100%] gap-y-3 pt-3 items-center">
               <div className="flex gap-x-10">
-              <Button
-                buttonText={"Block Rider"}
-                className={
-                  "text-white border-yellow-300 self-center bg-yellow-400 px-3 h-10 w-[12rem] py-0.5 rounded-3xl"
-                }>
+                <Button
+                  buttonText={"Block Rider"}
+                  className={
+                    "text-white border-yellow-300 self-center bg-yellow-400 px-3 h-10 w-[12rem] py-0.5 rounded-3xl"
+                  }
+                ></Button>
 
-              </Button>
-
-              <Button
-                buttonText={"Suspend Rider"}
-                className={
-                  "text-white border-yellow-300 self-center bg-yellow-400 px-3 h-10 py-0.5 w-[12rem] rounded-3xl"
-                }>
-
-              </Button>
+                <Button
+                  buttonText={"Suspend Rider"}
+                  className={
+                    "text-white border-yellow-300 self-center bg-yellow-400 px-3 h-10 py-0.5 w-[12rem] rounded-3xl"
+                  }
+                ></Button>
               </div>
               <Button
                 buttonText={"Amount to be paid to instaport - Rs 32323"}
                 className={
                   "text-white border-yellow-300 self-center bg-yellow-400 px-3 h-10 py-0.5 rounded-3xl"
-                }>
+                }
+              ></Button>
+            </div>
 
-              </Button>
-            </div> 
-            
             {/* <div className="grid grid-cols-2 gap-y-2 pt-4 pl-4 pr-9 ">
               <div className="flex items-center gap-x-2">
                 <p className="font-semibold">Rider ID - </p>
