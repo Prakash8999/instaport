@@ -27,7 +27,7 @@ const AvailableRiderTable = ({ dataArray }) => {
                 return (
                   <tr
                     key={index}
-                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100  w-[100%] cursor-pointer "
+                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100  w-[100%] "
                   >
                     <td className=" py-2">{data?.RiderId}</td>
                     <td>{data?.RiderName}</td>

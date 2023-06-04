@@ -1,22 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 // import Button from "../Buttons";
 // import Search from "../../components/Search";
 // import ModalInput from "../ModalInput";
 import Buttons from "../Buttons";
+import './ModalAnimation.css'
+import { CSSTransition } from "react-transition-group";
+
+
 const CouponsandOffers = ({ setmodal, datamodal }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  // Open the modal when `datamodal` prop changes
+  useEffect(() => {
+    setShowModal(true);
+  }, [datamodal]);
+
+  // Close the modal when `showModal` state changes
+  const closeModal = () => {
+    setShowModal(false);
+    setTimeout(() => {
+      setmodal({ show: false });
+    }, 300); // Wait for the closing animation to complete (300ms)
+  };
+
+
+
+
   return (
     <>
-      <div className="h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed left-0 top-0 z-[100]">
-        <div className="relative h-[55vh] overflow-hidden w-[40vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
-          <button
-            onClick={() => {
-              setmodal({ show: false });
-            }}
-            className="absolute top-4 right-4 font-bold text-lg text-red-600"
-          >
-            <AiOutlineClose />
-          </button>
+           <CSSTransition
+        in={showModal}
+        classNames="modal"
+        timeout={300}
+        unmountOnExit
+      >
+        <div className="h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed left-0 top-0 z-[100]">
+          <div className="relative h-[55vh] overflow-hidden w-[40vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 font-bold text-lg text-red-600"
+            >
+              <AiOutlineClose />
+            </button>
 
           <div className="pl-5 pt-6 pr-12 ">
             <p className="font-semibold text-2xl pb-5">Add a Coupon</p>
@@ -55,8 +81,9 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
               />
             </div>
           </div>
+          </div>
         </div>
-      </div>
+      </CSSTransition>
     </>
   );
 };

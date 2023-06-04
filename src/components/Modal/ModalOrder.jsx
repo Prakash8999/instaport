@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 // import ModalInput from "../ModalInput";
 import Buttons from "../Buttons";
 import InputComp from "../InputComp";
 import DownloadInvoice from "../DownloadInvoice";
+import { CSSTransition } from "react-transition-group";
 const ModalOrder = ({ datamodal, setmodal }) => {
   const [readOnly, setReadOnly] = useState(true);
   // const onButtonClick = () => {
@@ -23,13 +24,36 @@ const ModalOrder = ({ datamodal, setmodal }) => {
   const [isBagChecked, setBagIsChecked] = useState(false);
   const [isCheckednotify, setIsCheckednotify] = useState(false);
 
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(true);
+  }, [datamodal]);
+
+  // Close the modal when `showModal` state changes
+  const closeModal = () => {
+    setShowModal(false);
+    setTimeout(() => {
+      setmodal({ show: false });
+    }, 300); // Wait for the closing animation to complete (300ms)
+  };
+
+
+
   return (
     <>
+             <CSSTransition
+        in={showModal}
+        classNames="modal"
+        timeout={300}
+        unmountOnExit
+      >
+
       <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] ">
         <div className="p-5 relative h-[80vh]  overflow-auto w-[60vw] bg-[#FFFDE6] rounded-lg flex  flex-col   md:gap-y-8  gap-y-16">
           <button
             onClick={() => {
-              setmodal({ show: false });
+              closeModal({ show: false });
             }}
             className="absolute top-4 right-4 font-bold text-lg text-red-600"
             title="close"
@@ -165,6 +189,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
           </div>
         </div>
       </div>
+      </CSSTransition>
     </>
   );
 };
