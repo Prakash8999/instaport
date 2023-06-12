@@ -24,7 +24,7 @@ const Checkbox = ({ children, ...props }) => (
   </label>
 );
 
-export default () => {
+export default ({className}) => {
   const [isClearable, setIsClearable] = useState(true);
   const [isSearchable, setIsSearchable] = useState(true);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -47,7 +47,7 @@ export default () => {
   return (
     <>
       <Select
-        className="  w-[25vw] border-yellow-300 focus:border-yellow-400"
+        className={className}
         classNamePrefix="select"
         defaultValue={otherRider}
         isDisabled={isDisabled}
@@ -55,7 +55,7 @@ export default () => {
         isClearable={isClearable}
         isRtl={isRtl}
         isSearchable={isSearchable}
-        // name="color"
+        name="color"
         options={otherRider}
       />
 

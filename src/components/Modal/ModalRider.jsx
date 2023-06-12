@@ -14,10 +14,10 @@ import { CSSTransition } from "react-transition-group";
 
 const ModalRider = ({ datamodal, setmodal, downloadPdfDocument, modal }) => {
   const [readOnly, setReadOnly] = useState(true);
-
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckednotify, setIsCheckednotify] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [otherRiders, setOtherRiders] = useState(true);
 
   const handleTogglebag = () => {
     setIsChecked(!isChecked);
@@ -49,7 +49,8 @@ const ModalRider = ({ datamodal, setmodal, downloadPdfDocument, modal }) => {
         <div
           aria-hidden="true"
           className={
-            " h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] "}
+            " h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] "
+          }
         >
           <div
             className={`relative h-[95vh]  overflow-auto w-fit pb-5 bg-[#FFFDE6] rounded-lg `}
@@ -229,24 +230,10 @@ const ModalRider = ({ datamodal, setmodal, downloadPdfDocument, modal }) => {
                     downloadFileName={datamodal.RiderId}
                     rootElementId={"testid"}
                   />
-                </div>
-              </div>
-
-              <div
-                className={`${
-                  readOnly ? "hidden duration-150" : "  pt-6   duration-200  "
-                }`}
-              >
-                <p className="font-semibold">
-                  Assign this order yo other Rider
-                </p>
-                <div className="flex flex-col items-center">
-                  <SelectOptionOtherRiders />
-
                   {/* <Buttons
               buttonText={"Assign this order to another Rider"}
               className={`text-white border-yellow-300 self-center bg-yellow-400 rounded-3xl w-fit px-6 py-3 ${
-                readOnly ? "cursor-not-allowed bg-opacity-60 relative hidden" : "cursor-pointer bg-opacity-100"
+                readOnly ? "cursor-not-allowed bg-opacity-60 relative" : "cursor-pointer bg-opacity-100"
               } `}
               onclick={
                 !readOnly
@@ -258,7 +245,36 @@ const ModalRider = ({ datamodal, setmodal, downloadPdfDocument, modal }) => {
                     
                   })
               }
-            ></Buttons> */}
+            ></Buttons>  */}
+                </div>
+              </div>
+<div   className={`${
+                  readOnly
+                    ? "hidden duration-150"
+                    : "  border-yellow-400 mr-4 duration-200 border-e "
+                }`}
+              >
+
+</div>
+              <div
+                className={`${
+                  readOnly
+                    ? "hidden duration-150"
+                    : "  pt-6   pr-4 duration-200  "
+                }`}
+              >
+                <p className="font-semibold">
+                  Assign this order yo other Rider
+                </p>
+                <div className="flex flex-col items-center">
+                  <SelectOptionOtherRiders className={'w-[20vw] border-yellow-300 outline-none focus:border-yellow-400'}/>
+                  <Buttons
+                    buttonText={"Assign"}
+                    onclick={() => {
+                      toast.success("Assigned");
+                    }}
+                    className="text-white border-yellow-300 self-center bg-yellow-400 text-xl font-semibold h-11 px-4 py-1 w-48 rounded-3xl"
+                  ></Buttons>
                 </div>
               </div>
             </div>

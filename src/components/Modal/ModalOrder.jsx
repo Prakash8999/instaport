@@ -50,7 +50,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
       >
 
       <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] ">
-        <div className="p-5 relative h-[80vh]  overflow-auto w-[60vw] bg-[#FFFDE6] rounded-lg flex  flex-col   md:gap-y-8  gap-y-16">
+        <div className="p-5 relative h-[80vh]  overflow-hidden w-[60vw] bg-[#FFFDE6] rounded-lg flex  flex-col   md:gap-y-1  gap-y">
           <button
             onClick={() => {
               closeModal({ show: false });
