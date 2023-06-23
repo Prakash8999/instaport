@@ -55,7 +55,7 @@ const TransactionTable = ({ dataArray }) => {
             <div className="absolute w-[100%] mt-12  bg-gray-100 px-8  ">
               <div className="flex justify-around items-center">
                 <div className="w-[40%]">
-                  <img src={datanotfound} alt="" />
+                  <img className="object-contain" src={datanotfound} alt="" />
                 </div>
                 <div className="flex flex-col justify-center items-center  gap-y-10">
                   <span className="font-mono   text-5xl">Oop's Data</span>
