@@ -22,10 +22,10 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/test/create-order" element={<TestForm />} />
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/layout" element={<Layouttest />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<Signup />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/riders/available" element={<Riders />} />
           <Route path="/riders/active" element={<ActiveRider />} />
@@ -36,7 +36,7 @@ function App() {
           <Route path="/coupons-and-offers" element={<CouponsAndOffer />} />
           {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
         </Routes>
-        <Toaster/>
+        <Toaster />
       </Router>
     </>
   );

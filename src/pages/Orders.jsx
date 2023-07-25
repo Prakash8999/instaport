@@ -8,22 +8,39 @@ import Search from "../components/Search";
 import { useState } from "react";
 import { useEffect } from "react";
 import Buttons from "../components/Buttons";
+import axios from "axios";
 
 const Orders = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showOrders, setShowOrders] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
   const [isLoading, setLoading] = useState(true);
+  const [fetchOrderData, setfetchOrderData] = useState([]);
   useEffect(() => {
-    setSearchResults(orderdata);
-    setShowOrders(orderdata);
+    try {
+      axios("https://instaport-api.vercel.app/order/orders", {
+        headers: {
+          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
+        },
+      }).then((res) => {
+        setfetchOrderData(res.data.order);
+        setSearchResults(res.data.order);
+        setShowOrders(res.data.order);
+
+        console.log(res.data.order);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 500);
 
-    return () =>{
-      clearTimeout(timeout)
-    }
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [orderdata]);
 
   useEffect(() => {
