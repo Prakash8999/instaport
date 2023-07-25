@@ -3,6 +3,8 @@ import thead from "../Data/TableheadingOrder";
 // import orderdata from "../Data/Orderdata";
 import Modaltest from "../Modal/ModalOrder";
 import datanotfound from "../../images/datanotfound (2).svg";
+import moment from "moment";
+
 const OrderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
@@ -45,6 +47,18 @@ const OrderTable = ({ dataArray }) => {
             {dataArray.length > 0 ? (
               <tbody className="text-center w-full">
                 {dataArray.map((data, index) => {
+                  const dateObj = new Date(data?.createdAt);
+
+                  const options = {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  };
+
+                  const formattedDateString = dateObj.toLocaleString(
+                    "en-GB",
+                    options
+                  );
                   return (
                     <tr
                       key={index}
@@ -53,32 +67,32 @@ const OrderTable = ({ dataArray }) => {
                       }}
                       className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
                     >
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.OrderId}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        #{data?._id.slice(-5)}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.CustomerName}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {data?.customer.slice(-5)}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.CustomerNo}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {data?.phone_number}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.PackageType}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {data?.delivery_type}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.PickupCity}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {data?.pickup?.Address}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.DropCity}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {data?.drop[0]?.Address}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.Date}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {formattedDateString}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.Time}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {moment(data?.createdAt).format("h:mm a")}
                       </td>
-                      <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {data?.PaymentType}
+                      <td className="cursor-pointer px-2 py-2  font-light">
+                        {data?.payment_method}
                       </td>
                     </tr>
                   );

@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import OrderTable from "../components/Table/OrderTable";
-import orderdata from "../components/Data/Orderdata";
+// import orderdata from "../components/Data/Orderdata";
 import Search from "../components/Search";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -15,7 +15,8 @@ const Orders = () => {
   const [showOrders, setShowOrders] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
   const [isLoading, setLoading] = useState(true);
-  const [fetchOrderData, setfetchOrderData] = useState([]);
+  const [orderdata, setorderdata] = useState([]);
+
   useEffect(() => {
     try {
       axios("https://instaport-api.vercel.app/order/orders", {
@@ -23,13 +24,15 @@ const Orders = () => {
           // Authorization: `Bearer ${localStorage.getItem("token")}`,
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
         },
-      }).then((res) => {
-        setfetchOrderData(res.data.order);
-        setSearchResults(res.data.order);
-        setShowOrders(res.data.order);
-
-        console.log(res.data.order);
-      });
+      })
+        .then((res) => {
+          setorderdata(res.data.order);
+          console.log(res.data.order);
+          console.log(orderdata);
+        })
+        .then(() => {
+          console.log(orderdata);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +44,10 @@ const Orders = () => {
     return () => {
       clearTimeout(timeout);
     };
+  }, []);
+  useEffect(() => {
+    setSearchResults(orderdata);
+    setShowOrders(orderdata);
   }, [orderdata]);
 
   useEffect(() => {
