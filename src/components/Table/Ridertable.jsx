@@ -12,6 +12,7 @@ const ActiveRiderTable = ({ dataArray }) => {
         <Modaltest
           datamodal={modal.show && modal?.datamodal}
           setmodal={setmodal}
+          modal={modal}
         />
       )}
       <div className="relative  flex justify-center items-center w-full">
@@ -34,6 +35,7 @@ const ActiveRiderTable = ({ dataArray }) => {
     return (
       <tr
         key={index}
+        
         onClick={() => {
           setmodal({ show: true, datamodal: data });
         }}

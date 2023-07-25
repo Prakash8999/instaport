@@ -14,6 +14,7 @@ import Home from './pages/Home';
 import ApprovedRiderPage from './pages/ApprovedRiderPage';
 import TestForm from './components/Test.jsx/TestForm';
 import ActiveRider from './pages/RidersActive';
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <>
@@ -35,6 +36,7 @@ function App() {
           <Route path="/coupons-and-offers" element={<CouponsAndOffer />} />
           {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
         </Routes>
+        <Toaster/>
       </Router>
     </>
   );

@@ -8,7 +8,7 @@ const InputComp = ({
   onChange,
   value,
   className,
-  readOnly=false
+  readOnly = false,
 }) => {
   return (
     <div className="flex flex-col">
@@ -16,7 +16,7 @@ const InputComp = ({
         {label}
       </label>
       <input
-      readOnly={readOnly}
+        readOnly={readOnly}
         type={type}
         placeholder={placeholder}
         id={id}
