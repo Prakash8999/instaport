@@ -66,37 +66,37 @@ const ModalOrder = ({ datamodal, setmodal }) => {
           >
             <InputComp
               readOnly={readOnly}
-              value={datamodal?.OrderId}
+              value={datamodal?._id.slice(-5)}
               label={"Order No:"}
             />
             <InputComp
               readOnly={true}
-              value={datamodal?.PaymentType}
+              value={datamodal?.payment_method}
               label={"Payment Type:"}
             />
             <InputComp
               readOnly={readOnly}
-              value={datamodal?.CustomerName}
+              value={datamodal?.customer.slice(-5)}
               label={"Customer Name:"}
             />
             <InputComp
               readOnly={readOnly}
-              value={datamodal?.CustomerNo}
+              value={datamodal?.phone_number}
               label={"Customer No:"}
             />
             <InputComp
               readOnly={readOnly}
-              value={datamodal?.PickupCity}
+              value={datamodal?.pickup?.Address + ", " + datamodal?.pickup?.District + ", "+ datamodal?.pickup?.Code  }
               label={"Pickup Address:"}
             />
             <InputComp
               readOnly={readOnly}
-              value={datamodal?.DropCity}
+              value={datamodal?.drop[0]?.Address + ", " + datamodal?.drop[0]?.District + ", " + datamodal?.drop[0]?.Code}
               label={"Drop Address:"}
             />
             <InputComp
               readOnly={readOnly}
-              value={datamodal?.PackageType}
+              value={datamodal?.delivery_type}
               label={"Package Type:"}
             />
             <InputComp
