@@ -4,7 +4,6 @@ import datanotfound from "../../images/datanotfound (2).svg";
 
 const AvailableRiderTable = ({ dataArray }) => {
   return (
-    
     <>
       <div className="relative flex justify-center items-center w-full ">
         <table className="w-[100%]">
@@ -20,7 +19,6 @@ const AvailableRiderTable = ({ dataArray }) => {
             </tr>
           </thead>
 
-
           {dataArray.length > 0 ? (
             <tbody className="text-center mt-4">
               {dataArray.map((data, index) => {
@@ -29,11 +27,10 @@ const AvailableRiderTable = ({ dataArray }) => {
                     key={index}
                     className="border-b-2 border-slate-100 bg-white odd:bg-gray-100  w-[100%] "
                   >
-                    <td className=" py-2">{data?.RiderId}</td>
-                    <td>{data?.RiderName}</td>
-                    <td>{data?.RiderNo}</td>
-                    <td>{data?.Date}</td>
-                    <td>{data?.Time}</td>
+                    <td className=" py-2">#{data?._id.slice(-5)}</td>
+                    <td>{data?.fullname}</td>
+                    <td>{data?.mobileno}</td>
+                    <td>{data?.wallet_amount}</td>
                   </tr>
                 );
               })}

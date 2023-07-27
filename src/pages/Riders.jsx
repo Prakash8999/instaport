@@ -7,11 +7,28 @@ import Search from "../components/Search";
 import { NavLink } from "react-router-dom";
 import { riderdata } from "../components/Data/Riderdata";
 import AvailableRiderTable from "../components/Table/AvailableRiderTable";
+import axios from "axios";
 
 const Riders = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [riderdata, setriderdata] = useState([]);
 
+  useEffect(() => {
+    try {
+      axios("https://instaport-api.vercel.app/rider/riders", {
+        headers: {
+          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
+        },
+      }).then((res) => {
+        setriderdata(res?.data?.rider);
+        console.log(res?.data?.rider);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   useEffect(() => {
     setSearchResults(riderdata);
     const timeout = setTimeout(() => {

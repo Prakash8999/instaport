@@ -9,38 +9,35 @@ const ridersthead = [
     riderTablehead: "Rider No",
   },
   {
-    riderTablehead: "Date",
-  },
-  {
-    riderTablehead: "Time",
+    riderTablehead: "Wallet Amt.",
   },
 ];
 
-const riderstheadactive=[
-{
-  riderTableheadActive:"Rider ID",
-},
-{
-  riderTableheadActive:"Rider Name",
-},
-{
-  riderTableheadActive:"Rider No.",
-},
-{
-  riderTableheadActive:"Order Type",
-},
-{
-  riderTableheadActive:"Pickup City",
-},
-{
-  riderTableheadActive:"Drop City",
-},
-{
-  riderTableheadActive:"Date",
-},
-{
-  riderTableheadActive:"Time",
-},
-]
+const riderstheadactive = [
+  {
+    riderTableheadActive: "Rider ID",
+  },
+  {
+    riderTableheadActive: "Rider Name",
+  },
+  {
+    riderTableheadActive: "Rider No.",
+  },
+  {
+    riderTableheadActive: "Order Type",
+  },
+  {
+    riderTableheadActive: "Pickup City",
+  },
+  {
+    riderTableheadActive: "Drop City",
+  },
+  {
+    riderTableheadActive: "Date",
+  },
+  {
+    riderTableheadActive: "Time",
+  },
+];
 
-export  {ridersthead ,  riderstheadactive};
+export { ridersthead, riderstheadactive };
