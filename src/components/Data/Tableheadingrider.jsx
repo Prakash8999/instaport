@@ -9,7 +9,10 @@ const ridersthead = [
     riderTablehead: "Rider No",
   },
   {
-    riderTablehead: "Wallet Amt.",
+    riderTablehead: "Date",
+  },
+  {
+    riderTablehead: "Time",
   },
 ];
 

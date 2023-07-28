@@ -30,7 +30,8 @@ const AvailableRiderTable = ({ dataArray }) => {
                     <td className=" py-2">#{data?._id.slice(-5)}</td>
                     <td>{data?.fullname}</td>
                     <td>{data?.mobileno}</td>
-                    <td>{data?.wallet_amount}</td>
+                    <td>{data?.date}</td>
+                    <td>{data?.time}</td>
                   </tr>
                 );
               })}
