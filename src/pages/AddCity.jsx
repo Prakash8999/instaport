@@ -85,7 +85,7 @@ const AddCity = () => {
               </div>
             </div>
           </div>
-          <Layout2>
+          <Layout2 loading={isLoading}>
             <CityTable dataArray={searchResults} />
           </Layout2>
         </Layout>
