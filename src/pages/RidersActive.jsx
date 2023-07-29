@@ -4,11 +4,35 @@ import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import Search from "../components/Search";
 import { NavLink } from "react-router-dom";
-import { riderdataActive } from "../components/Data/Riderdata";
+// import { riderdataActive } from "../components/Data/Riderdata";
 import ActiveRiderTable from "../components/Table/Ridertable";
+import axios from "axios";
 const ActiveRider = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [riderdataActive, setRiderDataActive] = useState([]);
+
+
+
+  useEffect(() => {
+    try {
+      axios("https://instaport-api.vercel.app/rider/riders", {
+        headers: {
+          Authorization: ` ${localStorage.getItem("token")}`,
+          // Authorization: `Bearer `,
+        },
+      }).then((res) => {
+        setRiderDataActive(res?.data?.rider);
+        console.log(res?.data?.rider);
+
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+
+
 
   useEffect(() => {
     setSearchResults(riderdataActive);
@@ -23,10 +47,10 @@ const ActiveRider = () => {
   const handleSearch = (e) => {
     const filteredData = riderdataActive.filter(
       (data) =>
-        data.RiderName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.RiderId.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        data?.fullname.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        data?._id.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
+        data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setSearchResults(filteredData)
   };

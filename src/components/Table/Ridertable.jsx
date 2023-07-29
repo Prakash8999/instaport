@@ -42,13 +42,13 @@ const ActiveRiderTable = ({ dataArray }) => {
         className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
       >
         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-          {data?.RiderId}
+          {data?._id.slice(-5)}
         </td>
         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-          {data?.RiderName}
+          {data?.fullname}
         </td>
         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-          {data?.RiderNo}
+          {data?.mobileno}
         </td>
         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
           {data?.OrderType}

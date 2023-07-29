@@ -15,10 +15,15 @@ import ApprovedRiderPage from './pages/ApprovedRiderPage';
 import TestForm from './components/Test.jsx/TestForm';
 import ActiveRider from './pages/RidersActive';
 import { Toaster } from 'react-hot-toast';
+import { Context } from './context/Context';
+import AddCity from './pages/AddCity';
+
 function App() {
   return (
     <>
       <Router>
+        <Context>
+
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/test/create-order" element={<TestForm />} />
@@ -34,9 +39,11 @@ function App() {
           <Route path="/approve-rider/approved" element={<ApprovedRiderPage />} />
           <Route path="/transaction" element={<Transaction />} />
           <Route path="/coupons-and-offers" element={<CouponsAndOffer />} />
+          <Route path="/add-city" element={<AddCity />} />
           {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
         </Routes>
         <Toaster />
+        </Context>
       </Router>
     </>
   );

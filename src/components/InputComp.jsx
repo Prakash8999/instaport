@@ -9,6 +9,8 @@ const InputComp = ({
   value,
   className,
   readOnly = false,
+  disabled,
+  required,
 }) => {
   return (
     <div className="flex flex-col">
@@ -16,10 +18,12 @@ const InputComp = ({
         {label}
       </label>
       <input
+        disabled={disabled}
         readOnly={readOnly}
         type={type}
         placeholder={placeholder}
         id={id}
+        required={required}
         onChange={onChange}
         value={value}
         className={`px-3 py-2 rounded-lg border-2 shadow-md outline-none border-yellow-300 duration-300  focus:border-yellow-400 focus:text-black  ${className} `}

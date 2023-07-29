@@ -16,7 +16,7 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
       <div
         className={`w-[20vw] h-[95vh] pt-8  top-5 left-4 absolute bg-white  flex flex-col items-center justify-start  shadow-lg rounded-lg  ${className}`}
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-y-2 ">
           <LogoComp className={"w-[15vw]"} />
           <Profile />
           <NavLink
@@ -67,6 +67,13 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
           >
             {/* <RiCoupon2Fill style={{ fontSize: "1.2em" }} /> */}
             Coupons And Offer
+          </NavLink>
+          <NavLink
+            to="/add-city"
+            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2.5   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
+          >
+            {/* <RiCoupon2Fill style={{ fontSize: "1.2em" }} /> */}
+            City
           </NavLink>
         </div>
       </div>

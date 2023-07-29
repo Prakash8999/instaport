@@ -41,7 +41,7 @@ const Login = () => {
       ).then((res) => {
         console.log(res.data);
         console.log(res.data.token);
-        localStorage.setItem("token", `${res?.data}`);
+        localStorage.setItem("token", `Bearer ${res?.data?.token}`);
         navigate("/dashboard");
       });
     } catch (error) {
@@ -108,7 +108,7 @@ const Login = () => {
             <div className=" flex justify-center items-center gap-4">
               <p>Don't have account?</p>
               <Link
-                to="/signup"
+                to="/"
                 className="text-blue-600 hover:text-blue-700 hover:shadow-sm"
               >
                 Signup

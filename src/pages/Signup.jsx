@@ -39,14 +39,13 @@ const Signup = () => {
         }
       ).then((res) => {
         console.log(res.data);
-        console.log(res?.data?.token);
-        localStorage.setItem("token", `${res?.data}`);
-        navigate("/orders");
+
+          navigate("/login");
       });
     } catch (error) {
       console.log(error);
     }
-    navigate("/dashboard");
+    
   };
 
   return (
