@@ -39,6 +39,7 @@ const AddCityModal = ({ datamodal, setmodal }) => {
           setCity("")
           setSLug("")
           closeModal()
+          datamodal()
         })
         .catch((err) => {
           console.log(err?.message);

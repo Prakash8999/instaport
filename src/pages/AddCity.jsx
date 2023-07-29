@@ -12,7 +12,7 @@ const AddCity = () => {
   const [city, setCity] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  useEffect(() => {
+  const fetchData = () => {
     try {
       axios("https://instaport-api.vercel.app/city/getcity?test=123", {
         headers: {
@@ -29,6 +29,9 @@ const AddCity = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  useEffect(() => {
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -46,7 +49,10 @@ const AddCity = () => {
       (data) =>
         data?.cityName.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data?.slug?.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data?._id?.slice(-5)?.toLowerCase().includes(e.target.value.toLowerCase())
+        data?._id
+          ?.slice(-5)
+          ?.toLowerCase()
+          .includes(e.target.value.toLowerCase())
     );
     setSearchResults(filteredData);
   };
@@ -70,7 +76,7 @@ const AddCity = () => {
 
                 <button
                   onClick={() => {
-                    setmodal({ show: true, datamodal: "data" });
+                    setmodal({ show: true, datamodal: fetchData });
                   }}
                   className={`outline-none rounded-lg  text-base font-semibold shadow hover:shadow-lg  duration-300    p-2.5   lg:w-[15vw]   text-black flex  items-center justify-center bg-yellow-400 hover:bg-yellow-500`}
                 >
