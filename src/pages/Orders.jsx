@@ -20,9 +20,10 @@ const Orders = () => {
   useEffect(() => {
     try {
       axios("https://instaport-api.vercel.app/order/orders", {
+        method: "GET",
         headers: {
           // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: ` ${localStorage.getItem('token')}`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
         },
       })
         .then((res) => {

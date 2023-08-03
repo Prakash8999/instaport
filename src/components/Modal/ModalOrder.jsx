@@ -30,6 +30,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
         .then((res) => {
           setisEditable(false);
           setFormstate(res.data);
+          window.location.reload();
         })
         .catch((err) => {
           console.log(err);
@@ -55,6 +56,31 @@ const ModalOrder = ({ datamodal, setmodal }) => {
   useEffect(() => {
     setShowModal(true);
   }, [datamodal]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    try {
+      axios("https://instaport-api.vercel.app/order/orders", {
+        method: "GET",
+        headers: {
+          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
+        },
+      })
+        .then((res) => {
+          setFormstate(res.data.order);
+
+          console.log(res.data.order);
+        })
+        .then(() => {
+          console.log(formState?._id);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // Close the modal when `showModal` state changes
   const closeModal = () => {
@@ -87,62 +113,48 @@ const ModalOrder = ({ datamodal, setmodal }) => {
               className="w-full grid grid-cols-2 gap-y-2 gap-x-6 pt-2 p-5"
               id="testid"
             >
-              <InputComp
-                
-                value={datamodal?._id.slice(-5)}
-                label={"Order No:"}
-              />
+              <InputComp value={formState?._id} label={"Order No:"} />
               <InputComp
                 disabled={!isEditable}
-
-                value={datamodal?.payment_method}
+                value={formState?.payment_method}
                 label={"Payment Type:"}
                 onChange={handleChange}
               />
+              <InputComp value={formState?.customer} label={"Customer Name:"} />
               <InputComp
-                
-                value={datamodal?.customer.slice(-5)}
-                label={"Customer Name:"}
-              />
-              <InputComp
-                
-                value={datamodal?.phone_number}
+                value={formState?.phone_number}
                 label={"Customer No:"}
                 onChange={handleChange}
                 disabled={!isEditable}
               />
               <InputComp
-                
                 value={
-                  datamodal?.pickup?.Address +
+                  formState?.pickup?.Address +
                   ", " +
-                  datamodal?.pickup?.District +
+                  formState?.pickup?.District +
                   ", " +
-                  datamodal?.pickup?.Code
+                  formState?.pickup?.Code
                 }
                 label={"Pickup Address:"}
               />
               <InputComp
-
                 value={
-                  datamodal?.drop[0]?.Address +
+                  formState?.drop?.Address +
                   ", " +
-                  datamodal?.drop[0]?.District +
+                  formState?.drop?.District +
                   ", " +
-                  datamodal?.drop[0]?.Code
+                  formState?.drop?.Code
                 }
                 label={"Drop Address:"}
               />
               <InputComp
-
-                value={datamodal?.delivery_type}
+                value={formState?.delivery_type}
                 label={"Package Type:"}
                 onChange={handleChange}
                 disabled={!isEditable}
               />
               <InputComp
-                
-                value={datamodal?.ParcelValue}
+                value={formState?.ParcelValue}
                 label={"Package Value:"}
               />
 
@@ -227,7 +239,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                       "text-white border-yellow-300 self-center bg-gray-400 h-11 px-4 py-1 w-48 rounded-3xl"
                     }
                   >
-                    Cancel
+                    Save
                   </button>
                 </div>
               ) : (
