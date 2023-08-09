@@ -9,7 +9,7 @@ const Search = ({ className, onChange, value }) => {
           <FaSearch className="   text-gray-500" />
         </div>
         <input
-          className={` border-2 border-gray-300 hover:border-gray-400 bg-white h-10 px-8 pr-10 rounded-lg text-sm  shadow-sm hover:shadow-md  ${className}`}
+          className={` border-2 border-gray-300 hover:border-gray-400 bg-white h-10 px-8 pr-10 rounded-xl text-sm  shadow-sm hover:shadow-md  ${className}`}
           type="text"
           placeholder="Search"
           value={value}

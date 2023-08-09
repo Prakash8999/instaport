@@ -31,16 +31,16 @@ const ModalApprovedRider = ({ setmodal, datamodal }) => {
         unmountOnExit
       >
         <div className="h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed left-0 top-0 z-[100]">
-          <div className="relative h-[68vh] overflow-auto w-[45vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
+          <div className="relative h-[70vh] overflow-y-hidden w-[45vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 font-bold text-lg text-red-600"
+              className="absolute top-2 right-3 font-bold text-xl text-red-600"
             >
               <AiOutlineClose />
             </button>
 
           <div className="p-5">
-            <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               <InputComp value={datamodal?.RiderId} label={"Rider ID:"} />
               <InputComp
                 value={datamodal?.RiderVehicleNo}

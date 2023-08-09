@@ -39,7 +39,7 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
           <div className="relative h-[55vh] overflow-hidden w-[40vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 font-bold text-lg text-red-600"
+              className="absolute top-2 right-3 font-bold text-xl text-red-600"
             >
               <AiOutlineClose />
             </button>

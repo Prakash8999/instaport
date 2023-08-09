@@ -10,7 +10,7 @@ const Dashboard = () => {
     <div>
       <Layout>
         <SideNav></SideNav>
-        <div className=" absolute flex w-[24vw] bg-slate-50 rounded-lg shadow-lg  top-24 left-[26vw] ">
+        <div className=" absolute flex w-[24vw] bg-slate-50 rounded-lg shadow-lg  top-7 left-[26vw] ">
           <div className="  ">
             <Search className={"w-96 h-12"}></Search>
           </div>

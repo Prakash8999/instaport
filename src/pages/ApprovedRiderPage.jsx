@@ -37,7 +37,7 @@ const ApprovedRiderPage = () => {
     <>
       <Layout>
         <SideNav classNameApprovedrider={"bg-[#ffd12e]"}></SideNav>
-        <div className="absolute pt-14 flex  left-[23vw]">
+        <div className="absolute pt-7 flex  left-[23vw]">
           <div className=" flex lg:gap-[13vw]  w-full  ">
             <div className="flex gap-4  ">
               <NavLink

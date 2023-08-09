@@ -32,9 +32,9 @@ return () =>{
     <div>
       <Layout>
         <SideNav></SideNav>
-        <div className="absolute pt-14 flex items-center justify-around  left-[10%] w-full ">
+        <div className="absolute pt-7 flex items-center justify-around  left-[10%] w-full ">
           <div>
-            <h1 className="text-4xl pt-3 pl-6">Coupons And Offer</h1>
+            <h1 className="text-4xl  pl-6">Coupons And Offer</h1>
           </div>
           <div className="pl-24">
             <Search

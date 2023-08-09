@@ -68,7 +68,7 @@ const AddCity = () => {
       <div>
         <Layout>
           <SideNav></SideNav>
-          <div className="absolute pt-14 flex    ">
+          <div className="absolute pt-7 flex    ">
             <div className="flex   lg:gap-[27vw]  w-full ">
               <div className="flex gap-4  "></div>
               <div className=" flex gap-x-5 items-center ">

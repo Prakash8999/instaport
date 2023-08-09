@@ -57,7 +57,7 @@ const ModalRider = ({ datamodal, setmodal, downloadPdfDocument, modal }) => {
           >
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 font-bold text-lg text-red-600"
+              className="absolute top-2 right-3 font-bold text-xl text-red-600"
             >
               <AiOutlineClose />
             </button>

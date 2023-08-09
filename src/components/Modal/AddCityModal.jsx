@@ -64,7 +64,7 @@ const AddCityModal = ({ datamodal, setmodal }) => {
             onClick={() => {
               closeModal({ show: false });
             }}
-            className="absolute top-4 right-4 font-bold text-lg text-red-600"
+            className="absolute top-2 right-3 font-bold text-xl text-red-600"
             title="close"
           >
             <AiOutlineClose />

@@ -30,8 +30,8 @@ const PriceManipulation = () => {
       <div>
         <Layout>
           <SideNav></SideNav>
-          <div className="absolute pt-14 flex items-center justify-between gap-[25vw]  left-[23vw] pl-1">
-            <h1 className="text-4xl pt-3 ">Price Manipulation</h1>
+          <div className="absolute pt-7 flex items-center justify-between gap-[25vw]  left-[23vw] pl-1">
+            <h1 className="text-4xl ">Price Manipulation</h1>
             <div className="pl-16">
               <Search className={"w-80 h-12"} />
             </div>

@@ -38,7 +38,7 @@ return () =>{
     <div>
       <Layout>
         <SideNav></SideNav>
-        <div className="absolute pt-14 flex  left-[23vw]">
+        <div className="absolute pt-7 flex  left-[23vw]">
           <div className=" flex lg:gap-[13vw]  w-full  ">
             <div className="flex gap-4  ">
               <NavLink
@@ -65,7 +65,7 @@ return () =>{
         <Layout2 loading={isLoading}>
           {searchResults.length > 0 ? (
             <div className="flex items-center justify-center my-8">
-              <div className="grid grid-cols-3 gap-y-16 gap-x-16">
+              <div className="grid grid-cols-3 gap-y-8 gap-x-9">
                 {searchResults.map((data, index) => {
                   return (
                     <div   key={index} className="relative flex flex-col w-full h-full gap-5 bg-slate-100 rounded-xl   border-2 border-gray-400 hover:shadow-lg">

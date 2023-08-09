@@ -36,7 +36,7 @@ const ModalPriceManipulation = ({ datamodal, setmodal }) => {
           <div className="relative h-[30vh] overflow-auto w-[35vw] bg-[#FFFDE6]  rounded-lg flex flex-col items-center justify-center ">
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 font-bold text-lg text-red-600"
+              className="absolute top-2 right-3 font-bold text-xl text-red-600"
             >
               <AiOutlineClose />
             </button>
