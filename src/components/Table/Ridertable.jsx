@@ -27,7 +27,7 @@ const ActiveRiderTable = ({ dataArray }) => {
             </tr>
           </thead>
 
-{dataArray.length>0 ? (
+{dataArray.length > 0 ? (
   <tbody className="text-center mt-4 border-spacing-x-2 ">
 
 

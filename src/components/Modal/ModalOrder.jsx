@@ -28,9 +28,10 @@ const ModalOrder = ({ datamodal, setmodal }) => {
         },
       })
         .then((res) => {
-          setisEditable(false);
-          setFormstate(res.data);
-          window.location.reload();
+          console.log(res)
+          // setisEditable(false);
+          // setFormstate(res.data);
+          // window.location.reload();
         })
         .catch((err) => {
           console.log(err);
@@ -99,7 +100,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
         unmountOnExit
       >
         <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] ">
-          <div className="p-5 relative h-[80vh]  overflow-hidden w-[60vw] bg-[#FFFDE6] rounded-lg flex  flex-col   md:gap-y-1  gap-y">
+          <div className="p-5 relative h-fit  overflow-hidden w-[60vw] bg-[#FFFDE6] rounded-lg flex  flex-col   md:gap-y-1  gap-y">
             <button
               onClick={() => {
                 closeModal({ show: false });
@@ -129,21 +130,14 @@ const ModalOrder = ({ datamodal, setmodal }) => {
               />
               <InputComp
                 value={
-                  formState?.pickup?.Address +
-                  ", " +
-                  formState?.pickup?.District +
-                  ", " +
-                  formState?.pickup?.Code
+                  formState?.pickup?.Address 
                 }
                 label={"Pickup Address:"}
               />
               <InputComp
                 value={
-                  formState?.drop?.Address +
-                  ", " +
-                  formState?.drop?.District +
-                  ", " +
-                  formState?.drop?.Code
+                  formState?._id
+                  
                 }
                 label={"Drop Address:"}
               />
