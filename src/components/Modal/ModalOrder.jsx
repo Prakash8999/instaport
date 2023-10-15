@@ -130,13 +130,13 @@ const ModalOrder = ({ datamodal, setmodal }) => {
               />
               <InputComp
                 value={
-                  formState?.pickup?.Address 
+                  formState?.pickup?.address?.text
                 }
                 label={"Pickup Address:"}
               />
               <InputComp
                 value={
-                  formState?._id
+                  formState?.drop[0].address?.text
                   
                 }
                 label={"Drop Address:"}

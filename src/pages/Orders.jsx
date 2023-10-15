@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Buttons from "../components/Buttons";
 import axios from "axios";
+import { ContextAuth } from "../context/Context";
 
 const Orders = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -16,7 +17,7 @@ const Orders = () => {
   const [activeButton, setActiveButton] = useState(1);
   const [isLoading, setLoading] = useState(true);
   const [orderdata, setorderdata] = useState([]);
-
+const { setOrderContext} = ContextAuth()
   useEffect(() => {
     try {
       axios("https://instaport-api.vercel.app/order/orders", {
@@ -27,8 +28,9 @@ const Orders = () => {
         },
       })
         .then((res) => {
-          setorderdata(res.data.order);
+          setorderdata(res?.data?.order);
           console.log(res.data.order);
+          setOrderContext(res?.data?.order)
           console.log(orderdata);
         })
         .then(() => {

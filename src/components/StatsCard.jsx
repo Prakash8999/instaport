@@ -14,7 +14,7 @@ const StatsCard = ({ Number, Value }) => {
           }}
         />
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center">
         <div className="text-2xl font-semibold">{Number}</div>
         <div className="text-sm font-medium">{Value}</div>
       </div>

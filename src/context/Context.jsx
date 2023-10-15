@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Datacontext = createContext(null);
@@ -7,7 +7,7 @@ const Datacontext = createContext(null);
 const Context = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-
+const [orderContext, setOrderContext] = useState([])
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("token");
@@ -42,7 +42,7 @@ const Context = ({ children }) => {
     fetchData();
   }, []);
 
-  return <Datacontext.Provider value={{}}>{children}</Datacontext.Provider>;
+  return <Datacontext.Provider value={{orderContext, setOrderContext}}>{children}</Datacontext.Provider>;
 };
 
 const ContextAuth = () => {

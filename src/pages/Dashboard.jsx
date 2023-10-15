@@ -4,8 +4,12 @@ import Layout from "../components/Layout";
 import Search from "../components/Search";
 import StatsCard from "../components/StatsCard";
 import { Link } from "react-router-dom";
+import { ContextAuth } from "../context/Context";
 
 const Dashboard = () => {
+  const {orderContext} = ContextAuth()
+  console.log();
+
   return (
     <div>
       <Layout>
@@ -18,7 +22,7 @@ const Dashboard = () => {
         <div className="absolute h-fit w-[76vw]    top-48 right-4">
           <div className="flex items-center justify-around my-8">
             <Link to="/orders">
-              <StatsCard Number={"54202"} Value={"Total Order"}></StatsCard>
+              <StatsCard Number={orderContext?.length} Value={"Total Order"}></StatsCard>
             </Link>
             <Link to="/orders">
               <StatsCard Number={"54202"} Value={"Avilable Order"}></StatsCard>

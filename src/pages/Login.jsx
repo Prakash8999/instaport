@@ -7,13 +7,14 @@ import { FiArrowRight } from "react-icons/fi";
 import InputComp from "../components/InputComp";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Spinner from '../components/Spinner'
 const Login = () => {
   const navigate = useNavigate();
   const initialState = {
     username: "",
     password: "",
   };
+  const [loading, setLoading] =useState(false)
   const [formState, setformState] = useState(initialState);
   const stateChange = (e) => {
     e.preventDefault();
@@ -24,6 +25,7 @@ const Login = () => {
   };
 
   const handleLogin = () => {
+    setLoading(true)
     console.log(formState);
     try {
       axios(
@@ -39,13 +41,19 @@ const Login = () => {
           withCredentials: true,
         }
       ).then((res) => {
+
         console.log(res.data);
         console.log(res.data.token);
-        localStorage.setItem("token", `Bearer ${res?.data?.token}`);
-        navigate("/dashboard");
+        if (!res?.data?.error) {
+          localStorage.setItem("token", `Bearer ${res?.data?.token}`);
+          navigate("/dashboard");
+          
+        }
+        setLoading(false)
       });
     } catch (error) {
       console.log(error);
+      setLoading(false)
     }
   };
   return (
@@ -97,14 +105,22 @@ const Login = () => {
               placeholder={"Enter your Password"}
               className={"w-[34vw]"}
             ></InputComp>
-            <Buttons
-              className={
-                "w-full mt-4 border-2 rounded-lg border-yellow-400  hover:border-yellow-500 hover:shadow-lg hover:font-semibold bg-[#FFD12E] flex p-2 gap-4	 items-center justify-center font-medium "
+            <button onClick={handleLogin} className={
+              "w-full mt-4 border-2 rounded-lg border-yellow-400  hover:border-yellow-500 hover:shadow-lg hover:font-semibold bg-[#FFD12E] flex p-2 gap-2	 items-center justify-center font-medium "
+            }>
+              {
+                loading ? <Spinner/> : <div className="flex items-center gap-x-2"><p>Login</p>
+                <FiArrowRight style={{ fontSize: "1.5em" }} /></div>
               }
-              onclick={handleLogin}
+
+            </button>
+
+            {/* <Buttons
+              
+            
               buttonText={"Login"}
-              buttonIcon2={<FiArrowRight style={{ fontSize: "1.5em" }} />}
-            ></Buttons>
+              // buttonIcon2={}
+            ></Buttons> */}
             <div className=" flex justify-center items-center gap-4">
               <p>Don't have account?</p>
               <Link
