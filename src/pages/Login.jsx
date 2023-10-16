@@ -45,7 +45,7 @@ const Login = () => {
         console.log(res.data);
         console.log(res.data.token);
         if (!res?.data?.error) {
-          localStorage.setItem("token", `Bearer ${res?.data?.token}`);
+          localStorage.setItem("token", ` ${res?.data?.token}`);
           navigate("/dashboard");
           
         }
@@ -72,24 +72,13 @@ const Login = () => {
           <h1 className="font-semibold">Please login to your account</h1>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <div className="p-4 w-[28vw]">
-            <Buttons
-              className={
-                "w-full  border-2 rounded-lg border-blue-400 hover:bg-blue-50 hover:border-blue-500 hover:shadow-lg   flex p-2 gap-4	 items-center justify-center font-medium hover:font-semibold "
-              }
-              buttonText={"Login with Google"}
-              buttonIcon={<FcGoogle style={{ fontSize: "1.5em" }} />}
-            ></Buttons>
-          </div>
+      
           <div className="flex">
-            <div className="flex items-center justify-center ">
-              <hr className="w-36 h-[1px] mx-auto my-4 bg-gray-600 border-0 rounded md:my-4 dark:bg-gray-700"></hr>
-              <span className="mx-6">OR</span>
-              <hr className="w-36 h-[1px] mx-auto my-4 bg-gray-600 border-0 rounded md:my-4 dark:bg-gray-700"></hr>
-            </div>
+          
           </div>
-          <div className="flex flex-col gap-3 mt-4">
+          <form className="flex flex-col gap-3 mt-4" onSubmit={handleLogin}>
             <InputComp
+            required={true}
               value={formState.username}
               onChange={stateChange}
               id={"username"}
@@ -100,12 +89,13 @@ const Login = () => {
             <InputComp
               value={formState.password}
               onChange={stateChange}
+              required={true}
               id={"password"}
               label={"Password:"}
               placeholder={"Enter your Password"}
               className={"w-[34vw]"}
             ></InputComp>
-            <button onClick={handleLogin} className={
+            <button type="submit" className={
               "w-full mt-4 border-2 rounded-lg border-yellow-400  hover:border-yellow-500 hover:shadow-lg hover:font-semibold bg-[#FFD12E] flex p-2 gap-2	 items-center justify-center font-medium "
             }>
               {
@@ -130,7 +120,7 @@ const Login = () => {
                 Signup
               </Link>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

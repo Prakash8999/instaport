@@ -16,42 +16,13 @@ const Orders = () => {
   const [showOrders, setShowOrders] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
   const [isLoading, setLoading] = useState(true);
-  const [orderdata, setorderdata] = useState([]);
-const { setOrderContext} = ContextAuth()
-  useEffect(() => {
-    try {
-      axios("https://instaport-api.vercel.app/order/orders", {
-        method: "GET",
-        headers: {
-          // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
-        },
-      })
-        .then((res) => {
-          setorderdata(res?.data?.order);
-          console.log(res.data.order);
-          setOrderContext(res?.data?.order)
-          console.log(orderdata);
-        })
-        .then(() => {
-          console.log(orderdata);
-        });
-    } catch (error) {
-      console.log(error);
-    }
+const { orders, loading} = ContextAuth()
 
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 500);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, []);
+  
   useEffect(() => {
-    setSearchResults(orderdata);
-    setShowOrders(orderdata);
-  }, [orderdata]);
+    setSearchResults(orders);
+    setShowOrders(orders);
+  }, [orders]);
 
   useEffect(() => {
     setSearchResults(showOrders);
@@ -61,15 +32,15 @@ const { setOrderContext} = ContextAuth()
     setActiveButton(buttonId);
     console.log(e);
     if (e[0] === "all") {
-      setShowOrders(orderdata);
+      setShowOrders(orders);
     } else if (e[0] === "active") {
-      const data = orderdata.filter((order) => {
+      const data = orders.filter((order) => {
         return order.active === e[1];
       });
       setShowOrders(data);
       setSearchResults(data);
     } else if (e[0] === "cancelled") {
-      const canceldata = orderdata.filter((order) => {
+      const canceldata = orders.filter((order) => {
         return order.cancelled === e[1];
       });
       setShowOrders(canceldata);
@@ -146,7 +117,7 @@ const { setOrderContext} = ContextAuth()
             </div>
           </div>
         </div>
-        <Layout2 loading={isLoading}>
+        <Layout2 loading={loading}>
           <OrderTable dataArray={searchResults} />
         </Layout2>
       </Layout>
