@@ -15,7 +15,7 @@ const Orders = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showOrders, setShowOrders] = useState([]);
   const [activeButton, setActiveButton] = useState(1);
-  const [isLoading, setLoading] = useState(true);
+  // const [isLoading, setLoading] = useState(true);
 const { orders, loading} = ContextAuth()
 
   
@@ -82,9 +82,9 @@ const { orders, loading} = ContextAuth()
                 onclick={() => {
                   handleFilter(["all"], 1);
                 }}
-                buttonText={"Available"}
+                buttonText={"Processing"}
               />
-              <Buttons
+              {/* <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                   2
                 )}`}
@@ -92,6 +92,17 @@ const { orders, loading} = ContextAuth()
                   handleFilter(["active", true], 2);
                 }}
                 buttonText={"Active"}
+              /> */}
+
+
+<Buttons
+                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                  2
+                )}`}
+                onclick={() => {
+                  handleFilter(["active", true], 2);
+                }}
+                buttonText={"Assigned"}
               />
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(

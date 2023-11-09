@@ -8,17 +8,17 @@ const Context = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 const [orders, setOrders] = useState([])
-const[loading, setLoading] = useState(false)
+const[loading, setLoading] = useState(true)
+const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem("token");
 
       if (token) {
         try {
           await axios
             .get("https://instaport-api.vercel.app/order/orders", {
               headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `${token}`,
               },
             })
             .then((res) => {
@@ -50,25 +50,27 @@ const[loading, setLoading] = useState(false)
         method: "GET",
         headers: {
           // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: ` ${token}`,
         },
       })
         .then((res) => {
           // setorderdata(res?.data?.order);
 
           setOrders(res?.data?.order)
+          console.log(res);
+          setLoading(false)
         })
     } catch (error) {
       console.log(error);
     }
 
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 500);
+    // const timeout = setTimeout(() => {
+    //   setLoading(false);
+    // }, 500);
 
-    return () => {
-      clearTimeout(timeout);
-    };
+    // return () => {
+    //   clearTimeout(timeout);
+    // };
   }, []);
 
 

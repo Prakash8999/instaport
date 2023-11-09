@@ -8,6 +8,8 @@ import InputComp from "../components/InputComp";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../components/Spinner'
+import { Toaster, toast } from "sonner";
+
 const Login = () => {
   const navigate = useNavigate();
   const initialState = {
@@ -24,7 +26,8 @@ const Login = () => {
     });
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+e.preventDefault()
     setLoading(true)
     console.log(formState);
     try {
@@ -43,9 +46,10 @@ const Login = () => {
       ).then((res) => {
 
         console.log(res.data);
+        toast.success(res?.data?.message)
         console.log(res.data.token);
         if (!res?.data?.error) {
-          localStorage.setItem("token", ` ${res?.data?.token}`);
+          localStorage.setItem("token", `Bearer ${res?.data?.token}`);
           navigate("/dashboard");
           
         }
@@ -123,6 +127,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+  <Toaster />
     </div>
   );
 };

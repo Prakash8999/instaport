@@ -76,7 +76,8 @@ const ModalOrder = ({ datamodal, setmodal }) => {
           console.log(res.data.order);
         })
         .then(() => {
-          console.log(formState?._id);
+          // console.log(formState?._id);
+          
         });
     } catch (error) {
       console.log(error);
@@ -135,10 +136,10 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                 label={"Pickup Address:"}
               />
               <InputComp
-                value={
-                  formState?.drop[0].address?.text
+                // value={
+                //   formState?.drop[0].address?.text
                   
-                }
+                // }
                 label={"Drop Address:"}
               />
               <InputComp

@@ -44,7 +44,7 @@ const OrderTable = ({ dataArray }) => {
               </tr>
             </thead>
 
-            {dataArray.length > 0 ? (
+            {dataArray?.length > 0 ? (
               <tbody className="text-center w-full">
                 {dataArray.map((data, index) => {
                   const dateObj = new Date(data?.createdAt);

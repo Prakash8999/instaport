@@ -41,7 +41,7 @@ const PriceManipulation = () => {
               <div className="grid grid-cols-2 p-6 gap-x-36 gap-y-4">
                 <InputComp label={"Per Kilometer Charge"} className={"p-2"} />
                 <InputComp
-                  label={"Per Kilometer Additional Charge"}
+                  label={"Additional Per Kilometer Charge"}
                   className={"p-2"}
                 />
                 <InputComp

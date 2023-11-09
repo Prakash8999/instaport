@@ -41,17 +41,17 @@ const ApprovedRiderPage = () => {
           <div className=" flex lg:gap-[13vw]  w-full  ">
             <div className="flex gap-4  ">
               <NavLink
-                to="/approve-rider/pending"
+                to="/pending"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4 bg-white  `}
               >
                 Pending Riders
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/approve-rider/approved"
                 className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
               >
                 Approved Riders
-              </NavLink>
+              </NavLink> */}
             </div>
             <div className="  pr-6">
               <Search

@@ -65,7 +65,7 @@ const AddCity = () => {
           setmodal={setmodal}
         />
       )}
-      <div>
+      <div className="">
         <Layout>
           <SideNav></SideNav>
           <div className="absolute pt-7 flex    ">
@@ -85,7 +85,7 @@ const AddCity = () => {
               </div>
             </div>
           </div>
-          <Layout2 loading={isLoading}>
+          <Layout2 loading={isLoading} >
             <CityTable dataArray={searchResults} />
           </Layout2>
         </Layout>
