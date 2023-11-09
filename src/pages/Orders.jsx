@@ -32,6 +32,7 @@ const { orders, loading} = ContextAuth()
     setActiveButton(buttonId);
     console.log(e);
     if (e[0] === "all") {
+      
       setShowOrders(orders);
     } else if (e[0] === "active") {
       const data = orders.filter((order) => {
@@ -73,8 +74,8 @@ const { orders, loading} = ContextAuth()
       <Layout>
         <SideNav />
         <div className="absolute pt-7 flex  left-[23vw] ">
-          <div className="flex lg:gap-[10vw]  w-full">
-            <div className="flex gap-3 ">
+          <div className="flex   w-full">
+            <div className="flex gap-3 w-full">
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                   1
@@ -111,7 +112,16 @@ const { orders, loading} = ContextAuth()
                 onclick={() => {
                   handleFilter(["active", false], 3);
                 }}
-                buttonText={"Inactive"}
+                buttonText={"Out For Pickup"}
+              />
+                <Buttons
+                className={`rounded-lg px-4 py-2 mr-2  text-center border-2 text-base font-semibold w-fit border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                  4
+                )}`}
+                onclick={() => {
+                  handleFilter(["cancelled", true], 4);
+                }}
+                buttonText={"Out For Delivery"}
               />
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
@@ -122,10 +132,10 @@ const { orders, loading} = ContextAuth()
                 }}
                 buttonText={"Cancelled"}
               />
+              <Search onChange={handleSearch} className={"w-[20vw] h-11"} />
             </div>
-            <div className="  pr-6 pl-3">
-              <Search onChange={handleSearch} className={"w-[20vw] h-12"} />
-            </div>
+            
+            
           </div>
         </div>
         <Layout2 loading={loading}>
