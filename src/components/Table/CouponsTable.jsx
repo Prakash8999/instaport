@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import couponsTableHead from "../Data/CouponsHeader";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
 import ModalCouponandOffers from "../Modal/ModalCouponsandOffers";
 import datanotfound from "../../images/datanotfound (2).svg";
 
@@ -47,8 +47,11 @@ const CouponsTable = ({ dataArray }) => {
                         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                           {data?.Amount}
                         </td>
-                        <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                        <td className="cursor-pointer px-4 py-2 gap-2 flex justify-center font-light">
                           {data?.Status}
+                          <button>
+                            <AiFillDelete />
+                          </button>
                         </td>
                       </tr>
                     );
