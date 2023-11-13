@@ -12,7 +12,10 @@ const couponsTableHead = [
     tablehead: "Amount ",
   },
   {
-    tablehead: "Status",
+    tablehead: "Date ",
+  },
+  {
+    tablehead: "Delete",
   },
 ];
 export default couponsTableHead;

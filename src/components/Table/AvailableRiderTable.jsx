@@ -3,6 +3,8 @@ import { ridersthead } from "../Data/Tableheadingrider";
 import datanotfound from "../../images/datanotfound (2).svg";
 
 const AvailableRiderTable = ({ dataArray }) => {
+  
+
   return (
     <>
       <div className="relative flex justify-center items-center w-full ">
@@ -19,9 +21,9 @@ const AvailableRiderTable = ({ dataArray }) => {
             </tr>
           </thead>
 
-          {dataArray.length > 0 ? (
+          {dataArray.length > 0  && dataArray.filter(data => data?.approve).length > 0 ? (
             <tbody className="text-center mt-4">
-              {dataArray.map((data, index) => {
+              {dataArray?.filter(data => data?.approve ).map((data, index) => {
                 return (
                   <tr
                     key={index}

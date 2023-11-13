@@ -47,9 +47,12 @@ const CouponsTable = ({ dataArray }) => {
                         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                           {data?.Amount}
                         </td>
-                        <td className="cursor-pointer px-4 py-2 gap-2 flex justify-center font-light">
-                          {data?.Status}
-                          <button>
+                        <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                          {data?.Date}
+                        </td>
+                        <td className="cursor-pointer px-2 py-2 gap-2 flex justify-center font-light ">
+                    
+                          <button className="hover:bg-white hover:text-red-600 px-2 py-1 rounded hover:rounded-md">
                             <AiFillDelete />
                           </button>
                         </td>

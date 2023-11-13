@@ -23,7 +23,7 @@ const ActiveRider = () => {
         },
       }).then((res) => {
         setRiderDataActive(res?.data?.rider);
-        console.log(res?.data?.rider);
+        
 
       });
     } catch (error) {
@@ -60,7 +60,7 @@ const ActiveRider = () => {
       <div>
         <Layout>
           <SideNav classNameRider={"bg-[#ffd12e]"}></SideNav>
-          <div className="absolute pt-14 flex  left-[23vw]  ">
+          <div className="absolute pt-7 flex  left-[23vw]  ">
             <div className="flex   lg:gap-[30vw]  w-full ">
               <div className="flex gap-4  ">
                 <NavLink

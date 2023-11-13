@@ -23,7 +23,8 @@ const Riders = () => {
         },
       }).then((res) => {
         setriderdata(res?.data?.rider);
-        console.log(res?.data?.rider);
+        // console.log(res?.data?.rider);
+        setLoading(false)
       });
     } catch (error) {
       console.log(error);
@@ -31,21 +32,16 @@ const Riders = () => {
   }, []);
   useEffect(() => {
     setSearchResults(riderdata);
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 500);
-    return () => {
-      clearTimeout(timeout);
-    };
+    
   }, [riderdata]);
 
   const handleSearch = (e) => {
     const filteredData = riderdata.filter(
       (data) =>
-        data.RiderName.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.RiderId.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
+        data?.fullname.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
+        // data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        // data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setSearchResults(filteredData);
   };
