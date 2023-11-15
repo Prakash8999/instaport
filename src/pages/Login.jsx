@@ -8,7 +8,8 @@ import InputComp from "../components/InputComp";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../components/Spinner'
-import { Toaster, toast } from "sonner";
+import toast from "react-hot-toast";
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,8 +17,9 @@ const Login = () => {
     username: "",
     password: "",
   };
-  const [loading, setLoading] =useState(false)
+  const [loading, setLoading] = useState(false)
   const [formState, setformState] = useState(initialState);
+  const [showPassword, setShowPassword] = useState(false)
   const stateChange = (e) => {
     e.preventDefault();
     setformState({
@@ -27,9 +29,9 @@ const Login = () => {
   };
 
   const handleLogin = (e) => {
-e.preventDefault()
+    e.preventDefault()
     setLoading(true)
-    console.log(formState);
+
     try {
       axios(
         "https://instaport-api.vercel.app/admin/signin",
@@ -45,18 +47,21 @@ e.preventDefault()
         }
       ).then((res) => {
 
-        console.log(res.data);
-        toast.success(res?.data?.message)
-        console.log(res.data.token);
         if (!res?.data?.error) {
           localStorage.setItem("token", `Bearer ${res?.data?.token}`);
           navigate("/dashboard");
-          
+          toast.success(res?.data?.message)
+        }
+
+        else{
+          toast.error(res?.data?.message)
         }
         setLoading(false)
-      });
+      }).catch((err) => {
+        toast.error(err?.message)
+      })
     } catch (error) {
-      console.log(error);
+      toast.error(error?.message)
       setLoading(false)
     }
   };
@@ -76,21 +81,22 @@ e.preventDefault()
           <h1 className="font-semibold">Please login to your account</h1>
         </div>
         <div className="flex flex-col items-center justify-center">
-      
+
           <div className="flex">
-          
+
           </div>
           <form className="flex flex-col gap-3 mt-4" onSubmit={handleLogin}>
             <InputComp
-            required={true}
+              required={true}
               value={formState.username}
               onChange={stateChange}
               id={"username"}
               label={"UserName Or Email:"}
-              placeholder={"Enter your username or password"}
+              placeholder={"Enter your Email or Username  "}
               className={"w-[34vw] "}
             ></InputComp>
             <InputComp
+              type={showPassword ? "text" : "password"}
               value={formState.password}
               onChange={stateChange}
               required={true}
@@ -99,35 +105,29 @@ e.preventDefault()
               placeholder={"Enter your Password"}
               className={"w-[34vw]"}
             ></InputComp>
+            <div onClick={() => {
+              setShowPassword(!showPassword)
+            }} className="flex gap-x-2 items-center cursor-pointer  w-fit">
+              <input type="checkbox" className="w-4 h-4 cursor-pointer" checked={showPassword} />
+
+              <label htmlFor="" className="cursor-pointer"> Show Password</label>
+
+            </div>
             <button type="submit" className={
               "w-full mt-4 border-2 rounded-lg border-yellow-400  hover:border-yellow-500 hover:shadow-lg hover:font-semibold bg-[#FFD12E] flex p-2 gap-2	 items-center justify-center font-medium "
             }>
               {
-                loading ? <Spinner/> : <div className="flex items-center gap-x-2"><p>Login</p>
-                <FiArrowRight style={{ fontSize: "1.5em" }} /></div>
+                loading ? <Spinner /> : <div className="flex items-center gap-x-2"><p>Login</p>
+                  <FiArrowRight style={{ fontSize: "1.5em" }} /></div>
               }
 
             </button>
 
-            {/* <Buttons
-              
-            
-              buttonText={"Login"}
-              // buttonIcon2={}
-            ></Buttons> */}
-            <div className=" flex justify-center items-center gap-4">
-              <p>Don't have account?</p>
-              <Link
-                to="/"
-                className="text-blue-600 hover:text-blue-700 hover:shadow-sm"
-              >
-                Signup
-              </Link>
-            </div>
+
           </form>
         </div>
       </div>
-  <Toaster />
+
     </div>
   );
 };

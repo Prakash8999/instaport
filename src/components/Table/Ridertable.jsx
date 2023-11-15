@@ -5,7 +5,7 @@ import { riderstheadactive } from "../Data/Tableheadingrider";
 import datanotfound from "../../images/datanotfound (2).svg";
 const ActiveRiderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
-// console.log("data", dataArray);
+
   return (
     <>
       {modal.show && (

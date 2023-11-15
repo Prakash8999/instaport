@@ -29,8 +29,8 @@ function App() {
           <Route path="/test/create-order" element={<TestForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/layout" element={<Layouttest />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Signup />} />
+          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Signup />} /> */}
           <Route path="/orders" element={<Orders />} />
           <Route path="/riders/available" element={<Riders />} />
           <Route path="/riders/active" element={<ActiveRider />} />

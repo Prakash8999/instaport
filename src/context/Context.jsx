@@ -33,10 +33,10 @@ const token = localStorage.getItem("token");
               }
             });
         } catch (error) {
-          navigate("/login");
+          navigate("/");
         }
       } else {
-        navigate("/login");
+        navigate("/");
       }
     };
 

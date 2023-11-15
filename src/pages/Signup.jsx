@@ -13,6 +13,7 @@ const Signup = () => {
   const initialState = {
     username: "",
     password: "",
+    confirmPassword: ""
   };
   const [formState, setformState] = useState(initialState);
   const stateChange = (e) => {
@@ -23,7 +24,7 @@ const Signup = () => {
     });
   };
   const handleSignup = () => {
-    console.log(formState);
+
     try {
       axios(
         "https://instaport-api.vercel.app/admin/signup",
@@ -40,12 +41,12 @@ const Signup = () => {
       ).then((res) => {
         console.log(res.data);
 
-          navigate("/login");
+        navigate("/login");
       });
     } catch (error) {
       console.log(error);
     }
-    
+
   };
 
   return (
@@ -64,22 +65,8 @@ const Signup = () => {
           <h1 className="font-semibold">Please fill the details below</h1>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <div className="p-4 w-[28vw]">
-            <Buttons
-              className={
-                "w-full  border-2 rounded-lg border-blue-400 hover:border-blue-500 hover:bg-blue-50 hover:shadow-lg hover:font-semibold flex p-2 gap-4	 items-center justify-center font-medium "
-              }
-              buttonText={"SignUp with Google"}
-              buttonIcon={<FcGoogle style={{ fontSize: "1.5em" }} />}
-            ></Buttons>
-          </div>
-          <div className="flex">
-            <div className="flex items-center justify-center ">
-              <hr className="w-36 h-[1px] mx-auto my-4 bg-gray-600 border-0 rounded md:my-4 dark:bg-gray-700"></hr>
-              <span className="mx-6">OR</span>
-              <hr className="w-36 h-[1px] mx-auto my-4 bg-gray-600 border-0 rounded md:my-4 dark:bg-gray-700"></hr>
-            </div>
-          </div>
+
+
           <div className="flex flex-col gap-3 mt-4">
             <InputComp
               label={"UserName Or Email:"}
@@ -95,6 +82,15 @@ const Signup = () => {
               id={"password"}
               value={formState.password}
               placeholder={"Enter your Password"}
+              className={"w-[34vw]"}
+            ></InputComp>
+
+            <InputComp
+              label={"Comfirm Password:"}
+              onChange={stateChange}
+              id={"password"}
+              value={formState.confirmPassword}
+              placeholder={"Confirm your Password"}
               className={"w-[34vw]"}
             ></InputComp>
             <Buttons

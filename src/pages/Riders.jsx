@@ -23,7 +23,7 @@ const Riders = () => {
         },
       }).then((res) => {
         setriderdata(res?.data?.rider);
-        // console.log(res?.data?.rider);
+        
         setLoading(false)
       });
     } catch (error) {
@@ -40,8 +40,7 @@ const Riders = () => {
       (data) =>
         data?.fullname.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
-        // data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        // data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
+        
     );
     setSearchResults(filteredData);
   };

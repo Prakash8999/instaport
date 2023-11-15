@@ -31,7 +31,7 @@ const ApproveARider = () => {
         setLoading(false)
       });
     } catch (error) {
-      console.log(error);
+      toast.error(error?.message)
     }
   }, []);
 
@@ -40,13 +40,7 @@ const ApproveARider = () => {
 
   useEffect(() => {
     setSearchResults(appliedRider);
-    // const timeout = setTimeout(() => {
-    //   setLoading(false)
-    // }, 500)
 
-    // return () => {
-    //   clearTimeout(timeout)
-    // }
 
   }, [appliedRider]);
 
@@ -89,8 +83,7 @@ const ApproveARider = () => {
       (data) =>
         data?.fullname.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
-      // data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
-      // data.RiderNo.toLowerCase().includes(e.target.value.toLowerCase())
+    
     );
     setSearchResults(filteredData);
   };
@@ -134,12 +127,7 @@ const ApproveARider = () => {
               >
                 Pending Riders
               </NavLink>
-              {/* <NavLink
-                to="/approve-rider/approved"
-                className={`rounded-lg border-2 text-base font-semibold hover:font-bold  shadow-md border-yellow-300 p-1 lg:w-[15vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-[10px] gap-4  `}
-              >
-                Approved Riders
-              </NavLink> */}
+
             </div>
             <div className=" pl-40 pr-6">
               <Search
