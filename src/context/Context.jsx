@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { server } from "..";
 
 const Datacontext = createContext(null);
 
@@ -16,9 +17,9 @@ const token = localStorage.getItem("token");
       if (token) {
         try {
           await axios
-            .get("https://instaport-api.vercel.app/order/orders", {
+            .get(`${server}/order/orders`, {
               headers: {
-                Authorization: `${token}`,
+                Authorization: `Bearer ${token}`,
               },
             })
             .then((res) => {
@@ -46,7 +47,7 @@ const token = localStorage.getItem("token");
 
   useEffect(() => {
     try {
-      axios("https://instaport-api.vercel.app/order/orders", {
+      axios(`${server}/order/orders`, {
         method: "GET",
         headers: {
           // Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -56,7 +57,7 @@ const token = localStorage.getItem("token");
         .then((res) => {
           // setorderdata(res?.data?.order);
 
-          setOrders(res?.data?.order)
+          setOrders(res?.data?.order.length === 0 ? [] : res?.data?.order)
 
           setLoading(false)
         })

@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../components/Spinner'
 import toast from "react-hot-toast";
+import { server } from "..";
 
 
 const Login = () => {
@@ -33,8 +34,9 @@ const Login = () => {
     setLoading(true)
 
     try {
+      
       axios(
-        "https://instaport-api.vercel.app/admin/signin",
+        `${server}/admin/signin`,
         {
           method: "POST",
           data: formState,
@@ -48,16 +50,17 @@ const Login = () => {
       ).then((res) => {
 
         if (!res?.data?.error) {
-          localStorage.setItem("token", `Bearer ${res?.data?.token}`);
+          localStorage.setItem("token", `${res?.data?.token}`);
           navigate("/dashboard");
           toast.success(res?.data?.message)
         }
 
         else{
           toast.error(res?.data?.message)
+          setLoading(false)
         }
-        setLoading(false)
       }).catch((err) => {
+        setLoading(false)
         toast.error(err?.message)
       })
     } catch (error) {
@@ -91,7 +94,7 @@ const Login = () => {
               value={formState.username}
               onChange={stateChange}
               id={"username"}
-              label={"UserName Or Email:"}
+              label={"Username Or Email:"}
               placeholder={"Enter your Email or Username  "}
               className={"w-[34vw] "}
             ></InputComp>

@@ -69,7 +69,7 @@ const Signup = () => {
 
           <div className="flex flex-col gap-3 mt-4">
             <InputComp
-              label={"UserName Or Email:"}
+              label={"Username Or Email:"}
               onChange={stateChange}
               id={"username"}
               value={formState.username}

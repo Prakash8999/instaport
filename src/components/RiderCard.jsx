@@ -2,9 +2,7 @@ import React from "react";
 import Avtar from "../images/Avtar.png";
 
 const RiderCard = ({ RiderName, RiderAge, VechileNumber }) => {
-//   const deleterider = ({RiderCard})=>{
-//     this.props.delete(this.props.RiderCard)
-//   }
+
   return (
     <div className="relative flex flex-col w-full h-full gap-5 bg-slate-100 rounded-xl   border-2 border-gray-400 hover:shadow-lg">
       <div className=" flex flex-col w-[inherit] h-[30vh] gap-y-11 items-center justify-center p-[2vw]">

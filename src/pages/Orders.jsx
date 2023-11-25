@@ -10,15 +10,22 @@ import { useEffect } from "react";
 import Buttons from "../components/Buttons";
 import axios from "axios";
 import { ContextAuth } from "../context/Context";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const Orders = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [showOrders, setShowOrders] = useState([]);
-  const [activeButton, setActiveButton] = useState(1);
+  const [activeButton, setActiveButton] = useState("proccessing");
   // const [isLoading, setLoading] = useState(true);
-const { orders, loading} = ContextAuth()
+  const { orders, loading } = ContextAuth()
+  const router = useLocation()
+  const [serachParams, setSearchParams] = useSearchParams()
+  useEffect(() => {
+    const params = new URLSearchParams(router.search)
+    setActiveButton(params.get("query"))
+  }, [router])
 
-  
+
   useEffect(() => {
     setSearchResults(orders);
     setShowOrders(orders);
@@ -28,28 +35,20 @@ const { orders, loading} = ContextAuth()
     setSearchResults(showOrders);
   }, [showOrders]);
 
-  const handleFilter = (e, buttonId) => {
-    setActiveButton(buttonId);
-    console.log(e);
-    if (e[0] === "all") {
-      
-      setShowOrders(orders);
-    } else if (e[0] === "active") {
-      const data = orders.filter((order) => {
-        return order.active === e[1];
+  const handleFilter = (e) => {
+    setActiveButton(e);
+
+    if (e) {
+      const data = orders?.filter((order) => {
+        return order.status === e;
       });
       setShowOrders(data);
       setSearchResults(data);
-    } else if (e[0] === "cancelled") {
-      const canceldata = orders.filter((order) => {
-        return order.cancelled === e[1];
-      });
-      setShowOrders(canceldata);
     }
   };
 
   const handleSearch = (e) => {
-    const filteredData = showOrders.filter(
+    const filteredData = showOrders?.filter(
       (data) =>
         data.CustomerName.toLowerCase().includes(
           e.target.value.toLowerCase()
@@ -78,64 +77,60 @@ const { orders, loading} = ContextAuth()
             <div className="flex gap-3 w-full">
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  1
+                  "processing"
                 )}`}
                 onclick={() => {
-                  handleFilter(["all"], 1);
+                  handleFilter("processing");
+                  setSearchParams({ ['query']: 'processing' })
                 }}
                 buttonText={"Processing"}
               />
-              {/* <Buttons
-                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  2
-                )}`}
-                onclick={() => {
-                  handleFilter(["active", true], 2);
-                }}
-                buttonText={"Active"}
-              /> */}
 
 
-<Buttons
+              <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  2
+                  "assigned"
                 )}`}
                 onclick={() => {
-                  handleFilter(["active", true], 2);
+                  handleFilter("assigned");
+                  setSearchParams({ ['query']: 'assigned' })
                 }}
                 buttonText={"Assigned"}
               />
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  3
+                  'outforpickup'
                 )}`}
                 onclick={() => {
-                  handleFilter(["active", false], 3);
+                  handleFilter("outforpickup");
+                  setSearchParams({ ['query']: 'outforpickup' })
                 }}
                 buttonText={"Out For Pickup"}
               />
-                <Buttons
+              <Buttons
                 className={`rounded-lg px-4 py-2 mr-2  text-center border-2 text-base font-semibold w-fit border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  4
+                  'outfordelivery'
                 )}`}
                 onclick={() => {
-                  handleFilter(["cancelled", true], 4);
+                  handleFilter("outfordelivery");
+                  setSearchParams({ ['query']: 'outfordelivery' })
                 }}
                 buttonText={"Out For Delivery"}
               />
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  4
+                  'cancelled'
                 )}`}
                 onclick={() => {
-                  handleFilter(["cancelled", true], 4);
+                  handleFilter("cancelled");
+                  setSearchParams({ ['query']: 'cancelled' })
                 }}
                 buttonText={"Cancelled"}
               />
               <Search onChange={handleSearch} className={"w-[20vw] h-11"} />
             </div>
-            
-            
+
+
           </div>
         </div>
         <Layout2 loading={loading}>

@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { Toaster } from 'sonner';
+
+export const server = 'https://insta-port-backend-api.vercel.app'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
