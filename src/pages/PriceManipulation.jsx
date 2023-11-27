@@ -106,14 +106,20 @@ const setEditable = () =>{
             prices.security_fees_charges
 
         }
-        // data: JSON.stringify({...prices})
+        //  ...prices
 
       }).then((res) => {
         
         if(!res?.data?.error){
           toast.success(res?.data?.message)
+          setIsEditable(!isEditable)
         }
-        setIsEditable(!isEditable)
+        else {
+
+          toast.error(res?.data?.message)
+        }
+        console.log(res);
+
       }).catch(err =>{ 
 
         // toast.error(err?.response?.data?.message)
