@@ -4,6 +4,8 @@ import "./ModalAnimation.css";
 import { CSSTransition } from "react-transition-group";
 import InputComp from "../InputComp";
 import axios from "axios";
+import { server } from "../..";
+import toast from "react-hot-toast";
 const AddCityModal = ({ datamodal, setmodal }) => {
   const [showModal, setShowModal] = useState(false);
   const [city, setCity] = useState("");
@@ -24,28 +26,40 @@ const AddCityModal = ({ datamodal, setmodal }) => {
     e.preventDefault();
 
     try {
-      axios("https://instaport-api.vercel.app/city/create", {
+      axios(`${server}/city/create`, {
         method: "POST",
         data: {
           cityName: city,
           slug: slug,
         },
         headers: {
-          Authorization: ` ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
         .then((res) => {
-          console.log(res);
-          setCity("")
-          setSLug("")
-          closeModal()
-          datamodal()
+console.log(res);
+if (!res?.data?.error) {
+  setCity("")
+  setSLug("")
+  toast.success(res?.data?.message)
+  closeModal()
+  datamodal()
+}
+else if(res?.data?.error?.split(" ")?.includes("duplicate")){
+
+  toast.error('Slug is Already Available!')
+}
+        else{
+          toast.error('Something Went Wrong!')
+        }
         })
         .catch((err) => {
-          console.log(err?.message);
+          // console.log(err);
+          toast.error(err?.message)
         });
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      toast.error('Something Went Wrong! Unable to Add City.')
     }
   };
 
@@ -55,7 +69,7 @@ const AddCityModal = ({ datamodal, setmodal }) => {
   //     setmodal({ show: false });
   //   }, 200); // Wait for the closing animation to complete (300ms)
   // };
-  console.log(slug);
+
   return (
     <>
       <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] ">

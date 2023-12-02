@@ -10,6 +10,7 @@ import datanotfound from "../images/datanotfound (2).svg";
 import ridercardData from "../components/Data/RiderCardData";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { server } from "..";
 
 
 const ApproveARider = () => {
@@ -19,13 +20,14 @@ const ApproveARider = () => {
   const [buttonLoading, setButtonLoading] = useState(false)
   useEffect(() => {
     try {
-      axios("https://instaport-backend-master.vercel.app/rider/riders", {
-        // headers: {
-        //   // Authorization: `Bearer ${localStorage.getItem("token")}`,
-        //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
-        // },
+      axios(`${server}/rider/riders`, {
+        method: "GET",
+        headers: {
+          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
       }).then((res) => {
-
+        console.log(res?.data);
         setAppliedRider(res?.data?.rider);
 
         setLoading(false)
@@ -45,34 +47,43 @@ const ApproveARider = () => {
   }, [appliedRider]);
 
   const acceptRider = async (id, status) => {
-    console.log(id);
-    console.log(status);
+
     try {
       setButtonLoading(true)
 
 
-      await axios("https://instaport-backend-master.vercel.app/rider/riderstatus", {
+      await axios(`${server}/rider/riderstatus`, {
         method: "PATCH",
         data: {
           approve: !status,
           _id: id,
         },
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTUwYzMyZjFmNTEwNjViMzJlOTRlMmMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTk3OTE2NzV9.DzMADlo2mJayrDMgTpUnVuia2rWOmY7Pk_cz6XTtG5I`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
 
         },
 
       }).then((res) => {
         // setAppliedRider(res?.data?.rider);
 
+        if (!res?.data?.error) {
+          setLoading(false)
+          toast.success(res?.data?.message)
+          setButtonLoading(false)
+          window.location.reload();
+        }
 
-        setLoading(false)
-        toast.success(res?.data?.message)
-        setButtonLoading(false)
-        window.location.reload();
-      });
+        else {
+          toast.error(res?.message)
+          window.location.reload();
+
+        }
+      }).catch((err)=>{
+        toast.error(err?.message)
+      })
     } catch (error) {
-      console.log(error);
+      toast.error('Something went Wrong!')
+      
       setButtonLoading(false)
     }
   }
@@ -83,7 +94,7 @@ const ApproveARider = () => {
       (data) =>
         data?.fullname.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
-    
+
     );
     setSearchResults(filteredData);
   };
@@ -94,10 +105,10 @@ const ApproveARider = () => {
   const handleDelete = async (id) => {
     setButtonLoading(true)
     try {
-      await axios(`https://instaport-backend-master.vercel.app/rider/delete/${id}`, {
+      await axios(`${server}/rider/delete/${id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTUwYzMyZjFmNTEwNjViMzJlOTRlMmMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTk3OTE2NzV9.DzMADlo2mJayrDMgTpUnVuia2rWOmY7Pk_cz6XTtG5I`,
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
 
         },
       }).then((res) => {
@@ -106,6 +117,7 @@ const ApproveARider = () => {
         setButtonLoading(false)
       }).catch((err) => {
         console.log(err);
+        toast.error(err?.message)
         setButtonLoading(false)
       })
     } catch (error) {
@@ -159,7 +171,7 @@ const ApproveARider = () => {
                             </div>
                             <div className="flex  flex-col  ">
                               <div className="text-sm text-slate-400 text-start">
-                                Age:{data?.RiderAge}
+                                Role: {data?.role?.charAt(0)?.toUpperCase() + data?.role?.slice(1)}
                               </div>
 
                               <div className="text-sm text-slate-400 text-start">

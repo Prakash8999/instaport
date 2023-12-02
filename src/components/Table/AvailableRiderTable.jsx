@@ -3,7 +3,7 @@ import { ridersthead } from "../Data/Tableheadingrider";
 import datanotfound from "../../images/datanotfound (2).svg";
 
 const AvailableRiderTable = ({ dataArray }) => {
-  
+  console.log(dataArray);
 
   return (
     <>

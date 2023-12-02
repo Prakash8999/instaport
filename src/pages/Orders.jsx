@@ -73,8 +73,8 @@ const Orders = () => {
       <Layout>
         <SideNav />
         <div className="absolute pt-7 flex  left-[23vw] ">
-          <div className="flex   w-full">
-            <div className="flex gap-3 w-full">
+          <div className="flex   w-[76vw]">
+            <div className="flex gap-2 w-full">
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                   "processing"

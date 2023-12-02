@@ -6,6 +6,7 @@ import Search from "../components/Search";
 import AddCityModal from "../components/Modal/AddCityModal";
 import axios from "axios";
 import CityTable from "../components/Table/CityTable";
+import { server } from "..";
 
 const AddCity = () => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
@@ -14,9 +15,9 @@ const AddCity = () => {
   const [isLoading, setLoading] = useState(true);
   const fetchData = () => {
     try {
-      axios("https://instaport-api.vercel.app/city/getcity?test=123", {
+      axios(`${server}/city/getcity?test=123`, {
         headers: {
-          Authorization: ` ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
         .then((res) => {

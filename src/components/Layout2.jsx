@@ -3,7 +3,7 @@ import React from "react";
 const Layout2 = ({ children, loading }) => {
   return (
     <>
-      <div className="absolute h-[80vh] w-[76vw] bg-white rounded-lg shadow-lg overflow-y-scroll  top-32 right-4">
+      <div className="absolute h-[80vh] w-[76vw] bg-white rounded-lg shadow-lg overflow-y-scroll  top-32 right-5">
         <div>{children}</div>
       </div>
       <div

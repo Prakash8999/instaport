@@ -40,21 +40,21 @@ const setEditable = () =>{
             },
           }
         );
-        // console.log("PRICES : ", data);
+        console.log("PRICES : ", data);
         setPrices({
-          id: data.priceManipulation[0]._id,
+          id: data?.priceManipulation?._id,
           additional_drop_charge:
-            data.priceManipulation[0].additional_drop_charge,
+            data?.priceManipulation?.additional_drop_charge,
           additional_per_kilometer_charge:
-            data.priceManipulation[0].additional_per_kilometer_charge,
+            data?.priceManipulation?.additional_per_kilometer_charge,
           additional_pickup_charge:
-            data.priceManipulation[0].additional_pickup_charge,
+            data?.priceManipulation?.additional_pickup_charge,
           base_order_charges:
-            data.priceManipulation[0].base_order_charges,
-          instaport_commission: data.priceManipulation[0].instaport_commission,
-          per_kilometer_charge: data.priceManipulation[0].per_kilometer_charge,
+            data?.priceManipulation?.base_order_charges,
+          instaport_commission: data?.priceManipulation?.instaport_commission,
+          per_kilometer_charge: data?.priceManipulation?.per_kilometer_charge,
           security_fees_charges:
-            data.priceManipulation[0].security_fees_charges,
+            data?.priceManipulation?.security_fees_charges,
         });
 
         // console.log("DATA : ", prices);
@@ -122,7 +122,7 @@ const setEditable = () =>{
 
       }).catch(err =>{ 
 
-        // toast.error(err?.response?.data?.message)
+      
         toast.error('Something went wrong')
       })
     } catch (error) {
@@ -141,8 +141,8 @@ const setEditable = () =>{
       )}
       <div>
         <Layout>
-          <SideNav></SideNav>
-          <div className="absolute pt-7 flex items-center justify-between gap-[25vw]  left-[23vw] pl-1">
+          <SideNav/>
+          <div className="absolute pt-7 flex items-center justify-between gap-[30vw]  left-[23vw] pl-1">
             <h1 className="text-4xl ">Price Manipulation</h1>
             <div className="pl-16">
               <Search className={"w-80 h-12"} />
