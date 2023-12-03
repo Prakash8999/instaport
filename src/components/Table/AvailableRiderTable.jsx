@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { ridersthead } from "../Data/Tableheadingrider";
 import datanotfound from "../../images/datanotfound (2).svg";
 
 const AvailableRiderTable = ({ dataArray }) => {
   console.log(dataArray);
+  const [isToggled, setToggled] = useState(false);
+
+  const handleToggle = () => {
+    setToggled(!isToggled);
+  };
 
   return (
     <>
@@ -33,7 +38,7 @@ const AvailableRiderTable = ({ dataArray }) => {
                     <td>{data?.fullname}</td>
                     <td>{data?.mobileno}</td>
                     <td>{data?.date}</td>
-                    <td>{data?.time}</td>
+                    <td>{data?.status}</td>
                   </tr>
                 );
               })}

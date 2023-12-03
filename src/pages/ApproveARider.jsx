@@ -27,7 +27,7 @@ const ApproveARider = () => {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       }).then((res) => {
-        console.log(res?.data);
+
         setAppliedRider(res?.data?.rider);
 
         setLoading(false)
@@ -171,7 +171,7 @@ const ApproveARider = () => {
                             </div>
                             <div className="flex  flex-col  ">
                               <div className="text-sm text-slate-400 text-start">
-                                Role: {data?.role?.charAt(0)?.toUpperCase() + data?.role?.slice(1)}
+                                Age: {data?.age}
                               </div>
 
                               <div className="text-sm text-slate-400 text-start">
