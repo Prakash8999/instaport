@@ -41,7 +41,7 @@ return () =>{
           <div>
             <h1 className="text-4xl pl-6">Transaction</h1>
           </div>
-          <div className="pl-56">
+          <div className="pl-20">
             <Search
               divclass={"w-80 h-10"}
               onChange={handleSearch}

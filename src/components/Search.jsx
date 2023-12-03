@@ -5,7 +5,7 @@ const Search = ({ className, onChange, value }) => {
   return (
     <>
       <div className="relative">
-        <div className="absolute  pt-4 left-0 flex items-center pl-3">
+        <div className="absolute pt-4 left-0 flex items-center pl-3">
           <FaSearch className="   text-gray-500" />
         </div>
         <input

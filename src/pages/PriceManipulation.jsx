@@ -142,9 +142,9 @@ const setEditable = () =>{
       <div>
         <Layout>
           <SideNav/>
-          <div className="absolute pt-7 flex items-center justify-between gap-[30vw]  left-[23vw] pl-1">
+          <div className="absolute pt-7 flex items-center justify-between gap-[20vw] left-[23vw] pl-1">
             <h1 className="text-4xl ">Price Manipulation</h1>
-            <div className="pl-16">
+            <div>
               <Search className={"w-80 h-12"} />
             </div>
           </div>
@@ -153,7 +153,7 @@ const setEditable = () =>{
               <div className="grid grid-cols-2 p-6 gap-x-36 gap-y-4">
                 <InputComp
                   label={"Per Kilometer Charge"}
-                  className={"p-2"}
+                  className={"p-4"}
                   value={prices.per_kilometer_charge}
                   onChange={handleChange}
                   disabled={!isEditable}
@@ -162,7 +162,7 @@ const setEditable = () =>{
                 <InputComp
                   value={prices.additional_per_kilometer_charge}
                   label={"Additional Per Kilometer Charge"}
-                  className={"p-2"}
+                  className={"p-4"}
                   onChange={handleChange}
                   type={'number'}
                   id="additional_per_kilometer_charge"
@@ -171,7 +171,7 @@ const setEditable = () =>{
                 <InputComp
                   value={prices.additional_pickup_charge}
                   label={"Additional Pickup Charges"}
-                  className={"p-2"}
+                  className={"p-4"}
                   onChange={handleChange}
                   id="additional_pickup_charge"
                   disabled={!isEditable}
@@ -179,7 +179,7 @@ const setEditable = () =>{
                 <InputComp
                   value={prices.security_fees_charges}
                   label={"Security Fees Charges(%)"}
-                  className={"p-2"}
+                  className={"p-4"}
                   onChange={handleChange}
                   id="security_fees_charges"
                   disabled={!isEditable}
@@ -187,7 +187,7 @@ const setEditable = () =>{
                 <InputComp
                   value={prices.base_order_charges}
                   label={"Base Order Charges(2.5 km)"}
-                  className={"p-2"}
+                  className={"p-4"}
                   onChange={handleChange}
                   id="base_order_charges"
                   disabled={!isEditable}
@@ -195,7 +195,7 @@ const setEditable = () =>{
                 <InputComp
                   value={prices.instaport_commission}
                   label={"Instaport Commission(%)"}
-                  className={"p-2"}
+                  className={"p-4"}
                   onChange={handleChange}
                   id="instaport_commission"
                   disabled={!isEditable}
@@ -204,7 +204,7 @@ const setEditable = () =>{
                   onChange={handleChange}
                   value={prices.additional_drop_charge}
                   label={"Additional Drop Charges"}
-                  className={"p-2"}
+                  className={"p-4"}
                   id={'additional_drop_charge'}
                   disabled={!isEditable}
                 />
