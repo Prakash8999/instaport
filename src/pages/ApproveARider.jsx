@@ -131,7 +131,7 @@ const ApproveARider = () => {
       <Layout>
         <SideNav></SideNav>
         <div className="absolute pt-7 flex  left-[23vw]">
-          <div className=" flex lg:gap-[13vw]  w-full  ">
+          <div className=" flex lg:gap-[30vw] w-full  ">
             <div className="flex gap-4  ">
               <NavLink
                 to="/pending"
@@ -141,10 +141,10 @@ const ApproveARider = () => {
               </NavLink>
 
             </div>
-            <div className=" pl-40 pr-6">
+            <div>
               <Search
                 onChange={handleSearch}
-                className={"w-[20vw] h-12"}
+                className={"w-[28vw] h-12"}
               ></Search>
             </div>
           </div>

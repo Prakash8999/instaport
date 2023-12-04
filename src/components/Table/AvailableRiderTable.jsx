@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ridersthead } from "../Data/Tableheadingrider";
 import datanotfound from "../../images/datanotfound (2).svg";
+import moment from "moment";
 
 const AvailableRiderTable = ({ dataArray }) => {
   console.log(dataArray);
@@ -37,7 +38,7 @@ const AvailableRiderTable = ({ dataArray }) => {
                     <td className=" py-2">#{data?._id.slice(-5)}</td>
                     <td>{data?.fullname}</td>
                     <td>{data?.mobileno}</td>
-                    <td>{data?.date}</td>
+                    <td>{moment(data?.timestamp).utc().format('DD/MM/YY')}</td>
                     <td>{data?.status}</td>
                   </tr>
                 );
