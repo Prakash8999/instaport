@@ -44,17 +44,14 @@ const AvailableRiderTable = ({ dataArray }) => {
               })}
             </tbody>
           ) : (
-            <div className="absolute w-[100%] mt-12  bg-gray-100 px-8  ">
-              <div className="flex justify-around items-center">
-                <div className="w-[40%]">
-                  <img src={datanotfound} alt="" />
-                </div>
-                <div className="flex flex-col justify-center items-center  gap-y-10">
-                  <span className="font-mono   text-5xl">Oop's Data</span>
-                  <span className="font-mono   text-5xl">Not Found </span>
-                </div>
-              </div>
+            <div className="absolute w-[100%]  mt-12  px-8  ">
+            <div className="flex justify-around h-full items-center">
+
+              {/* <div className="flex flex-col justify-center  items-center  gap-y-10"> */}
+                <span className="font-semibold  text-3xl">No Available Rider Currently.</span>
+                  {/* </div> */}
             </div>
+          </div>
           )}
         </table>
       </div>

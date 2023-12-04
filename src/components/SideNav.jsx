@@ -21,7 +21,7 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
           <Profile />
           <NavLink
             to="/dashboard"
-            className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
+            className={`outline-none rounded-lg border-2 text-base  font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2   lg:w-[15vw]  focus:outline-yellow-400 text-black  flex  items-center justify-center`}
           >
             {/* <RiDashboardFill style={{ fontSize: "1.2em" }} /> */}
             Dashboard
