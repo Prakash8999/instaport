@@ -4,7 +4,7 @@ import datanotfound from "../../images/datanotfound (2).svg";
 import moment from "moment";
 
 const AvailableRiderTable = ({ dataArray }) => {
-  console.log(dataArray);
+  // console.log(dataArray);
   const [isToggled, setToggled] = useState(false);
 
   const handleToggle = () => {

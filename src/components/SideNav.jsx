@@ -27,14 +27,14 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
             Dashboard
           </NavLink>
           <NavLink
-            to="/orders"
+            to="/orders?query=processing"
             className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2   lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center`}
           >
             {/* <BsBoxFill style={{ fontSize: "1.2em" }} /> */}
             Orders
           </NavLink>
           <NavLink
-            to="/riders/available"
+            to="/riders?query=available"
             className={`outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2  lg:w-[15vw]  focus:outline-yellow-400 text-black flex  items-center justify-center ${classNameRider}`}
           >
             {/* <RiEBike2Fill style={{ fontSize: "1.2em" }} /> */}

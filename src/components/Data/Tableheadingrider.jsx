@@ -1,6 +1,6 @@
 const ridersthead = [
   {
-    riderTablehead: "Rider Id",
+    riderTablehead: "#",
   },
   {
     riderTablehead: "Rider Name",

@@ -56,7 +56,7 @@ const token = localStorage.getItem("token");
       })
         .then((res) => {
           // setorderdata(res?.data?.order);
-
+console.log(res?.data);
           setOrders(res?.data?.order?.length === 0 ? [] : res?.data?.order)
 
           setLoading(false)
