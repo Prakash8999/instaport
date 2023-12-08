@@ -6,6 +6,7 @@ import InputComp from "../InputComp";
 import DownloadInvoice from "../DownloadInvoice";
 import { CSSTransition } from "react-transition-group";
 import axios from "axios";
+import { server } from "../..";
 const ModalOrder = ({ datamodal, setmodal }) => {
   const [readOnly, setReadOnly] = useState(true);
   const [formState, setFormstate] = useState(datamodal);
@@ -63,11 +64,11 @@ const ModalOrder = ({ datamodal, setmodal }) => {
 
   const fetchData = () => {
     try {
-      axios("https://instaport-api.vercel.app/order/orders", {
+      axios(`${server}/order/orders`, {
         method: "GET",
         headers: {
           // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGJlYTA0ODIyNTU0MmI5NWQ4NDQyYWUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTAyNzk2MTh9.l1QGtnaHsV0H4VvMhElihdv4MzuGeIP_PF0aAoluTGg`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
         .then((res) => {
@@ -122,7 +123,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
                 label={"Payment Type:"}
                 onChange={handleChange}
               />
-              <InputComp value={formState?.customer} label={"Customer Name:"} />
+              <InputComp value={formState?.customer?.fullname} label={"Customer Name:"} />
               <InputComp
                 value={formState?.phone_number}
                 label={"Customer No:"}

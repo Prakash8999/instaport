@@ -22,17 +22,17 @@ const Orders = () => {
   const [serachParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     const params = new URLSearchParams(router.search);
-    setActiveButton(params.get("query"));
-  }, [router]);
+    handleFilter(params.get("query"));
+  }, [router, orders]);
 
-  useEffect(() => {
-    setSearchResults(orders);
-    setShowOrders(orders);
-  }, [orders]);
+  // useEffect(() => {
+  //   setSearchResults(orders);
+  //   setShowOrders(orders);
+  // }, [orders]);
 
-  useEffect(() => {
-    setSearchResults(showOrders);
-  }, [showOrders]);
+  // useEffect(() => {
+  //   setSearchResults(showOrders);
+  // }, [showOrders]);
 
   const handleFilter = (e) => {
     setActiveButton(e);
@@ -41,23 +41,23 @@ const Orders = () => {
       const data = orders?.filter((order) => {
         return order.status === e;
       });
-      setShowOrders(data);
+      // setShowOrders(data);
       setSearchResults(data);
     }
   };
 
   const handleSearch = (e) => {
-    const filteredData = showOrders?.filter(
+    const filteredData = orders?.filter(
       (data) =>
-        data.CustomerName.toLowerCase().includes(
-          e.target.value.toLowerCase()
+        data?.CustomerName?.toLowerCase().includes(
+          e.target.value?.toLowerCase()
         ) ||
         data.PackageType.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.CustomerNo.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.OrderId.toLowerCase().includes(e.target.value.toLowerCase())
     );
-    setShowOrders(filteredData);
+    // setShowOrders(filteredData);
     setSearchResults(filteredData);
   };
 
@@ -79,7 +79,7 @@ const Orders = () => {
                   "processing"
                 )}`}
                 onclick={() => {
-                  handleFilter("processing");
+
                   setSearchParams({ ["query"]: "processing" });
                 }}
                 buttonText={"Processing"}
@@ -90,7 +90,7 @@ const Orders = () => {
                   "assigned"
                 )}`}
                 onclick={() => {
-                  handleFilter("assigned");
+
                   setSearchParams({ ["query"]: "assigned" });
                 }}
                 buttonText={"Assigned"}
@@ -100,7 +100,7 @@ const Orders = () => {
                   "outforpickup"
                 )}`}
                 onclick={() => {
-                  handleFilter("outforpickup");
+
                   setSearchParams({ ["query"]: "outforpickup" });
                 }}
                 buttonText={"Out For Pickup"}
@@ -110,7 +110,7 @@ const Orders = () => {
                   "outfordelivery"
                 )}`}
                 onclick={() => {
-                  handleFilter("outfordelivery");
+
                   setSearchParams({ ["query"]: "outfordelivery" });
                 }}
                 buttonText={"Out For Delivery"}
@@ -120,7 +120,7 @@ const Orders = () => {
                   "cancelled"
                 )}`}
                 onclick={() => {
-                  handleFilter("cancelled");
+
                   setSearchParams({ ["query"]: "cancelled" });
                 }}
                 buttonText={"Cancelled"}

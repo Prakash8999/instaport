@@ -8,9 +8,9 @@ const Datacontext = createContext(null);
 const Context = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-const [orders, setOrders] = useState([])
-const[loading, setLoading] = useState(true)
-const token = localStorage.getItem("token");
+  const [orders, setOrders] = useState([])
+  const [loading, setLoading] = useState(true)
+  const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchData = async () => {
 
@@ -56,7 +56,7 @@ const token = localStorage.getItem("token");
       })
         .then((res) => {
           // setorderdata(res?.data?.order);
-console.log(res?.data);
+          console.log(res?.data);
           setOrders(res?.data?.order?.length === 0 ? [] : res?.data?.order)
 
           setLoading(false)
@@ -76,7 +76,7 @@ console.log(res?.data);
 
 
 
-  return <Datacontext.Provider value={{orders, loading}}>{children}</Datacontext.Provider>;
+  return <Datacontext.Provider value={{ orders, loading }}>{children}</Datacontext.Provider>;
 };
 
 const ContextAuth = () => {

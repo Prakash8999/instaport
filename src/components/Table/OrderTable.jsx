@@ -70,10 +70,10 @@ const OrderTable = ({ dataArray }) => {
                       className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
                     >
                       <td className="cursor-pointer px-2 py-2  font-light">
-                        #{data?._id.slice(-5)}
+                        #{data?._id?.slice(-5)}
                       </td>
                       <td className="cursor-pointer px-2 py-2  font-light">
-                        {data?.customer.slice(-5)}
+                        {data?.customer?.fullname}
                       </td>
                       <td className="cursor-pointer px-2 py-2  font-light">
                         {data?.phone_number}
