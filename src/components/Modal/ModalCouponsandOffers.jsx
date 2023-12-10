@@ -32,12 +32,12 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
         unmountOnExit
       >
         <div className="h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed left-0 top-0 z-[100]">
-          <div className="relative h-[55vh] overflow-hidden w-[40vw] bg-[#FFFDE6]  rounded-lg flex flex-col ">
+          <div className="relative h-[60vh] overflow-hidden w-[45vw] bg-[#FFFDE6]  rounded-lg flex items-center justify-center">
             <button
               onClick={closeModal}
-              className="absolute top-2 right-3 font-bold text-xl text-red-600"
+              className="absolute top-2 right-3 font-bold text-xl text-red-600 m-4"
             >
-              <AiOutlineClose />
+              <AiOutlineClose size={25} />
             </button>
 
             <div className="pl-5 pt-6 pr-12 ">
