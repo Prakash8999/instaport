@@ -4,11 +4,10 @@ import SideNav from "../components/SideNav";
 import Layout2 from "../components/Layout2";
 import Search from "../components/Search";
 import CouponsTable from "../components/Table/CouponsTable";
-import couponData from "../components/Data/CouponData";
 import { server } from "..";
 import axios from "axios";
 const CouponsAndOffer = () => {
-  const [coupons, setCoupons] = useState([]);
+  const [couponData, setCouponData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
@@ -21,6 +20,7 @@ const CouponsAndOffer = () => {
         },
       }).then((res) => {
         console.log("res", res);
+        setCouponData(res.data.coupons);
       });
     } catch (error) {
       console.log(error);

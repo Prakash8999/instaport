@@ -3,6 +3,7 @@ import couponsTableHead from "../Data/CouponsHeader";
 import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
 import ModalCouponandOffers from "../Modal/ModalCouponsandOffers";
 import datanotfound from "../../images/datanotfound (2).svg";
+import moment from "moment";
 
 const CouponsTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
@@ -36,16 +37,16 @@ const CouponsTable = ({ dataArray }) => {
                         className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
                       >
                         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                          {data?.CouponId}
+                          {data?.code}
                         </td>
                         <td className="cursor-pointer px-4 py-2 gap-2 font-medium bg-slate-300 ">
-                          {data?.Code}
+                          {data?.percentOff}%
                         </td>
                         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                          {data?.Amount}
+                          {data?.maxAmount}
                         </td>
                         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                          {data?.Date}
+                        {moment(data?.timestamp).utc().format('DD/MM/YY')}
                         </td>
                         <td className="cursor-pointer px-2 py-2 gap-2 flex justify-center font-light ">
                     
