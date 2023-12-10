@@ -5,18 +5,36 @@ import Layout2 from "../components/Layout2";
 import Search from "../components/Search";
 import CouponsTable from "../components/Table/CouponsTable";
 import couponData from "../components/Data/CouponData";
+import { server } from "..";
+import axios from "axios";
 const CouponsAndOffer = () => {
+  const [coupons, setCoupons] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    try {
+      axios(`${server}/coupons`, {
+        headers: {
+          // Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }).then((res) => {
+        console.log("res", res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   useEffect(() => {
     setSearchResults(couponData);
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 500);
-return () =>{
-  clearTimeout(timeout)
-}
-
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [couponData]);
 
   const handleSearch = (e) => {

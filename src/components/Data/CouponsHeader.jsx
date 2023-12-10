@@ -1,19 +1,17 @@
 const couponsTableHead = [
   {
-    tablehead: "Coupon Id",
+    tablehead: "Coupon Code",
   },
   {
-    tablehead: "Name",
+    tablehead: "Discount %",
   },
   {
-    tablehead: "Code",
+    tablehead: "Maximum Amount",
   },
   {
-    tablehead: "Amount ",
+    tablehead: "Created At ",
   },
-  {
-    tablehead: "Date ",
-  },
+  // { tablehead: "Status" },
   {
     tablehead: "Delete",
   },

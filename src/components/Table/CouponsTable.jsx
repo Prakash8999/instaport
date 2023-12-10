@@ -38,9 +38,6 @@ const CouponsTable = ({ dataArray }) => {
                         <td className="cursor-pointer px-4 py-2 gap-2 font-light">
                           {data?.CouponId}
                         </td>
-                        <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                          {data?.Name}
-                        </td>
                         <td className="cursor-pointer px-4 py-2 gap-2 font-medium bg-slate-300 ">
                           {data?.Code}
                         </td>
@@ -91,3 +88,9 @@ const CouponsTable = ({ dataArray }) => {
 };
 
 export default CouponsTable;
+
+
+
+// <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+// {data?.Status}
+// </td>

@@ -13,7 +13,7 @@ const couponData = [
     Code: "75942",
     Amount: "20%",
     Date: '13/12/3',
-    Status: "Active",
+    Status: "Inactive",
   },
   {
     CouponId: "#5654",

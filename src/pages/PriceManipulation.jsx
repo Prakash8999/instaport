@@ -12,10 +12,10 @@ import toast from "react-hot-toast";
 const PriceManipulation = () => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
   const [isLoading, setLoading] = useState(true);
-const [isEditable, setIsEditable] = useState(false)
-const setEditable = () =>{
-  setIsEditable(!isEditable)
-}
+  const [isEditable, setIsEditable] = useState(false);
+  const setEditable = () => {
+    setIsEditable(!isEditable);
+  };
   const [prices, setPrices] = useState({
     id: "",
     additional_drop_charge: Number(),
@@ -49,17 +49,15 @@ const setEditable = () =>{
             data?.priceManipulation?.additional_per_kilometer_charge,
           additional_pickup_charge:
             data?.priceManipulation?.additional_pickup_charge,
-          base_order_charges:
-            data?.priceManipulation?.base_order_charges,
+          base_order_charges: data?.priceManipulation?.base_order_charges,
           instaport_commission: data?.priceManipulation?.instaport_commission,
           per_kilometer_charge: data?.priceManipulation?.per_kilometer_charge,
-          security_fees_charges:
-            data?.priceManipulation?.security_fees_charges,
+          security_fees_charges: data?.priceManipulation?.security_fees_charges,
         });
 
         // console.log("DATA : ", prices);
       } catch (error) {
-        console.log("ERROR : ", error);
+        console.log("ERROR in getPrice pages/PriceManipulation.jsx : ", error);
       }
     } else {
       console.log("ERROR OCURED ");
@@ -76,12 +74,14 @@ const setEditable = () =>{
       clearTimeout(timeout);
     };
   }, []);
+
   const handleChange = (e) => {
     setPrices((prevdata) => ({
       ...prevdata,
       [e.target.id]: e.target.value,
     }));
   };
+
   const hanldeUpdate = () => {
     try {
       axios(`${server}/price/update`, {
@@ -89,46 +89,37 @@ const setEditable = () =>{
 
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         data: {
-          "_id": prices.id, "additional_drop_charge":
-            prices.additional_drop_charge,
-          "additional_per_kilometer_charge":
+          _id: prices.id,
+          additional_drop_charge: prices.additional_drop_charge,
+          additional_per_kilometer_charge:
             prices.additional_per_kilometer_charge,
-          "additional_pickup_charge":
-            prices.additional_pickup_charge,
-          "base_order_charges":
-            prices.base_order_charges,
-          "instaport_commission": prices.instaport_commission,
-          "per_kilometer_charge": prices.per_kilometer_charge,
-          "security_fees_charges":
-            prices.security_fees_charges
-
-        }
+          additional_pickup_charge: prices.additional_pickup_charge,
+          base_order_charges: prices.base_order_charges,
+          instaport_commission: prices.instaport_commission,
+          per_kilometer_charge: prices.per_kilometer_charge,
+          security_fees_charges: prices.security_fees_charges,
+        },
         //  ...prices
-
-      }).then((res) => {
-        
-        if(!res?.data?.error){
-          toast.success(res?.data?.message)
-          setIsEditable(!isEditable)
-        }
-        else {
-
-          toast.error(res?.data?.message)
-        }
-        console.log(res);
-
-      }).catch(err =>{ 
-
-      
-        toast.error('Something went wrong')
       })
+        .then((res) => {
+          if (res?.data?.error) {
+            toast.success(res?.data?.message);
+            setIsEditable(!isEditable);
+          } else {
+            toast.error(res?.data?.message);
+          }
+          console.log(res);
+        })
+        .catch((err) => {
+          toast.error("Something went wrong");
+        });
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   // console.log(prices.id)
   return (
@@ -141,7 +132,7 @@ const setEditable = () =>{
       )}
       <div>
         <Layout>
-          <SideNav/>
+          <SideNav />
           <div className="absolute pt-7 flex items-center justify-between gap-[20vw] left-[23vw] pl-1">
             <h1 className="text-4xl ">Price Manipulation</h1>
             <div>
@@ -164,7 +155,7 @@ const setEditable = () =>{
                   label={"Additional Per Kilometer Charge"}
                   className={"p-4"}
                   onChange={handleChange}
-                  type={'number'}
+                  type={"number"}
                   id="additional_per_kilometer_charge"
                   disabled={!isEditable}
                 />
@@ -205,7 +196,7 @@ const setEditable = () =>{
                   value={prices.additional_drop_charge}
                   label={"Additional Drop Charges"}
                   className={"p-4"}
-                  id={'additional_drop_charge'}
+                  id={"additional_drop_charge"}
                   disabled={!isEditable}
                 />
               </div>
@@ -220,22 +211,25 @@ const setEditable = () =>{
                   "text-white border-yellow-300 self-center bg-yellow-400 px-10 py-2  w-48  h-11 rounded-3xl"
                 }
               ></Buttons> */}
-              {
-                !isEditable ?   <button   className={
-                  "text-white border-yellow-300 self-center bg-gray-400 px-10 py-2  w-48  h-11 rounded-3xl"
-                } onClick={setEditable}>
-
-                Edit
-              </button> :   <button   className={
-                  "text-white border-yellow-300 self-center bg-yellow-400 px-10 py-2  w-48  h-11 rounded-3xl"
-                } onClick={hanldeUpdate}>
-
-                save
-              </button>
-                  
-              }
-
-            
+              {!isEditable ? (
+                <button
+                  className={
+                    "text-white border-yellow-300 self-center bg-gray-400 px-10 py-2  w-48  h-11 rounded-3xl"
+                  }
+                  onClick={setEditable}
+                >
+                  Edit
+                </button>
+              ) : (
+                <button
+                  className={
+                    "text-white border-yellow-300 self-center bg-yellow-400 px-10 py-2  w-48  h-11 rounded-3xl"
+                  }
+                  onClick={hanldeUpdate}
+                >
+                  save
+                </button>
+              )}
             </div>
           </Layout2>
         </Layout>
