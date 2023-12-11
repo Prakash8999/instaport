@@ -11,9 +11,9 @@ const couponsTableHead = [
   {
     tablehead: "Created At ",
   },
-  // { tablehead: "Status" },
-  {
-    tablehead: "Delete",
-  },
+  { tablehead: "Status" },
+  // {
+  //   tablehead: "Delete",
+  // },
 ];
 export default couponsTableHead;

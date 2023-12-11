@@ -50,8 +50,8 @@ const CouponsTable = ({ dataArray }) => {
                         </td>
                         <td className="cursor-pointer px-2 py-2 gap-2 flex justify-center font-light ">
                     
-                          <button className="hover:bg-white hover:text-red-600 px-2 py-1 rounded hover:rounded-md">
-                            <AiFillDelete />
+                          <button className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-1 px-5 rounded-full">
+                            {data?.disabled ? "Enabled" : "Disable"}
                           </button>
                         </td>
                       </tr>
