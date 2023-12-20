@@ -6,39 +6,23 @@ import Search from "../components/Search";
 import CouponsTable from "../components/Table/CouponsTable";
 import { server } from "..";
 import axios from "axios";
+import { UseCouponsContext } from "../context/Coupons";
 const CouponsAndOffer = () => {
-  const [couponData, setCouponData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    try {
-      axios(`${server}/coupons`, {
-        headers: {
-          // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }).then((res) => {
-        console.log("res", res);
-        setCouponData(res.data.coupons);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
+  const { couponData, setCouponData } = UseCouponsContext()
   useEffect(() => {
     setSearchResults(couponData);
     const timeout = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 100);
     return () => {
       clearTimeout(timeout);
     };
   }, [couponData]);
 
   const handleSearch = (e) => {
-    const filteredData = couponData.filter(
+    const filteredData = couponData?.filter(
       (data) =>
         data.CouponId.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data.Name.toLowerCase().includes(e.target.value.toLowerCase()) ||
@@ -48,11 +32,13 @@ const CouponsAndOffer = () => {
   };
   return (
     <div>
+    
       <Layout>
-        <SideNav></SideNav>
-        <div className="absolute pt-7 flex items-center justify-around  left-[10%] w-full ">
+      <div className="flex">
+      <SideNav className={'w-[20vw]'}/>
+        <div className="pt-10 flex    justify-between w-[79vw] px-7  ">
           <div>
-            <h1 className="text-4xl  pl-6">Coupons And Offer</h1>
+            <h1 className="text-4xl  ">Coupons And Offer</h1>
           </div>
           <div className="pl-18">
             <Search
@@ -65,6 +51,7 @@ const CouponsAndOffer = () => {
         <Layout2 loading={isLoading}>
           <CouponsTable dataArray={searchResults}></CouponsTable>
         </Layout2>
+              </div>
       </Layout>
     </div>
   );

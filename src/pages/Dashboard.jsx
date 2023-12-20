@@ -13,16 +13,12 @@ const Dashboard = () => {
   return (
     <div>
       <Layout>
-        <SideNav></SideNav>
-        <div className=" absolute flex w-[24vw] bg-slate-50 rounded-lg shadow-lg  top-7 left-[26vw] ">
-          <div className="  ">
-            <Search className={"w-96 h-12"}></Search>
-          </div>
-        </div>
-        <div className="absolute h-fit w-[76vw]    top-48 right-4">
+        <SideNav className={'w-[20vw]'} />
+        
+        <div className="absolute h-fit w-[76vw]    top-32 pt-2 right-4">
           <div className="flex items-center justify-around my-8">
             {/* <Link to="/orders?query=processing"> */}
-              <StatsCard Number={orders?.length > 0 ? orders?.length : 0} Value={"Total Order"}></StatsCard>
+            <StatsCard Number={orders?.length > 0 ? orders?.length : 0} Value={"Total Order"}></StatsCard>
             {/* </Link> */}
             <Link to="/orders?query=processing">
               <StatsCard Number={orders?.filter(data => data?.status == 'processing').length} Value={"Processing"}></StatsCard>

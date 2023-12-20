@@ -68,27 +68,30 @@ const AddCity = () => {
       )}
       <div className="">
         <Layout>
-          <SideNav></SideNav>
-          <div className="absolute pt-7 flex    ">
-            <div className="flex   lg:gap-[27vw]  w-full ">
-              <div className="flex gap-4  "></div>
-              <div className=" flex gap-x-5 items-center ">
+          <div className="flex">
+
+            <SideNav className={'w-[20vw]'} />
+            <div className="pt-10 flex    justify-between w-[79vw] px-7  ">
+
+
+              
                 <Search className={"w-[50vw] h-12"} onChange={handleSearch} />
 
                 <button
                   onClick={() => {
                     setmodal({ show: true, datamodal: fetchData });
                   }}
-                  className={`outline-none rounded-lg  text-base font-semibold shadow hover:shadow-lg  duration-300    p-2.5   lg:w-[15vw]   text-black flex  items-center justify-center bg-yellow-400 hover:bg-yellow-500`}
+                  className={`outline-none rounded-lg h-12 text-base font-semibold shadow hover:shadow-lg  duration-300    p-2.5   lg:w-[15vw]   text-black flex  items-center justify-center bg-yellow-400 hover:bg-yellow-500`}
                 >
                   Add City
                 </button>
-              </div>
+              
+
             </div>
+            <Layout2 loading={isLoading} >
+              <CityTable dataArray={searchResults} />
+            </Layout2>
           </div>
-          <Layout2 loading={isLoading} >
-            <CityTable dataArray={searchResults} />
-          </Layout2>
         </Layout>
       </div>
     </>

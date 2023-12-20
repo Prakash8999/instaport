@@ -105,7 +105,7 @@ const PriceManipulation = () => {
         //  ...prices
       })
         .then((res) => {
-          if (res?.data?.error) {
+          if (!res?.data?.error) {
             toast.success(res?.data?.message);
             setIsEditable(!isEditable);
           } else {
@@ -132,12 +132,15 @@ const PriceManipulation = () => {
       )}
       <div>
         <Layout>
-          <SideNav />
-          <div className="absolute pt-7 flex items-center justify-between gap-[20vw] left-[23vw] pl-1">
+          <div className="flex">
+
+        <SideNav className={'w-[20vw]'}/>
+          <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
             <h1 className="text-4xl ">Price Manipulation</h1>
             <div>
               <Search className={"w-80 h-12"} />
             </div>
+          </div>
           </div>
           <Layout2 loading={isLoading}>
             <div className="flex flex-col justify-center">

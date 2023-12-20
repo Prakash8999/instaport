@@ -36,22 +36,22 @@ return () =>{
   return (
     <div>
       <Layout>
-        <SideNav></SideNav>
-        <div className="absolute pt-7 flex items-center justify-around  left-[10%] w-full ">
-          <div>
-            <h1 className="text-4xl pl-6">Transaction</h1>
+
+        <div className="flex">
+
+
+        <SideNav className={'w-[20vw]'}/>
+    
+            <div className=" pt-10 flex    justify-between w-[79vw] px-7 ">
+            <h1 className="text-4xl ">Transaction</h1>
+            <div>
+              <Search className={"w-80 h-12"} onChange={handleSearch}/>
+            </div>
           </div>
-          <div className="pl-20">
-            <Search
-              divclass={"w-80 h-10"}
-              onChange={handleSearch}
-              className={"w-80 h-12"}
-            />
-          </div>
-        </div>
         <Layout2 loading={isLoading}>
           <TransactionTable dataArray={searchResults} />
         </Layout2>
+        </div>
       </Layout>
     </div>
   );

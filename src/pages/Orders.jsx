@@ -70,16 +70,17 @@ const Orders = () => {
   return (
     <div>
       <Layout>
-        <SideNav />
-        <div className="absolute pt-7 flex  left-[23vw] ">
-          <div className="flex   w-[76vw]">
-            <div className="flex gap-2 w-full">
+        <div className="flex">
+
+        <SideNav className={'w-[20vw]'}/>
+      
+            <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                   "processing"
                 )}`}
                 onclick={() => {
-
+                  
                   setSearchParams({ ["query"]: "processing" });
                 }}
                 buttonText={"Processing"}
@@ -114,21 +115,21 @@ const Orders = () => {
                   setSearchParams({ ["query"]: "outfordelivery" });
                 }}
                 buttonText={"Out For Delivery"}
-              />
+                />
               <Buttons
                 className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                   "cancelled"
-                )}`}
-                onclick={() => {
-
-                  setSearchParams({ ["query"]: "cancelled" });
+                  )}`}
+                  onclick={() => {
+                    
+                    setSearchParams({ ["query"]: "cancelled" });
                 }}
                 buttonText={"Cancelled"}
-              />
-              <Search onChange={handleSearch} className={"w-[20vw] h-11"} />
-            </div>
-          </div>
+                />
+              <Search onChange={handleSearch} className={"w-[20vw] h-12"} />
+            
         </div>
+                </div>
         <Layout2 loading={loading}>
           <OrderTable dataArray={searchResults} />
         </Layout2>

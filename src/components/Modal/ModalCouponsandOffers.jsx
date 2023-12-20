@@ -10,11 +10,12 @@ import InputComp from "../InputComp";
 import axios from "axios";
 import { server } from "../..";
 import toast from "react-hot-toast";
+import { UseCouponsContext } from "../../context/Coupons";
 
 const CouponsandOffers = ({ setmodal, datamodal }) => {
   const [showModal, setShowModal] = useState(false);
-
-  const [couponData, setCouponData] = useState({
+  const { couponData, setCouponData } = UseCouponsContext()
+  const [couponDataModal, setCouponDataModal] = useState({
     // id: "",
     couponCode: "",
     discount: "",
@@ -23,7 +24,7 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
   });
 
   const handleChange = (e) => {
-    setCouponData((prevdata) => ({
+    setCouponDataModal((prevdata) => ({
       ...prevdata,
       [e.target.id]: e.target.value,
     }));
@@ -55,15 +56,19 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
             "Content-Type": "application/json",
           },
           data: {
-            code: couponData.couponCode,
+            code: couponDataModal.couponCode,
             // disabled: couponData.disabled,
-            percentOff: couponData.discount,
-            maxAmount: couponData.maxAmount,
+            percentOff: couponDataModal.discount,
+            maxAmount: couponDataModal.maxAmount,
           },
         })
           .then((res) => {
             if (res) {
               toast.success(res?.data?.message);
+              let array = [...couponData];
+              array.push(res.data.coupon);
+              setCouponData(array);
+              console.log(array);
               closeModal();
             } else {
               toast.error(res?.data?.error);
@@ -116,7 +121,7 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
 
                   <InputComp
                     placeholder="Enter the Coupon Code"
-                    value={couponData.couponCode}
+                    value={couponDataModal.couponCode}
                     onChange={handleChange}
                     id="couponCode"
                     className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
@@ -127,7 +132,7 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
 
                   <InputComp
                     placeholder="Enter the Discount"
-                    value={couponData.discount}
+                    value={couponDataModal.discount}
                     onChange={handleChange}
                     id="discount"
                     className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"
@@ -138,7 +143,7 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
 
                   <InputComp
                     placeholder="Enter the Maximum Amount"
-                    value={couponData.maxAmount}
+                    value={couponDataModal.maxAmount}
                     onChange={handleChange}
                     id="maxAmount"
                     className="w-80 h-12 rounded-lg outline-none border-2 border-yellow-400 border-opacity-80 pl-3"

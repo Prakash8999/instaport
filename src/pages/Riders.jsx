@@ -82,36 +82,13 @@ const Riders = () => {
     <>
       <div>
         <Layout>
-          <SideNav></SideNav>
-          <div className="absolute pt-7 flex  left-[23vw]  ">
-            <div className="flex   lg:gap-[30vw]  w-full ">
+          <div className="flex">
+
+          <SideNav className={'w-[20vw]'}/>
+        
+            <div className="pt-10 flex    justify-between w-[79vw] px-7  ">
               <div className="flex gap-4  ">
-                {/* <NavLink
-                  to="/riders/available"
-                  className={`rounded-lg border-2 text-base font-semibold hover:shadow-lg  shadow-md border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-2 gap-4  `}
-                >
-                  Available
-                </NavLink>
-                <NavLink
-                  to="/riders/active"
-                  className={`rounded-lg border-2 text-base font-semibold hover:shadow-lg  shadow-md border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-2 gap-4  `}
-                >
-                  Active
-                </NavLink>
-
-                <NavLink
-                  to="/riders/active"
-                  className={`rounded-lg border-2 text-base font-semibold hover:shadow-lg  shadow-md border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-2 gap-4  `}
-                >
-                  Offline
-                </NavLink>
-
-                <NavLink
-                  to="/riders/active"
-                  className={`rounded-lg border-2 text-base font-semibold hover:shadow-lg  shadow-md border-yellow-300 p-1 lg:w-[10vw]  focus:outline-yellow-400 focus:text-black flex  items-center justify-center py-2 gap-4  `}
-                >
-                  Disable
-                </NavLink> */}
+                
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                     "available"
@@ -126,8 +103,8 @@ const Riders = () => {
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                     "active"
-                  )}`}
-                  onclick={() => {
+                    )}`}
+                    onclick={() => {
                     setSearchParams({ ['query']: 'active' })
                   }}
                   buttonText={"Active"}
@@ -135,21 +112,21 @@ const Riders = () => {
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                     'offline'
-                  )}`}
-                  onclick={() => {
+                    )}`}
+                    onclick={() => {
                     setSearchParams({ ['query']: 'offline' })
                   }}
                   buttonText={"Offline"}
-                />
+                  />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2  text-center border-2 text-base font-semibold w-fit border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                     'disabled'
-                  )}`}
-                  onclick={() => {
-                    setSearchParams({ ['query']: 'disabled' })
+                    )}`}
+                    onclick={() => {
+                      setSearchParams({ ['query']: 'disabled' })
                   }}
                   buttonText={"Disable"}
-                />
+                  />
 
 
 
@@ -158,7 +135,8 @@ const Riders = () => {
                 <Search className={"w-[20vw] h-12"} onChange={handleSearch} />
               </div>
             </div>
-          </div>
+        
+                  </div>
           <Layout2 loading={isLoading}>
             <AvailableRiderTable dataArray={searchResults} />
           </Layout2>

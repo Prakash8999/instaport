@@ -17,33 +17,35 @@ import ActiveRider from './pages/RidersActive';
 import { Toaster } from 'react-hot-toast';
 import { Context } from './context/Context';
 import AddCity from './pages/AddCity';
+import { CouponsContext } from './context/Coupons';
 
 function App() {
   return (
     <>
       <Router>
         <Context>
+          <CouponsContext>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/test/create-order" element={<TestForm />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/layout" element={<Layouttest />} />
+              <Route path="/" element={<Login />} />
+              {/* <Route path="/" element={<Signup />} /> */}
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/riders" element={<Riders />} />
+              <Route path="/riders/active" element={<ActiveRider />} />
+              <Route path="/price-manipulation" element={<PriceManipulation />} />
+              <Route path="/pending" element={<ApproveARider />} />
+              {/* <Route path="/approve-rider/approved" element={<ApprovedRiderPage />} /> */}
+              <Route path="/transaction" element={<Transaction />} />
+              <Route path="/coupons-and-offers" element={<CouponsAndOffer />} />
+              <Route path="/add-city" element={<AddCity />} />
+              {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
+            </Routes>
+            <Toaster />
+          </CouponsContext>
 
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/test/create-order" element={<TestForm />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/layout" element={<Layouttest />} />
-          <Route path="/" element={<Login />} />
-          {/* <Route path="/" element={<Signup />} /> */}
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/riders" element={<Riders />} />
-          <Route path="/riders/active" element={<ActiveRider />} />
-          <Route path="/price-manipulation" element={<PriceManipulation />} />
-          <Route path="/pending" element={<ApproveARider />} />
-          {/* <Route path="/approve-rider/approved" element={<ApprovedRiderPage />} /> */}
-          <Route path="/transaction" element={<Transaction />} />
-          <Route path="/coupons-and-offers" element={<CouponsAndOffer />} />
-          <Route path="/add-city" element={<AddCity />} />
-          {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
-        </Routes>
-        <Toaster />
-    
         </Context>
       </Router>
     </>

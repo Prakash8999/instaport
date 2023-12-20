@@ -8,8 +8,8 @@ const Profile = () => {
         <img src={Avtar} alt="" />
       </div>
       <div className="flex flex-col leading-normal ">
-        <h4 className="text-1xl font-semibold ">Nitish Dalvi</h4>
-        <h6 className="text-sm "> Developer</h6>
+        <h4 className="text-1xl font-semibold ">Mahesh Bhai</h4>
+        <h6 className="text-sm "> Admin</h6>
       </div>
     </div>
   );
