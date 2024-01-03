@@ -2,14 +2,63 @@ import React, { useState } from "react";
 import { ridersthead } from "../Data/Tableheadingrider";
 import datanotfound from "../../images/datanotfound (2).svg";
 import moment from "moment";
+import axios from "axios";
+import { server } from "../..";
+import toast from "react-hot-toast";
 
 const AvailableRiderTable = ({ dataArray }) => {
   // console.log(dataArray);
   const [isToggled, setToggled] = useState(false);
-
+  const [buttonLoading, setButtonLoading] = useState(false)
   const handleToggle = () => {
     setToggled(!isToggled);
   };
+
+
+  
+  const handleUpdate = async (id, status) => {
+
+    try {
+      setButtonLoading(true)
+
+
+      await axios(`${server}/rider/riderstatus`, {
+        method: "PATCH",
+        data: {
+          status: status == 'available' ? 'disabled' : 'available',
+          _id: id,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+
+        },
+
+      })
+      .then((res) => {
+        // setAppliedRider(res?.data?.rider);
+
+        if (!res?.data?.error) {
+        
+          // setLoading(false)
+          toast.success("Rider " + res?.data?.message + " to " + res?.data?.rider?.status )
+          setButtonLoading(false)
+          // window.location.reload();
+        }
+
+        else {
+          toast.error(res?.message)
+          // window.location.reload();
+
+        }
+      }).catch((err) => {
+        toast.error(err?.message)
+      })
+    } catch (error) {
+      toast.error('Something went Wrong!')
+
+      setButtonLoading(false)
+    }
+  }
 
   return (
     <>
@@ -27,9 +76,9 @@ const AvailableRiderTable = ({ dataArray }) => {
             </tr>
           </thead>
 
-          {dataArray.length > 0  && dataArray.filter(data => data?.approve).length > 0 ? (
+          {dataArray.length > 0 && dataArray.filter(data => data?.approve).length > 0 ? (
             <tbody className="text-center mt-4">
-              {dataArray?.filter(data => data?.approve ).map((data, index) => {
+              {dataArray?.filter(data => data?.approve).map((data, index) => {
                 return (
                   <tr
                     key={index}
@@ -39,20 +88,40 @@ const AvailableRiderTable = ({ dataArray }) => {
                     <td>{data?.fullname}</td>
                     <td>{data?.mobileno}</td>
                     <td>{moment(data?.timestamp).utc().format('DD/MM/YY')}</td>
-                    <td>{data?.status}</td>
+                    <td>
+
+
+                      <button onClick={() => {
+                        handleUpdate(data?._id, data?.status)
+                      }}>
+                        {/* {
+  data?.status == 'available' ? 'Enabled' :'Disabled'
+} */}
+<div
+							className={`w-12 h-6 rounded-full  border transition-color ${  data?.status == 'available' ? 'bg-green-500' : 'bg-red-500'}`}
+							
+						>
+							<div
+								className={`w-6   h-6 rounded-full bg-white border border-gray-300  transform transition-transform ${  data?.status == 'available' ? 'translate-x-full' : 'translate-x-0'
+									}`}
+							></div>
+						</div>
+                      
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
           ) : (
             <div className="absolute w-[100%]  mt-12  px-8  ">
-            <div className="flex justify-around h-full items-center">
+              <div className="flex justify-around h-full items-center">
 
-              {/* <div className="flex flex-col justify-center  items-center  gap-y-10"> */}
+                {/* <div className="flex flex-col justify-center  items-center  gap-y-10"> */}
                 <span className="font-semibold  text-3xl">No Available Rider Currently.</span>
-                  {/* </div> */}
+                {/* </div> */}
+              </div>
             </div>
-          </div>
           )}
         </table>
       </div>

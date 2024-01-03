@@ -137,9 +137,7 @@ const PriceManipulation = () => {
         <SideNav className={'w-[20vw]'}/>
           <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
             <h1 className="text-4xl ">Price Manipulation</h1>
-            <div>
-              <Search className={"w-80 h-12"} />
-            </div>
+
           </div>
           </div>
           <Layout2 loading={isLoading}>

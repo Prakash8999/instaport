@@ -20,7 +20,7 @@ const CouponsContext = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
-        console.log("res", res);
+        
         setCouponData(res.data.coupons);
       });
     } catch (error) {

@@ -48,7 +48,7 @@ const Riders = () => {
 
 
   const handleFilter = (e) => {
-    console.log(e);
+    
 
     setActiveButton(e);
 
@@ -56,7 +56,7 @@ const Riders = () => {
       const data = riderdata?.filter((rider) => {
         return rider?.status === e;
       });
-      console.log(data);
+      
       // setriderdata(data);
       setSearchResults(data);
     }
