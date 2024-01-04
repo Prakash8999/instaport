@@ -12,7 +12,7 @@ const ridersthead = [
     riderTablehead: "Date",
   },
   {
-    riderTablehead: "Status",
+    riderTablehead: "Action",
   },
 ];
 

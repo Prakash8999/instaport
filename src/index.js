@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-export const server = 'https://insta-port-backend-api.vercel.app'
+export const server = 'https://instaport-backend-main.vercel.app'
+// instaport-backend-main.vercel.app
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

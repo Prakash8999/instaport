@@ -33,7 +33,7 @@ const PriceManipulation = () => {
     if (token) {
       try {
         let { data } = await axios.get(
-          "https://insta-port-backend-api.vercel.app/price/get",
+          `${server}/price/get`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

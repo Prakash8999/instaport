@@ -15,7 +15,7 @@ const AvailableRiderTable = ({ dataArray }) => {
   };
 
 
-  
+
   const handleUpdate = async (id, status) => {
 
     try {
@@ -34,25 +34,25 @@ const AvailableRiderTable = ({ dataArray }) => {
         },
 
       })
-      .then((res) => {
-        // setAppliedRider(res?.data?.rider);
+        .then((res) => {
+          // setAppliedRider(res?.data?.rider);
 
-        if (!res?.data?.error) {
-        
-          // setLoading(false)
-          toast.success("Rider " + res?.data?.message + " to " + res?.data?.rider?.status )
-          setButtonLoading(false)
-          // window.location.reload();
-        }
+          if (!res?.data?.error) {
 
-        else {
-          toast.error(res?.message)
-          // window.location.reload();
+            // setLoading(false)
+            toast.success("Rider " + res?.data?.message + " to " + res?.data?.rider?.status)
+            setButtonLoading(false)
+            // window.location.reload();
+          }
 
-        }
-      }).catch((err) => {
-        toast.error(err?.message)
-      })
+          else {
+            toast.error(res?.message)
+            // window.location.reload();
+
+          }
+        }).catch((err) => {
+          toast.error(err?.message)
+        })
     } catch (error) {
       toast.error('Something went Wrong!')
 
@@ -91,13 +91,13 @@ const AvailableRiderTable = ({ dataArray }) => {
                     <td>
 
 
-                      <button onClick={() => {
+                      <button title={`Click Here to ${data?.status == 'available' ? 'Disable' : 'Enable'} Rider ${data?.fullname}`} onClick={() => {
                         handleUpdate(data?._id, data?.status)
-                      }}>
-                        {/* {
-  data?.status == 'available' ? 'Enabled' :'Disabled'
-} */}
-<div
+                      }} className="border px-2 py-1 shadow hover:shadow-md rounded-md duration-150">
+                        {
+                          data?.status == 'available' ? 'Enabled' : 'Disabled'
+                        }
+                        {/* <div
 							className={`w-12 h-6 rounded-full  border transition-color ${  data?.status == 'available' ? 'bg-green-500' : 'bg-red-500'}`}
 							
 						>
@@ -105,8 +105,8 @@ const AvailableRiderTable = ({ dataArray }) => {
 								className={`w-6   h-6 rounded-full bg-white border border-gray-300  transform transition-transform ${  data?.status == 'available' ? 'translate-x-full' : 'translate-x-0'
 									}`}
 							></div>
-						</div>
-                      
+						</div> */}
+
                       </button>
                     </td>
                   </tr>
