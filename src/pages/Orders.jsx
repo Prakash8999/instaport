@@ -18,6 +18,7 @@ const Orders = () => {
   const [activeButton, setActiveButton] = useState("proccessing");
   // const [isLoading, setLoading] = useState(true);
   const { orders, loading } = ContextAuth();
+  console.log('orders', orders)
   const router = useLocation();
   const [serachParams, setSearchParams] = useSearchParams();
   useEffect(() => {
@@ -131,7 +132,7 @@ const Orders = () => {
         </div>
                 </div>
         <Layout2 loading={loading}>
-          <OrderTable dataArray={searchResults} />
+          <OrderTable dataArray={orders} />
         </Layout2>
       </Layout>
     </div>

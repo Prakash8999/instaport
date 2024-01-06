@@ -18,6 +18,7 @@ import { Toaster } from 'react-hot-toast';
 import { Context } from './context/Context';
 import AddCity from './pages/AddCity';
 import { CouponsContext } from './context/Coupons';
+import Order from './pages/Order';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="/" element={<Login />} />
               {/* <Route path="/" element={<Signup />} /> */}
               <Route path="/orders" element={<Orders />} />
+              <Route path="/order/:id" element={<Order />} />
               <Route path="/riders" element={<Riders />} />
               <Route path="/riders/active" element={<ActiveRider />} />
               <Route path="/price-manipulation" element={<PriceManipulation />} />
