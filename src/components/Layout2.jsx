@@ -1,16 +1,16 @@
 import React from "react";
 
-const Layout2 = ({ children, loading }) => {
+const Layout2 = ({ children, loading, className ='' }) => {
   return (
     <>
-      <div className="absolute h-[80vh] w-[76vw] bg-white rounded-lg shadow-lg overflow-y-scroll  top-32 right-5">
+      <div className={` absolute h-[80vh]  w-[76vw] bg-white rounded-lg shadow-lg overflow-y-scroll  top-32 right-5 ` }>
         <div>{children}</div>
       </div>
       <div
         className={
           loading
             ? "flex items-center justify-center opacity-100 duration-200 absolute h-[80vh] w-[76vw] bg-white rounded-lg top-32 right-4"
-            : "flex items-center justify-center duration-200 opacity-0 pointer-events-none absolute h-[8vh] w-[76vw] rounded-lg top-32 right-4"
+            : "flex items-center justify-center duration-200 opacity-0 pointer-events-none absolute h-[90vh] w-[76vw] rounded-lg top-32 right-4"
         }
       >
         <div role="status">

@@ -63,48 +63,54 @@ const OrderTable = ({ dataArray }) => {
                   options
                 );
                 return (
-                  <a
-                    href={`order/${data?._id}`}
+                  // <a
+                  //   href={`order/${data?._id}`}
+                  //   target="_blank"
+                  //   rel="noopener noreferrer"
+                  // >
+                  <tr
+                    key={index}
+                    // ** Opens the modal **
+                    // onClick={() => {
+                    //   setmodal({ show: true, datamodal: data });
+                    // }}
+                    onClick={() => {
+                      window.open(`order/${data?._id}`, '_blank', 'noopener, noreferrer');
+
+                    }}
+  
                     target="_blank"
-                    rel="noopener noreferrer"
+                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
                   >
-                    <tr
-                      key={index}
-                      // ** Opens the modal **
-                      // onClick={() => {
-                      //   setmodal({ show: true, datamodal: data });
-                      // }}
-                      className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
-                    >
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        #{data?._id?.slice(-5)}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {data?.customer?.fullname}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {data?.phone_number}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {data?.delivery_type}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {data?.pickup?.Address}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {data?.drop[0]?.Address}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {formattedDateString}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {moment(data?.createdAt).format("h:mm a")}
-                      </td>
-                      <td className="cursor-pointer px-2 py-2  font-light">
-                        {data?.payment_method}
-                      </td>
-                    </tr>
-                  </a>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      #{data?._id?.slice(-5)}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {data?.customer?.fullname}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {data?.phone_number}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {data?.delivery_type}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {data?.pickup?.Address}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {data?.drop[0]?.Address}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {formattedDateString}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {moment(data?.createdAt).format("h:mm a")}
+                    </td>
+                    <td className="cursor-pointer px-2 py-2  font-light">
+                      {data?.payment_method}
+                    </td>
+                  </tr>
+                  // </a>
                 );
               })}
             </tbody>

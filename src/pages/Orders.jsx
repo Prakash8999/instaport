@@ -18,13 +18,17 @@ const Orders = () => {
   const [activeButton, setActiveButton] = useState("proccessing");
   // const [isLoading, setLoading] = useState(true);
   const { orders, loading } = ContextAuth();
-  console.log('orders', orders)
+
   const router = useLocation();
   const [serachParams, setSearchParams] = useSearchParams();
+  let p;
   useEffect(() => {
     const params = new URLSearchParams(router.search);
+
     handleFilter(params.get("query"));
   }, [router, orders]);
+
+
 
   // useEffect(() => {
   //   setSearchResults(orders);
@@ -48,15 +52,17 @@ const Orders = () => {
   };
 
   const handleSearch = (e) => {
+
     const filteredData = orders?.filter(
       (data) =>
-        data?.CustomerName?.toLowerCase().includes(
-          e.target.value?.toLowerCase()
+        data?.customer.fullname?.toLowerCase().includes(
+          e?.target?.value?.toLowerCase()
         ) ||
-        data.PackageType.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.Date.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.CustomerNo.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.OrderId.toLowerCase().includes(e.target.value.toLowerCase())
+        data?.PackageType?.toLowerCase()?.includes(e?.target.value?.toLowerCase()) ||
+        data?.Date?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
+        data?.CustomerNo?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
+        data?._id?.toLowerCase().includes(e.target.value?.toLowerCase())
+
     );
     // setShowOrders(filteredData);
     setSearchResults(filteredData);
@@ -73,66 +79,110 @@ const Orders = () => {
       <Layout>
         <div className="flex">
 
-        <SideNav className={'w-[20vw]'}/>
-      
-            <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
-              <Buttons
-                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  "processing"
-                )}`}
-                onclick={() => {
-                  
-                  setSearchParams({ ["query"]: "processing" });
-                }}
-                buttonText={"Processing"}
-              />
+          <SideNav className={'w-[20vw]'} />
 
-              <Buttons
-                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  "assigned"
-                )}`}
-                onclick={() => {
+          <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
+            <Buttons
+              className={`rounded-lg px-4 py-2 w-[10vw] mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "processing"
+              )}`}
+              onclick={() => {
 
-                  setSearchParams({ ["query"]: "assigned" });
-                }}
-                buttonText={"Assigned"}
-              />
-              <Buttons
-                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  "outforpickup"
-                )}`}
-                onclick={() => {
+                setSearchParams({ ["query"]: "processing" });
+              }}
+              buttonText={"Processing"}
+            />
 
-                  setSearchParams({ ["query"]: "outforpickup" });
-                }}
-                buttonText={"Out For Pickup"}
-              />
-              <Buttons
-                className={`rounded-lg px-4 py-2 mr-2  text-center border-2 text-base font-semibold w-fit border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  "outfordelivery"
-                )}`}
-                onclick={() => {
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 w-[10vw] text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "new"
+              )}`}
+              onclick={() => {
 
-                  setSearchParams({ ["query"]: "outfordelivery" });
-                }}
-                buttonText={"Out For Delivery"}
-                />
-              <Buttons
-                className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                  "cancelled"
-                  )}`}
-                  onclick={() => {
-                    
-                    setSearchParams({ ["query"]: "cancelled" });
-                }}
-                buttonText={"Cancelled"}
-                />
-              <Search onChange={handleSearch} className={"w-[20vw] h-12"} />
-            
+                setSearchParams({ ["query"]: "new" });
+              }}
+              buttonText={"New"}
+            />
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "progress"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "progress" });
+              }}
+              buttonText={"Progress"}
+            />
+            {/* 
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "progress"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "progress" });
+              }}
+              buttonText={"Progress"}
+            />
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "assigned"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "assigned" });
+              }}
+              buttonText={"Assigned"}
+            />
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "outforpickup"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "outforpickup" });
+              }}
+              buttonText={"Out For Pickup"}
+            />
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2  text-center border-2 text-base font-semibold w-fit border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "outfordelivery"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "outfordelivery" });
+              }}
+              buttonText={"Out For Delivery"}
+            /> */}
+
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  w-[10vw] ${getButtonClass(
+                "delivered"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "delivered" });
+              }}
+              buttonText={"Processing"}
+            />
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "cancelled"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "cancelled" });
+              }}
+              buttonText={"Cancelled"}
+            />
+
+
+            <Search onChange={handleSearch} className={"w-[20vw] h-12"} />
+
+          </div>
         </div>
-                </div>
         <Layout2 loading={loading}>
-          <OrderTable dataArray={orders} />
+          <OrderTable dataArray={searchResults} />
         </Layout2>
       </Layout>
     </div>

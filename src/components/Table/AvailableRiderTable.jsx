@@ -15,7 +15,7 @@ const AvailableRiderTable = ({ dataArray }) => {
   };
 
 
-
+console.log(dataArray);
   const handleUpdate = async (id, status) => {
 
     try {
@@ -91,7 +91,7 @@ const AvailableRiderTable = ({ dataArray }) => {
                     <td>
 
 
-                      <button title={`Click Here to ${data?.status == 'available' ? 'Disable' : 'Enable'} Rider ${data?.fullname}`} onClick={() => {
+                      <button disabled={buttonLoading} title={`Click Here to ${data?.status == 'available' ? 'Disable' : 'Enable'} Rider ${data?.fullname}`} onClick={() => {
                         handleUpdate(data?._id, data?.status)
                       }} className="border px-2 py-1 shadow hover:shadow-md rounded-md duration-150">
                         {

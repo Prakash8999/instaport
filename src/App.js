@@ -19,6 +19,7 @@ import { Context } from './context/Context';
 import AddCity from './pages/AddCity';
 import { CouponsContext } from './context/Coupons';
 import Order from './pages/Order';
+import DashboardChart from './pages/DashboardChart';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/test/create-order" element={<TestForm />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/dashboard/chart" element={<DashboardChart />} />
               <Route path="/layout" element={<Layouttest />} />
               <Route path="/" element={<Login />} />
               {/* <Route path="/" element={<Signup />} /> */}

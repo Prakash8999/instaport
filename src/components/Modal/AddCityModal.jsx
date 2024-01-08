@@ -10,9 +10,6 @@ const AddCityModal = ({ datamodal, setmodal }) => {
   const [showModal, setShowModal] = useState(false);
   const [city, setCity] = useState("");
   const [slug, setSLug] = useState("");
-
-
-
   const closeModal = () => {
     setShowModal(false);
     setTimeout(() => {
@@ -20,11 +17,8 @@ const AddCityModal = ({ datamodal, setmodal }) => {
     }, 200); // Wait for the closing animation to complete (300ms)
   };
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     try {
       axios(`${server}/city/create`, {
         method: "POST",

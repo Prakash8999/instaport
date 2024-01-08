@@ -44,11 +44,11 @@ const Riders = () => {
   }, [router, riderdata])
 
 
-  
+
 
 
   const handleFilter = (e) => {
-    
+
 
     setActiveButton(e);
 
@@ -56,7 +56,7 @@ const Riders = () => {
       const data = riderdata?.filter((rider) => {
         return rider?.status === e;
       });
-      
+
       // setriderdata(data);
       setSearchResults(data);
     }
@@ -66,8 +66,8 @@ const Riders = () => {
   const handleSearch = (e) => {
     const filteredData = riderdata?.filter(
       (data) =>
-        data?.fullname.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
+        data?.fullname?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
+        data?.mobileno?.toLowerCase().includes(e.target.value?.toLowerCase())
 
     );
 
@@ -84,11 +84,19 @@ const Riders = () => {
         <Layout>
           <div className="flex">
 
-          <SideNav className={'w-[20vw]'}/>
-        
-            <div className="pt-10 flex    justify-between w-[79vw] px-7  ">
+            <SideNav className={'w-[20vw]'} />
+
+            <div className="pt-10 flex justify-between w-[79vw] px-7  ">
               <div className="flex gap-4  ">
-                
+                <Buttons
+                  className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                    "active"
+                  )}`}
+                  onclick={() => {
+                    setSearchParams({ ['query']: 'active' })
+                  }}
+                  buttonText={"Active"}
+                />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                     "available"
@@ -96,37 +104,26 @@ const Riders = () => {
                   onclick={() => {
                     setSearchParams({ ['query']: 'available' })
                   }}
-                  buttonText={"Available"}
-                />
-
-
-                <Buttons
-                  className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                    "active"
-                    )}`}
-                    onclick={() => {
-                    setSearchParams({ ['query']: 'active' })
-                  }}
-                  buttonText={"Active"}
+                  buttonText={"Online"}
                 />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                     'offline'
-                    )}`}
-                    onclick={() => {
+                  )}`}
+                  onclick={() => {
                     setSearchParams({ ['query']: 'offline' })
                   }}
                   buttonText={"Offline"}
-                  />
+                />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2  text-center border-2 text-base font-semibold w-fit border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                     'disabled'
-                    )}`}
-                    onclick={() => {
-                      setSearchParams({ ['query']: 'disabled' })
+                  )}`}
+                  onclick={() => {
+                    setSearchParams({ ['query']: 'disabled' })
                   }}
                   buttonText={"Disable"}
-                  />
+                />
 
 
 
@@ -135,8 +132,8 @@ const Riders = () => {
                 <Search className={"w-[20vw] h-12"} onChange={handleSearch} />
               </div>
             </div>
-        
-                  </div>
+
+          </div>
           <Layout2 loading={isLoading}>
             <AvailableRiderTable dataArray={searchResults} />
           </Layout2>

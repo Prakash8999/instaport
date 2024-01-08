@@ -102,7 +102,7 @@ const ModalOrder = ({ datamodal, setmodal }) => {
         unmountOnExit
       >
         <div className=" h-screen w-screen bg-[#343434] bg-opacity-70 flex items-center justify-center fixed  top-0 left-0  shadow-lg z-[100] ">
-          <div className="p-5 relative h-fit  overflow-hidden w-[60vw] bg-[#FFFDE6] rounded-lg flex  flex-col   md:gap-y-1  gap-y">
+          <div className="p-5 relative h-fit  overflow-hidden w-[60vw] bg-[#FFFDE6] rounded-lg flex  flex-col   md:gap-y-1  ">
             <button
               onClick={() => {
                 closeModal({ show: false });
