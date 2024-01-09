@@ -63,16 +63,29 @@ const Riders = () => {
   };
 
 
+
   const handleSearch = (e) => {
-    const filteredData = riderdata?.filter(
-      (data) =>
-        data?.fullname?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
-        data?.mobileno?.toLowerCase().includes(e.target.value?.toLowerCase())
 
-    );
+        // console.log("search input :: ", e);
+        if ( e.target.value.length > 0) {
+          const filteredData = riderdata?.filter(
+            (data) =>
+              (data?.status.toLowerCase().includes(serachParams.get("query")) &&
+                data?.fullname
+                  .toLowerCase()
+                  .includes(e.target.value.toLowerCase())) ||
+              data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
+          );
 
-    setSearchResults(filteredData);
-  };
+      
+
+    
+          setSearchResults(filteredData);
+    }
+    else {
+      setSearchResults(searchResults)
+    }
+    };
   const getButtonClass = (buttonId) => {
     return buttonId === activeButton
       ? "text-black  bg-yellow-400 "
