@@ -163,7 +163,7 @@ const Orders = () => {
 
                 setSearchParams({ ["query"]: "delivered" });
               }}
-              buttonText={"Processing"}
+              buttonText={"Delivered"}
             />
             <Buttons
               className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(

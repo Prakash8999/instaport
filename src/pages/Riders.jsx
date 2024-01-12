@@ -17,39 +17,32 @@ const Riders = () => {
   const [isLoading, setLoading] = useState(true);
   const [riderdata, setriderdata] = useState([]);
   // const [showRiders, setShowRiders] = useState([])
-  const router = useLocation()
-  const [serachParams, setSearchParams] = useSearchParams()
+  const router = useLocation();
+  const [serachParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     try {
       axios(`${server}/rider/riders`, {
         headers: {
           // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }).then((res) => {
         setriderdata(res?.data?.rider);
 
-        setLoading(false)
+        setLoading(false);
       });
     } catch (error) {
       console.log(error);
     }
   }, []);
 
-
   useEffect(() => {
-    const params = new URLSearchParams(router.search)
+    const params = new URLSearchParams(router.search);
     handleFilter(params.get("query"));
     // setActiveButton(params.get("query"))
-  }, [router, riderdata])
-
-
-
-
+  }, [router, riderdata]);
 
   const handleFilter = (e) => {
-
-
     setActiveButton(e);
 
     if (e) {
@@ -62,30 +55,25 @@ const Riders = () => {
     }
   };
 
-
-
   const handleSearch = (e) => {
-
-        // console.log("search input :: ", e);
-        if ( e.target.value.length > 0) {
-          const filteredData = riderdata?.filter(
-            (data) =>
-              (data?.status.toLowerCase().includes(serachParams.get("query")) &&
-                data?.fullname
-                  .toLowerCase()
-                  .includes(e.target.value.toLowerCase())) ||
-              data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
-          );
-
-      
-
-    
-          setSearchResults(filteredData);
+    // console.log("search input :: ", e);
+    if (e.target.value.length > 0) {
+      const filteredData = riderdata?.filter(
+        (data) =>
+          (data?.status.toLowerCase().includes(serachParams.get("query")) &&
+            data?.fullname
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase())) ||
+          data?.mobileno.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      setSearchResults(filteredData);
+    } else {
+      const filteredData = riderdata?.filter((data) =>
+        data?.status.toLowerCase().includes(serachParams.get("query"))
+      );
+      setSearchResults(filteredData);
     }
-    else {
-      setSearchResults(searchResults)
-    }
-    };
+  };
   const getButtonClass = (buttonId) => {
     return buttonId === activeButton
       ? "text-black  bg-yellow-400 "
@@ -96,8 +84,7 @@ const Riders = () => {
       <div>
         <Layout>
           <div className="flex">
-
-            <SideNav className={'w-[20vw]'} />
+            <SideNav className={"w-[20vw]"} />
 
             <div className="pt-10 flex justify-between w-[79vw] px-7  ">
               <div className="flex gap-4  ">
@@ -106,7 +93,7 @@ const Riders = () => {
                     "active"
                   )}`}
                   onclick={() => {
-                    setSearchParams({ ['query']: 'active' })
+                    setSearchParams({ ["query"]: "active" });
                   }}
                   buttonText={"Active"}
                 />
@@ -115,37 +102,33 @@ const Riders = () => {
                     "available"
                   )}`}
                   onclick={() => {
-                    setSearchParams({ ['query']: 'available' })
+                    setSearchParams({ ["query"]: "available" });
                   }}
                   buttonText={"Online"}
                 />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                    'offline'
+                    "offline"
                   )}`}
                   onclick={() => {
-                    setSearchParams({ ['query']: 'offline' })
+                    setSearchParams({ ["query"]: "offline" });
                   }}
                   buttonText={"Offline"}
                 />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2  text-center border-2 text-base font-semibold w-fit border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                    'disabled'
+                    "disabled"
                   )}`}
                   onclick={() => {
-                    setSearchParams({ ['query']: 'disabled' })
+                    setSearchParams({ ["query"]: "disabled" });
                   }}
                   buttonText={"Disable"}
                 />
-
-
-
               </div>
               <div className="  pl-16">
                 <Search className={"w-[20vw] h-12"} onChange={handleSearch} />
               </div>
             </div>
-
           </div>
           <Layout2 loading={isLoading}>
             <AvailableRiderTable dataArray={searchResults} />
