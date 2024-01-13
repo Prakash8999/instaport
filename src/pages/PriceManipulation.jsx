@@ -40,7 +40,7 @@ const PriceManipulation = () => {
             },
           }
         );
-        console.log("PRICES : ", data);
+        // console.log("PRICES : ", data);
         setPrices({
           id: data?.priceManipulation?._id,
           additional_drop_charge:
