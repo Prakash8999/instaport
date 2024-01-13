@@ -6,7 +6,7 @@ import axios from "axios";
 import { server } from "../..";
 import toast from "react-hot-toast";
 
-const AvailableRiderTable = ({ dataArray }) => {
+const AvailableRiderTable = ({ dataArray, fetchRider }) => {
   // console.log(dataArray);
   const [isToggled, setToggled] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false)
@@ -15,7 +15,7 @@ const AvailableRiderTable = ({ dataArray }) => {
   };
 
 
-console.log(dataArray);
+  console.log(dataArray);
   const handleUpdate = async (id, status) => {
 
     try {
@@ -43,12 +43,13 @@ console.log(dataArray);
             toast.success("Rider " + res?.data?.message + " to " + res?.data?.rider?.status)
             setButtonLoading(false)
             // window.location.reload();
+            fetchRider()
           }
 
           else {
             toast.error(res?.message)
             // window.location.reload();
-
+            fetchRider()
           }
         }).catch((err) => {
           toast.error(err?.message)

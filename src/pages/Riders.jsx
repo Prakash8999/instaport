@@ -19,7 +19,7 @@ const Riders = () => {
   // const [showRiders, setShowRiders] = useState([])
   const router = useLocation();
   const [serachParams, setSearchParams] = useSearchParams();
-  useEffect(() => {
+  const fetchRider = () =>{
     try {
       axios(`${server}/rider/riders`, {
         headers: {
@@ -34,6 +34,9 @@ const Riders = () => {
     } catch (error) {
       console.log(error);
     }
+  }
+  useEffect(() => {
+    fetchRider()
   }, []);
 
   useEffect(() => {
@@ -131,7 +134,7 @@ const Riders = () => {
             </div>
           </div>
           <Layout2 loading={isLoading}>
-            <AvailableRiderTable dataArray={searchResults} />
+            <AvailableRiderTable dataArray={searchResults}  fetchRider ={fetchRider}/>
           </Layout2>
         </Layout>
       </div>

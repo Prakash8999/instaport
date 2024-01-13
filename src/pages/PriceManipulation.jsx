@@ -203,15 +203,7 @@ const PriceManipulation = () => {
               </div>
             </div>
             <div className=" flex justify-center  mt-7">
-              {/* <Buttons
-                buttonText={prices && "Edit"}
-                onclick={() => {
-                  setmodal({ show: true, datamodal: null });
-                }}
-                className={
-                  "text-white border-yellow-300 self-center bg-yellow-400 px-10 py-2  w-48  h-11 rounded-3xl"
-                }
-              ></Buttons> */}
+            
               {!isEditable ? (
                 <button
                   className={
