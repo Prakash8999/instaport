@@ -10,6 +10,7 @@ import Buttons from "../components/Buttons";
 import { AiOutlineClose } from "react-icons/ai";
 import InputComp from "../components/InputComp";
 import Spinner from "../components/Spinner";
+import toast from "react-hot-toast";
 
 const Order = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const Order = () => {
     customerNo: "",
     pickupAddress: "",
     dropAddress: "",
-    packageType: "",
+    package: "",
     packageValue: "",
     courierWithDeliveryBag: "",
     notifyBySms: "",
@@ -53,7 +54,7 @@ const Order = () => {
         customerNo: data?.order.phone_number,
         pickupAddress: data?.order.pickup?.text,
         dropAddress: data?.order.payment_address?.text,
-        packageType: data?.order.delivery_type,
+        package: data?.order.package,
         packageValue: data?.order.amount,
         courierWithDeliveryBag: data?.order.courier_bag,
         notifyBySms: data?.order.notify_sms,
@@ -71,10 +72,8 @@ const Order = () => {
   }, []);
 
   const handleEditClick = () => {
-    setisEditable(true);
-    setOrder((prevData) => ({
-      ...prevData,
-    }));
+
+    setisEditable(!isEditable)
   };
   const handleChange = (e) => {
     setOrder((prevdata) => ({
@@ -82,6 +81,50 @@ const Order = () => {
       [e.target.id]: e.target.value,
     }));
   };
+
+
+  const handleUpdateOrder = () => {
+    
+    try {
+      axios(`${server}/order/update`, {
+        method: "PATCH",
+
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: {
+          _id: order._id,
+          payment_method: order.paymentType,
+
+          fullname: order.customerName,
+          phone_number: order.customerNo,
+          pickup: {
+            text: order.pickupAddress
+          },
+          payment_address: {
+
+            text: order.dropAddress
+          },
+          amount: order.packageValue,
+          package: order.package,
+        }
+      }).then((res) => {
+        if (!res?.data?.error) {
+          toast.success(res?.data?.message);
+          setisEditable(!isEditable);
+        } else {
+          toast.error(res?.data?.message);
+        }
+        console.log(res);
+        
+      }).catch((err) => {
+        console.log(err);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const handleEditRiderInformation = async (e) => {
     e.preventDefault();
@@ -140,32 +183,48 @@ const Order = () => {
               className="w-full grid grid-cols-2 gap-y-2 gap-x-6 pt-2 p-5"
               id="testid"
             >
-              <InputComp value={order?._id} label={"Order No:"} />
+              <InputComp value={"#" + order?._id.slice(-5)} label={"Order No:"} disabled />
               <InputComp
-                disabled={!isEditable}
                 value={order?.paymentType}
                 label={"Payment Type:"}
                 onChange={handleChange}
+                disabled={!isEditable}
+                id={'paymentType'}
               />
-              <InputComp value={order?.customerName} label={"Customer Name:"} />
+              <InputComp value={order?.customerName} label={"Customer Name:"}
+                onChange={handleChange}
+                disabled={!isEditable}
+                id={'customerName'}
+              />
               <InputComp
                 value={order?.customerNo}
                 label={"Customer No:"}
                 onChange={handleChange}
                 disabled={!isEditable}
+                id={'customerNo'}
               />
               <InputComp
                 value={order?.pickupAddress}
                 label={"Pickup Address:"}
-              />
-              <InputComp value={order?.dropAddress} label={"Drop Address:"} />
-              <InputComp
-                value={order?.packageType}
-                label={"Package Type:"}
                 onChange={handleChange}
                 disabled={!isEditable}
+                id={'pickupAddress'}
               />
-              <InputComp value={order?.packageValue} label={"Package Value:"} />
+              <InputComp value={order?.dropAddress} label={"Drop Address:"} onChange={handleChange}
+                disabled={!isEditable}
+                id={'dropAddress'}
+              />
+              <InputComp
+                label={"Package Type:"}
+                value={order?.package}
+                onChange={handleChange}
+                disabled={!isEditable}
+                id={'package'}
+              />
+              <InputComp value={order?.packageValue} label={"Package Value:"} onChange={handleChange}
+                disabled={!isEditable}
+                id={'packageValue'}
+              />
 
               {/* /// */}
               <div className="flex">
@@ -185,14 +244,12 @@ const Order = () => {
                       />
                       <label
                         htmlFor="bag"
-                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${
-                          isBagChecked ? "bg-green-400" : "bg-gray-400"
-                        }`}
+                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isBagChecked ? "bg-green-400" : "bg-gray-400"
+                          }`}
                       >
                         <span
-                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
-                            isBagChecked ? "translate-x-5" : "translate-x-0"
-                          }`}
+                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isBagChecked ? "translate-x-5" : "translate-x-0"
+                            }`}
                         ></span>
                       </label>
                     </div>
@@ -212,16 +269,14 @@ const Order = () => {
                         />
                         <label
                           htmlFor="notify"
-                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${
-                            isCheckednotify ? "bg-green-400" : "bg-gray-400"
-                          }`}
+                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isCheckednotify ? "bg-green-400" : "bg-gray-400"
+                            }`}
                         >
                           <span
-                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
-                              isCheckednotify
-                                ? "translate-x-5"
-                                : "translate-x-0"
-                            }`}
+                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isCheckednotify
+                              ? "translate-x-5"
+                              : "translate-x-0"
+                              }`}
                           ></span>
                         </label>
                       </div>
@@ -243,7 +298,7 @@ const Order = () => {
                 <div className="">
                   <button
                     type="button"
-                    //   onClick={handleSubmit}
+                    onClick={handleUpdateOrder}
                     className={
                       "text-white border-yellow-300 self-center bg-gray-400 h-11 px-4 py-1 w-48 rounded-3xl"
                     }
@@ -255,7 +310,7 @@ const Order = () => {
                 <div className="">
                   <button
                     type="button"
-                    // onClick={handleEditClick}
+                    onClick={handleEditClick}
                     className={
                       "text-white border-yellow-300 self-center bg-gray-400 h-11 px-4 py-1 w-48 rounded-3xl"
                     }
