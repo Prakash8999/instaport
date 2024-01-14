@@ -72,8 +72,7 @@ const Order = () => {
   }, []);
 
   const handleEditClick = () => {
-
-    setisEditable(!isEditable)
+    setisEditable(!isEditable);
   };
   const handleChange = (e) => {
     setOrder((prevdata) => ({
@@ -82,11 +81,9 @@ const Order = () => {
     }));
   };
 
-
-  const handleUpdateOrder = () => {
-    
+  const handleUpdateOrder = async () => {
     try {
-      axios(`${server}/order/update`, {
+      await axios(`${server}/order/update`, {
         method: "PATCH",
 
         headers: {
@@ -100,31 +97,32 @@ const Order = () => {
           fullname: order.customerName,
           phone_number: order.customerNo,
           pickup: {
-            text: order.pickupAddress
+            text: order.pickupAddress,
           },
           payment_address: {
-
-            text: order.dropAddress
+            text: order.dropAddress,
           },
           amount: order.packageValue,
           package: order.package,
-        }
-      }).then((res) => {
-        if (!res?.data?.error) {
-          toast.success(res?.data?.message);
-          setisEditable(!isEditable);
-        } else {
-          toast.error(res?.data?.message);
-        }
-        console.log(res);
-        
-      }).catch((err) => {
-        console.log(err);
+        },
       })
+        .then((res) => {
+          if (!res?.data?.error) {
+            toast.success(res?.data?.message);
+            setisEditable(!isEditable);
+          } else {
+            toast.error(res?.data?.message);
+          }
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
-  }
+  };
 
   const handleEditRiderInformation = async (e) => {
     e.preventDefault();
@@ -158,6 +156,26 @@ const Order = () => {
     }
   };
 
+  const handleCancleOrder = async () => {
+    try {
+      const { data } = await axios(`${server}/order/update`, {
+        method: "PATCH",
+
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: { status: "cancelled" },
+      });
+
+      console.log("data", data);
+      toast.success(data.message);
+    } catch (error) {
+      console.log("error in cancelling order", error);
+      toast.error(error.message);
+    }
+  };
+
   const getButtonClass = (buttonId) => {
     return buttonId === activeButton
       ? "text-black  bg-yellow-400 "
@@ -183,47 +201,59 @@ const Order = () => {
               className="w-full grid grid-cols-2 gap-y-2 gap-x-6 pt-2 p-5"
               id="testid"
             >
-              <InputComp value={"#" + order?._id.slice(-5)} label={"Order No:"} disabled />
+              <InputComp
+                value={"#" + order?._id.slice(-5)}
+                label={"Order No:"}
+                disabled
+              />
               <InputComp
                 value={order?.paymentType}
                 label={"Payment Type:"}
                 onChange={handleChange}
                 disabled={!isEditable}
-                id={'paymentType'}
+                id={"paymentType"}
               />
-              <InputComp value={order?.customerName} label={"Customer Name:"}
+              <InputComp
+                value={order?.customerName}
+                label={"Customer Name:"}
                 onChange={handleChange}
                 disabled={!isEditable}
-                id={'customerName'}
+                id={"customerName"}
               />
               <InputComp
                 value={order?.customerNo}
                 label={"Customer No:"}
                 onChange={handleChange}
                 disabled={!isEditable}
-                id={'customerNo'}
+                id={"customerNo"}
               />
               <InputComp
                 value={order?.pickupAddress}
                 label={"Pickup Address:"}
                 onChange={handleChange}
                 disabled={!isEditable}
-                id={'pickupAddress'}
+                id={"pickupAddress"}
               />
-              <InputComp value={order?.dropAddress} label={"Drop Address:"} onChange={handleChange}
+              <InputComp
+                value={order?.dropAddress}
+                label={"Drop Address:"}
+                onChange={handleChange}
                 disabled={!isEditable}
-                id={'dropAddress'}
+                id={"dropAddress"}
               />
               <InputComp
                 label={"Package Type:"}
                 value={order?.package}
                 onChange={handleChange}
                 disabled={!isEditable}
-                id={'package'}
+                id={"package"}
               />
-              <InputComp value={order?.packageValue} label={"Package Value:"} onChange={handleChange}
+              <InputComp
+                value={order?.packageValue}
+                label={"Package Value:"}
+                onChange={handleChange}
                 disabled={!isEditable}
-                id={'packageValue'}
+                id={"packageValue"}
               />
 
               {/* /// */}
@@ -244,12 +274,14 @@ const Order = () => {
                       />
                       <label
                         htmlFor="bag"
-                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isBagChecked ? "bg-green-400" : "bg-gray-400"
-                          }`}
+                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${
+                          isBagChecked ? "bg-green-400" : "bg-gray-400"
+                        }`}
                       >
                         <span
-                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isBagChecked ? "translate-x-5" : "translate-x-0"
-                            }`}
+                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
+                            isBagChecked ? "translate-x-5" : "translate-x-0"
+                          }`}
                         ></span>
                       </label>
                     </div>
@@ -269,14 +301,16 @@ const Order = () => {
                         />
                         <label
                           htmlFor="notify"
-                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isCheckednotify ? "bg-green-400" : "bg-gray-400"
-                            }`}
+                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${
+                            isCheckednotify ? "bg-green-400" : "bg-gray-400"
+                          }`}
                         >
                           <span
-                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isCheckednotify
-                              ? "translate-x-5"
-                              : "translate-x-0"
-                              }`}
+                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
+                              isCheckednotify
+                                ? "translate-x-5"
+                                : "translate-x-0"
+                            }`}
                           ></span>
                         </label>
                       </div>
@@ -328,6 +362,7 @@ const Order = () => {
                 className={
                   "text-white border-yellow-300 self-center bg-red-500 h-11 px-4 py-1 w-48 rounded-3xl"
                 }
+                onclick={handleCancleOrder}
               />
             </div>
           </div>
