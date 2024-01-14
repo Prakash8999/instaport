@@ -82,6 +82,8 @@ const Order = () => {
   };
 
   const handleUpdateOrder = async () => {
+    setLoading(true);
+
     try {
       await axios(`${server}/order/update`, {
         method: "PATCH",
@@ -122,6 +124,7 @@ const Order = () => {
       console.log(error);
       toast.error(error.message);
     }
+    setLoading(false);
   };
 
   const handleEditRiderInformation = async (e) => {
@@ -157,6 +160,7 @@ const Order = () => {
   };
 
   const handleCancleOrder = async () => {
+    setLoading(true);
     try {
       const { data } = await axios(`${server}/order/update`, {
         method: "PATCH",
@@ -165,15 +169,23 @@ const Order = () => {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        data: { status: "cancelled" },
+        data: {
+          _id: order._id,
+          status: "cancelled",
+        },
       });
 
       console.log("data", data);
-      toast.success(data.message);
+      if (data.error === false) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
       console.log("error in cancelling order", error);
       toast.error(error.message);
     }
+    setLoading(false);
   };
 
   const getButtonClass = (buttonId) => {
@@ -334,7 +346,7 @@ const Order = () => {
                     type="button"
                     onClick={handleUpdateOrder}
                     className={
-                      "text-white border-yellow-300 self-center bg-gray-400 h-11 px-4 py-1 w-48 rounded-3xl"
+                      "text-white border-yellow-300 self-center bg-yellow-400 h-11 px-4 py-1 w-48 rounded-3xl"
                     }
                   >
                     Save
@@ -343,6 +355,7 @@ const Order = () => {
               ) : (
                 <div className="">
                   <button
+                    disabled={loading}
                     type="button"
                     onClick={handleEditClick}
                     className={
