@@ -17,28 +17,16 @@ const Orders = () => {
   const [showOrders, setShowOrders] = useState([]);
   const [activeButton, setActiveButton] = useState("proccessing");
   // const [isLoading, setLoading] = useState(true);
-  const { orders, loading } = ContextAuth();
+  const { orders, loading } = ContextAuth() || {};
 
   const router = useLocation();
   const [serachParams, setSearchParams] = useSearchParams();
-  let p;
+  
   useEffect(() => {
     const params = new URLSearchParams(router.search);
 
     handleFilter(params.get("query"));
   }, [router, orders]);
-
-
-
-  // useEffect(() => {
-  //   setSearchResults(orders);
-  //   setShowOrders(orders);
-  // }, [orders]);
-
-  // useEffect(() => {
-  //   setSearchResults(showOrders);
-  // }, [showOrders]);
-
   const handleFilter = (e) => {
     setActiveButton(e);
 

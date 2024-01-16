@@ -177,6 +177,7 @@ const Order = () => {
 
       console.log("data", data);
       if (data.error === false) {
+        fetchOrderById()
         toast.success(data.message);
       } else {
         toast.error(data.message);
@@ -286,14 +287,12 @@ const Order = () => {
                       />
                       <label
                         htmlFor="bag"
-                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${
-                          isBagChecked ? "bg-green-400" : "bg-gray-400"
-                        }`}
+                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isBagChecked ? "bg-green-400" : "bg-gray-400"
+                          }`}
                       >
                         <span
-                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
-                            isBagChecked ? "translate-x-5" : "translate-x-0"
-                          }`}
+                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isBagChecked ? "translate-x-5" : "translate-x-0"
+                            }`}
                         ></span>
                       </label>
                     </div>
@@ -313,16 +312,14 @@ const Order = () => {
                         />
                         <label
                           htmlFor="notify"
-                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${
-                            isCheckednotify ? "bg-green-400" : "bg-gray-400"
-                          }`}
+                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isCheckednotify ? "bg-green-400" : "bg-gray-400"
+                            }`}
                         >
                           <span
-                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${
-                              isCheckednotify
-                                ? "translate-x-5"
-                                : "translate-x-0"
-                            }`}
+                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isCheckednotify
+                              ? "translate-x-5"
+                              : "translate-x-0"
+                              }`}
                           ></span>
                         </label>
                       </div>
@@ -331,52 +328,68 @@ const Order = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-between px-5">
-              {/* <Buttons
-                onClick={handleEditClick}
-                buttonText={!readOnly ? "Cancel" : "Edit Order Details"}
-                className={
-                  "text-white border-yellow-300 self-center bg-gray-400 h-11 px-4 py-1 w-48 rounded-3xl"
-                }
-              /> */}
+            <div className="flex justify-center  px-5">
+          
 
-              {isEditable ? (
-                <div className="">
-                  <button
-                    type="button"
-                    onClick={handleUpdateOrder}
+              {
+            order?.status  == "cancelled" ? <div className="">
+
+                  <DownloadInvoice
+                    downloadFileName={order?._id}
+                    rootElementId={"testid"}
+                  />
+
+                </div> : <div className="flex justify-between w-full px-5">
+
+
+                  {isEditable ? (
+                    <div className="">
+                      <button
+                        type="button"
+                        onClick={handleUpdateOrder}
+                        className={
+                          "text-white border-yellow-300 self-center bg-yellow-400 h-11 px-4 py-1 w-48 rounded-3xl"
+                        }
+                      >
+                        Save
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="">
+                      <button
+                        disabled={loading}
+                        type="button"
+                        onClick={handleEditClick}
+                        className={
+                          "text-white border-yellow-300 self-center bg-gray-400 h-11 px-4 py-1 w-48 rounded-3xl"
+                        }
+                      >
+                        Edit Order Details
+                      </button>
+                    </div>
+                  )}
+                  <DownloadInvoice
+                    downloadFileName={order?._id}
+                    rootElementId={"testid"}
+                  />
+                  <Buttons
+                    buttonText={"Cancel Order"}
                     className={
-                      "text-white border-yellow-300 self-center bg-yellow-400 h-11 px-4 py-1 w-48 rounded-3xl"
+                      "text-white border-yellow-300 self-center bg-red-500 h-11 px-4 py-1 w-48 rounded-3xl"
                     }
-                  >
-                    Save
-                  </button>
+                    onclick={handleCancleOrder}
+                  />
                 </div>
-              ) : (
-                <div className="">
-                  <button
-                    disabled={loading}
-                    type="button"
-                    onClick={handleEditClick}
-                    className={
-                      "text-white border-yellow-300 self-center bg-gray-400 h-11 px-4 py-1 w-48 rounded-3xl"
-                    }
-                  >
-                    Edit Order Details
-                  </button>
-                </div>
-              )}
-              <DownloadInvoice
-                downloadFileName={order?._id}
-                rootElementId={"testid"}
-              />
-              <Buttons
-                buttonText={"Cancel Order"}
-                className={
-                  "text-white border-yellow-300 self-center bg-red-500 h-11 px-4 py-1 w-48 rounded-3xl"
-                }
-                onclick={handleCancleOrder}
-              />
+
+
+              }
+
+
+
+
+
+
+
             </div>
           </div>
           {/* </Layout2> */}

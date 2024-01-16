@@ -44,23 +44,26 @@ const Context = ({ children }) => {
     fetchData();
   }, []);
 
-
+let timer;
+const fetchData = () =>  axios(`${server}/order/orders`, {
+  method: "GET",
+  headers: {
+    // Authorization: `Bearer ${localStorage.getItem("token")}`,
+    Authorization: `Bearer ${token}`,
+  },
+})
+  .then((res) => {
+    // setorderdata(res?.data?.order);
+    setOrders(res?.data?.order?.length === 0 ? [] : res?.data?.order)
+    setLoading(false)
+  })
   useEffect(() => {
     try {
-      axios(`${server}/order/orders`, {
-        method: "GET",
-        headers: {
-          // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((res) => {
-          // setorderdata(res?.data?.order);
-          
-          setOrders(res?.data?.order?.length === 0 ? [] : res?.data?.order)
-
-          setLoading(false)
-        })
+      fetchData()
+    timer=  setInterval(
+    fetchData
+      , 20000);
+    
     } catch (error) {
       console.log(error);
     }
@@ -69,9 +72,10 @@ const Context = ({ children }) => {
     //   setLoading(false);
     // }, 500);
 
-    // return () => {
-    //   clearTimeout(timeout);
-    // };
+    return () => {
+      clearInterval(timer);
+    };
+
   }, []);
 
 
