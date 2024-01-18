@@ -51,7 +51,7 @@ const Order = () => {
         _id: data?.order._id,
         paymentType: data?.order.payment_method,
         customerName: data?.order.customer?.fullname,
-        customerNo: data?.order.phone_number,
+        customerNo: data?.order.customer?.mobileno,
         pickupAddress: data?.order.pickup?.text,
         dropAddress: data?.order.payment_address?.text,
         package: data?.order.package,
@@ -106,12 +106,16 @@ const Order = () => {
           },
           amount: order.packageValue,
           package: order.package,
+          courier_bag: order.courierWithDeliveryBag,
+          notify_sms  : order.notifyBySms,
+
         },
       })
         .then((res) => {
           if (!res?.data?.error) {
             toast.success(res?.data?.message);
             setisEditable(!isEditable);
+            fetchOrderById()
           } else {
             toast.error(res?.data?.message);
           }
@@ -178,13 +182,13 @@ const Order = () => {
       console.log("data", data);
       if (data.error === false) {
         fetchOrderById()
-        toast.success(data.message);
+        toast.success(data?.message);
       } else {
-        toast.error(data.message);
+        toast.error(data?.message);
       }
     } catch (error) {
       console.log("error in cancelling order", error);
-      toast.error(error.message);
+      toast.error(error?.message);
     }
     setLoading(false);
   };
@@ -230,14 +234,14 @@ const Order = () => {
                 value={order?.customerName}
                 label={"Customer Name:"}
                 onChange={handleChange}
-                disabled={!isEditable}
+                disabled 
                 id={"customerName"}
               />
               <InputComp
                 value={order?.customerNo}
                 label={"Customer No:"}
                 onChange={handleChange}
-                disabled={!isEditable}
+                disabled
                 id={"customerNo"}
               />
               <InputComp
@@ -279,19 +283,23 @@ const Order = () => {
                       <input
                         type="checkbox"
                         className="hidden"
-                        checked={isBagChecked}
+                        checked={order.courierWithDeliveryBag}
                         onChange={(e) => {
-                          setBagIsChecked(e.target.checked);
+                          setOrder({
+                            ...order,
+                            [e.target.id]: e.target.checked
+                          })
                         }}
-                        id="bag"
+                        disabled={!isEditable}
+                        id="courierWithDeliveryBag"
                       />
                       <label
-                        htmlFor="bag"
-                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isBagChecked ? "bg-green-400" : "bg-gray-400"
+                        htmlFor="courierWithDeliveryBag"
+                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${order.courierWithDeliveryBag ? "bg-green-400" : "bg-gray-400"
                           }`}
                       >
                         <span
-                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isBagChecked ? "translate-x-5" : "translate-x-0"
+                          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${order.courierWithDeliveryBag ? "translate-x-5" : "translate-x-0"
                             }`}
                         ></span>
                       </label>
@@ -304,19 +312,22 @@ const Order = () => {
                         <input
                           type="checkbox"
                           className="hidden"
-                          checked={isCheckednotify}
                           onChange={(e) => {
-                            setIsCheckednotify(e.target.checked);
+                            setOrder({
+                              ...order,
+                              [e.target.id]: e.target.checked
+                            })
                           }}
-                          id="notify"
+                          disabled={!isEditable}
+                          id="notifyBySms"
                         />
                         <label
-                          htmlFor="notify"
-                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${isCheckednotify ? "bg-green-400" : "bg-gray-400"
+                          htmlFor="notifyBySms"
+                          className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full cursor-pointer transition-colors ${order.notifyBySms ? "bg-green-400" : "bg-gray-400"
                             }`}
                         >
                           <span
-                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${isCheckednotify
+                            className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform ${order.notifyBySms
                               ? "translate-x-5"
                               : "translate-x-0"
                               }`}
