@@ -11,12 +11,7 @@ const thead = [
   {
     tablehead: "Order Type",
   },
-  {
-    tablehead: "Pickup City",
-  },
-  {
-    tablehead: "Drop City",
-  },
+
   {
     tablehead: "Date",
   },

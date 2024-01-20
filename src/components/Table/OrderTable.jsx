@@ -8,7 +8,7 @@ import moment from "moment";
 const OrderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
-  // console.log('dataArray :: ', dataArray)
+  console.log('dataArray :: ', dataArray)
 
   // const [searchQuery, setSearchQuery] = useState("");
 
@@ -94,12 +94,7 @@ const OrderTable = ({ dataArray }) => {
                     <td className="cursor-pointer px-2 py-2  font-light">
                       {data?.delivery_type}
                     </td>
-                    <td className="cursor-pointer px-2 py-2  font-light">
-                      {data?.pickup?.Address}
-                    </td>
-                    <td className="cursor-pointer px-2 py-2  font-light">
-                      {data?.drop[0]?.Address}
-                    </td>
+                  
                     <td className="cursor-pointer px-2 py-2  font-light">
                       {formattedDateString}
                     </td>

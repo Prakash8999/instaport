@@ -28,6 +28,8 @@ const Order = () => {
     packageValue: "",
     courierWithDeliveryBag: "",
     notifyBySms: "",
+    recipientPhoneNumber:"",
+    deliveryType:""
   });
   const [isEditable, setisEditable] = useState(false);
 
@@ -58,6 +60,8 @@ const Order = () => {
         packageValue: data?.order.amount,
         courierWithDeliveryBag: data?.order.courier_bag,
         notifyBySms: data?.order.notify_sms,
+        recipientPhoneNumber:data?.order?.phone_number,
+        deliveryType:data?.order?.delivery_type
       });
       console.log("data :: fetchOrderByID", data);
 
@@ -108,7 +112,8 @@ const Order = () => {
           package: order.package,
           courier_bag: order.courierWithDeliveryBag,
           notify_sms  : order.notifyBySms,
-
+          phone_number:order.recipientPhoneNumber,
+          delivery_type:order.deliveryType
         },
       })
         .then((res) => {
@@ -243,6 +248,20 @@ const Order = () => {
                 onChange={handleChange}
                 disabled
                 id={"customerNo"}
+              />
+              <InputComp
+                value={order?.recipientPhoneNumber}
+                label={"Ewcipient Phone Number:"}
+                onChange={handleChange}
+                disabled={!isEditable}
+                id={"recipientPhoneNumber"}
+              />
+              <InputComp
+                value={order?.deliveryType}
+                label={"Delivery Type:"}
+                onChange={handleChange}
+                disabled= {!isEditable}
+                id={"deliveryType"}
               />
               <InputComp
                 value={order?.pickupAddress}

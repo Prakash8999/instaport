@@ -29,7 +29,7 @@ const Dashboard = () => {
           <div className="flex justify-around  items-center ">
 
             <Link to={'/orders?query=new'} className="h-16 w-64 flex justify-center items-center  bg-white  rounded-xl shadow-lg border duration-200 hover:shadow-xl cursor-pointer ">
-              0 New Orders in last 24 Hours
+            {orders?.filter(data => data?.status == 'new').length} New Orders in last 24 Hours
             </Link>
             <Link to={'/orders?query=new'} className="h-16 w-64 justify-center flex items-center  bg-white  rounded-xl shadow-lg border duration-200 hover:shadow-xl cursor-pointer ">
               0 New Orders in last 24 Hours
