@@ -18,8 +18,8 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
   const [couponDataModal, setCouponDataModal] = useState({
     // id: "",
     couponCode: "",
-    discount: "",
-    maxAmount: "",
+    discount: 0,
+    maxAmount: 0,
     // disabled: "",
   });
 
@@ -82,10 +82,7 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
             );
           });
       } catch (error) {
-        console.log(
-          "ERROR :: createCoupon components/ModalCouponsandOffers.jsx",
-          error
-        );
+      toast.error("Something Went Wrong")
       }
     } else {
       console.log(

@@ -11,6 +11,7 @@ const CouponsAndOffer = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const { couponData, setCouponData } = UseCouponsContext()
+  console.log(couponData);
   useEffect(() => {
     setSearchResults(couponData);
     const timeout = setTimeout(() => {
@@ -24,9 +25,9 @@ const CouponsAndOffer = () => {
   const handleSearch = (e) => {
     const filteredData = couponData?.filter(
       (data) =>
-        data.CouponId.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.Name.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data.Code.toLowerCase().includes(e.target.value.toLowerCase())
+        data?.code?.toLowerCase().includes(e.target.value.toLowerCase()) || 
+        (data?.maxAmount?.toString().toLowerCase().includes(e.target.value.toLowerCase())) ||
+        (data?.percentOff?.toString().toLowerCase().includes(e.target.value.toLowerCase()))
     );
     setSearchResults(filteredData);
   };
@@ -44,6 +45,7 @@ const CouponsAndOffer = () => {
             <Search
               divclass={"w-80 h-10"}
               onChange={handleSearch}
+              placeholder={"Search Coupon Code or Amount or Discount"}
               className={"w-80 h-12"}
             />
           </div>
