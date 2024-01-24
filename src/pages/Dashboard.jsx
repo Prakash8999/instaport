@@ -17,7 +17,7 @@ const Dashboard = () => {
 
       {
         modal.show && (
-          <ChartModal dataModal={modal.show}
+          <ChartModal orders={orders} dataModal={modal.show}
             setModal={setModal}
           />
         )
