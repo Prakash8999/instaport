@@ -28,7 +28,7 @@ const Dashboard = () => {
         <div className="flex pl-5 justify-between items-start">
           <SideNav className={'w-[20vw]'} />
 
-          <div className="h-fit w-[80vw] px-8 pt-4">
+          <div className="h-fit w-[79vw] px-5 pt-4">
             <div className=" justify-around  items-center hidden ">
 
               <Link to={'/orders?query=new'} className="h-16 w-64 flex justify-center items-center  bg-white  rounded-xl shadow-lg border duration-200 hover:shadow-xl cursor-pointer ">
@@ -133,7 +133,7 @@ const Dashboard = () => {
                             }}
 
                             target="_blank"
-                            className="border-b-2 border-slate-100 bg-white odd:bg-gray-100 hover:scale-105 duration-300"
+                            className="border-b-2 border-slate-100 bg-white odd:bg-gray-50 hover:scale-105 duration-300"
                           >
                             <td className="cursor-pointer px-2 py-2  font-light">
                               #{data?._id?.slice(-5)}

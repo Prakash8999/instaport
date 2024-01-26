@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import transactionHead from "../Data/TransactionHeader";
 import datanotfound from "../../images/datanotfound (2).svg";
+import TransactionModal from "../Modal/TransactionModal";
 
 const TransactionTable = ({ dataArray }) => {
-  const [modal, setmodal] = useState({ show: false, datamodal: {} });
-
+  const [modal, setModal] = useState({ show: false, datamodal: {} });
+console.log(dataArray);
   return (
+    <>
+    {
+      modal.show && (
+        <TransactionModal  dataModal={modal.show && modal.datamodal}
+          setModal={setModal}
+        />
+      )
+    }
     <div className=" flex justify-center items-start w-full h-[80vh] overflow-y-scroll">
+    
       <div className="w-full">
         <table className="w-[100%] ">
           <thead className=" sticky top-0 z-50 bg-white">
@@ -21,32 +31,40 @@ const TransactionTable = ({ dataArray }) => {
           {dataArray.length > 0 ? (
             <tbody className="text-center mt-4">
               {dataArray.map((data, index) => {
+                  const dateObj = new Date(data?.timestamp);
+
+                  const options = {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                  };
+  
+                  const formattedDateString = dateObj.toLocaleString(
+                    "en-GB",
+                    options
+                  );
                 return (
+
                   <tr
                     key={index}
-                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
+                    className="border-b-2 border-slate-100 bg-white odd:bg-gray-100 cursor-pointer"
+                    onClick={()=>{
+                      setModal({show:true, datamodal:data})
+                    }}
+
                   >
                     <td className=" py-2 gap-2 font-light">
-                      {data?.TransactionId}
+                      #{data?._id.slice(-5)}
                     </td>
-                    <td className=" py-2 gap-2 font-light">{data?.OrderId}</td>
+                    
                     <td className=" py-2 gap-2 font-light">
-                      {data?.RiderName}
+                      {data?.rider?.fullname}
                     </td>
-                    <td className=" py-2 gap-2 font-light">{data?.RiderNo}</td>
-                    <td className=" py-2 gap-2 font-light">
-                      {data?.PaymentType}
-                    </td>
-                    <td className=" py-2 gap-2 font-light">
-                      {data?.InstaPortCharges}
-                    </td>
-                    <td className=" py-2 gap-2 font-light">
-                      {data?.RiderCharges}
-                    </td>
-                    <td className=" py-2 gap-2 font-light">
-                      {data?.SecurityFees}
-                    </td>
-                    <td className=" py-2 gap-2 font-light">{data?.Date}</td>
+                    <td className=" py-2 gap-2 font-light">{data?.rider?.mobileno}</td>
+                    <td className=" py-2 gap-2 font-light">{data?.amount}</td>
+                  
+                    <td className=" py-2 gap-2 font-light">{formattedDateString}</td>
+                    <td className=" py-2 gap-2 font-light">{!data?.completed ? 'Incompleted' : 'Completed'}</td>
                   </tr>
                 );
               })}
@@ -67,6 +85,7 @@ const TransactionTable = ({ dataArray }) => {
         </table>
       </div>
     </div>
+    </>
   );
 };
 
