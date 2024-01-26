@@ -50,7 +50,9 @@ const TransactionModal = ({ dataModal, setModal }) => {
 		  <div className="w-full h-full flex flex-col items-center justify-center">
 			<div className="flex items-center gap-x-2 text-xl justify-center">
 			  <p>{!dataModal?.completed ? "Pay" : "Paid"}</p>
-			  <p>{dataModal?.amount}</p>
+			  <p>
+			 Rs {Math.round(dataModal?.amount)}
+			  </p>
 			  <p>to Rider- {dataModal?.rider?.fullname}</p>
 			</div>
 			<div className="">

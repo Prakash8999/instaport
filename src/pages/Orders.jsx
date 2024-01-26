@@ -21,7 +21,7 @@ const Orders = () => {
 
   const router = useLocation();
   const [serachParams, setSearchParams] = useSearchParams();
-  
+
   useEffect(() => {
     const params = new URLSearchParams(router.search);
 
@@ -39,23 +39,50 @@ const Orders = () => {
     }
   };
 
-  const handleSearch = (e) => {
+  // const handleSearch = (e) => {
 
-    const filteredData = orders?.filter(
-      (data) =>
-        data?.customer.fullname?.toLowerCase().includes(
+  //   const filteredData = orders?.filter(
+  //     (data) =>
+  //       data?.customer.fullname?.toLowerCase().includes(
+  //         e?.target?.value?.toLowerCase()
+  //       ) ||
+  //       data?.PackageType?.toLowerCase()?.includes(e?.target.value?.toLowerCase()) ||
+  //       data?.Date?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
+  //       data?.CustomerNo?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
+  //       data?._id?.toLowerCase().includes(e.target.value?.toLowerCase())
+
+  //   );
+  //   // setShowOrders(filteredData);
+  //   setSearchResults(filteredData);
+  // };
+  const handleSearch = (e) => {
+    if (e.target.value.length > 0) {
+      
+        const filteredData = orders?.filter(
+          
+          (data) =>( data?.status.toLowerCase().includes(serachParams.get("query")) &&
+        data?.customer?.fullname?.toLowerCase().includes(
+          e?.target?.value?.toLowerCase()
+        ) ) ||
+        data?.customer?.mobileno?.toLowerCase().includes(
           e?.target?.value?.toLowerCase()
         ) ||
-        data?.PackageType?.toLowerCase()?.includes(e?.target.value?.toLowerCase()) ||
-        data?.Date?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
-        data?.CustomerNo?.toLowerCase().includes(e.target.value?.toLowerCase()) ||
+        data?.delivery_type?.toLowerCase()?.includes(e?.target.value?.toLowerCase()) ||
+        
+        
         data?._id?.toLowerCase().includes(e.target.value?.toLowerCase())
 
-    );
-    // setShowOrders(filteredData);
-    setSearchResults(filteredData);
+        );
+        // setShowOrders(filteredData);
+        setSearchResults(filteredData);
+  
+    } else {
+      const filteredData = orders?.filter((data) =>
+        data?.status.toLowerCase().includes(serachParams.get("query"))
+      );
+      setSearchResults(filteredData);
+    }
   };
-
   const getButtonClass = (buttonId) => {
     return buttonId === activeButton
       ? "text-black  bg-yellow-400 "
@@ -70,17 +97,17 @@ const Orders = () => {
           <SideNav className={'w-[20vw]'} />
 
           <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
-            
-                        <Buttons
-                          className={`rounded-lg px-4 py-2 mr-2 w-[10vw] text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                            "new"
-                          )}`}
-                          onclick={() => {
-            
-                            setSearchParams({ ["query"]: "new" });
-                          }}
-                          buttonText={"New"}
-                        />
+
+            <Buttons
+              className={`rounded-lg px-4 py-2 mr-2 w-[10vw] text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                "new"
+              )}`}
+              onclick={() => {
+
+                setSearchParams({ ["query"]: "new" });
+              }}
+              buttonText={"New"}
+            />
             <Buttons
               className={`rounded-lg px-4 py-2 w-[10vw] mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                 "processing"
