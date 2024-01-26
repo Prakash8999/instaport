@@ -61,7 +61,7 @@ const TransactionTable = ({ dataArray }) => {
                       {data?.rider?.fullname}
                     </td>
                     <td className=" py-2 gap-2 font-light">{data?.rider?.mobileno}</td>
-                    <td className=" py-2 gap-2 font-light">{data?.amount}</td>
+                    <td className=" py-2 gap-2 font-light">{Math.round(data?.amount)}</td>
                   
                     <td className=" py-2 gap-2 font-light">{formattedDateString}</td>
                     <td className=" py-2 gap-2 font-light">{!data?.completed ? 'Incompleted' : 'Completed'}</td>
