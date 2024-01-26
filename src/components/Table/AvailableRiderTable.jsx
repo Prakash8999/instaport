@@ -94,9 +94,9 @@ const AvailableRiderTable = ({ dataArray, fetchRider }) => {
 
                       <button disabled={buttonLoading} title={`Click Here to ${data?.status == 'available' ? 'Disable' : 'Enable'} Rider ${data?.fullname}`} onClick={() => {
                         handleUpdate(data?._id, data?.status)
-                      }} className="border px-2 py-1 shadow hover:shadow-md rounded-md duration-150">
+                      }} className={`order px-2 py-1 shadow hover:shadow-md  rounded-md duration-150 ${data?.status == 'available' ? 'bg-red-500 text-white' : 'bg-green-600 text-white'}`}>
                         {
-                          data?.status == 'available' ? 'Enabled' : 'Disabled'
+                          data?.status == 'available' ? 'Disable' : 'Enable'
                         }
                         {/* <div
 							className={`w-12 h-6 rounded-full  border transition-color ${  data?.status == 'available' ? 'bg-green-500' : 'bg-red-500'}`}

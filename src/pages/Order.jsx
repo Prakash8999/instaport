@@ -362,7 +362,7 @@ const Order = () => {
           
 
               {
-            order?.status  == "cancelled" ? <div className="">
+            order?.status  == "cancelled" || order?.status == "delivered" ? <div className="">
 
                   <DownloadInvoice
                     downloadFileName={order?._id}

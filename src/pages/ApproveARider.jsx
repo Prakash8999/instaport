@@ -129,7 +129,7 @@ const ApproveARider = () => {
   return (
     <div>
       <Layout>
-        <div className="flex">
+        <div className="flex pl-5">
 
           <SideNav className={'w-[20vw]'} />
 

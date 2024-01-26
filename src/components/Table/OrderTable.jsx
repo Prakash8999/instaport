@@ -10,19 +10,6 @@ const OrderTable = ({ dataArray }) => {
 
   console.log('dataArray :: ', dataArray)
 
-  // const [searchQuery, setSearchQuery] = useState("");
-
-  // const handleSearch = (event) => {
-  //   setSearchQuery(event.target.value);
-  // };
-
-  // const filteredData = data.filter(
-  //   (data) =>
-  //     data.CustomerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     data.OrderType.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     data.Date.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     data.CustomerNo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     data.OrderId.toLowerCase().includes(searchQuery.toLowerCase())
   // );
   return (
     // <>

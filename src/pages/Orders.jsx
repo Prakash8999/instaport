@@ -65,11 +65,22 @@ const Orders = () => {
   return (
     <div>
       <Layout>
-        <div className="flex">
+        <div className="flex pl-5">
 
           <SideNav className={'w-[20vw]'} />
 
           <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
+            
+                        <Buttons
+                          className={`rounded-lg px-4 py-2 mr-2 w-[10vw] text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
+                            "new"
+                          )}`}
+                          onclick={() => {
+            
+                            setSearchParams({ ["query"]: "new" });
+                          }}
+                          buttonText={"New"}
+                        />
             <Buttons
               className={`rounded-lg px-4 py-2 w-[10vw] mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                 "processing"
@@ -80,18 +91,7 @@ const Orders = () => {
               }}
               buttonText={"Processing"}
             />
-
-            <Buttons
-              className={`rounded-lg px-4 py-2 mr-2 w-[10vw] text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                "new"
-              )}`}
-              onclick={() => {
-
-                setSearchParams({ ["query"]: "new" });
-              }}
-              buttonText={"New"}
-            />
-            <Buttons
+            {/* <Buttons
               className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
                 "progress"
               )}`}
@@ -100,7 +100,7 @@ const Orders = () => {
                 setSearchParams({ ["query"]: "progress" });
               }}
               buttonText={"Progress"}
-            />
+            /> */}
             {/* 
             <Buttons
               className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold  border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(

@@ -14,7 +14,7 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
   return (
     <>
       <div
-        className={`mt-5 h-[95vh] pt-5 ml-5   bg-white   flex flex-col items-center justify-start  shadow-lg rounded-2xl  ${className}`}
+        className={`mt-5 h-[95vh] pt-5   bg-white   flex flex-col items-center justify-start  shadow-lg rounded-2xl  ${className}`}
       >
         <div className="flex flex-col gap-y-2 ">
           <LogoComp className={"w-[15vw]"} />

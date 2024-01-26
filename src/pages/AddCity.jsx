@@ -68,7 +68,7 @@ const AddCity = () => {
       )}
       <div className="">
         <Layout>
-          <div className="flex">
+          <div className="flex pl-5">
 
             <SideNav className={'w-[20vw]'} />
             <div className="pt-10 flex    justify-between w-[79vw] px-7  ">

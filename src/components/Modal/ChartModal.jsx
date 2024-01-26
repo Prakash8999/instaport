@@ -44,7 +44,7 @@ const ChartModal = ({ dataModal, setModal, orders }) => {
               datasets: [
                 {
                   label: "Orders",
-                  data: orders.map((order) => order.time_stamp),
+                  data: orders.length,
                 },
               ],
             }}
