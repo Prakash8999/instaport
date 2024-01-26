@@ -8,7 +8,7 @@ import moment from "moment";
 const OrderTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
 
-  console.log('dataArray :: ', dataArray)
+  
 
   // );
   return (

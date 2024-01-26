@@ -4,13 +4,40 @@ import { AiFillDelete, AiOutlinePlus } from "react-icons/ai";
 import ModalCouponandOffers from "../Modal/ModalCouponsandOffers";
 import datanotfound from "../../images/datanotfound (2).svg";
 import moment from "moment";
+import { server } from "../..";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { UseCouponsContext } from "../../context/Coupons";
 
 const CouponsTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
+  const [loading, setLoading] = useState(false)
+  const { fetchCoupons } = UseCouponsContext() || {}
 
+  const handleUpdate = (id, status) => {
+    setLoading(true)
+    try {
+      axios(`${server}/coupons/${id}`, {
+        method: "PATCH",
+        data: {
+          disabled: !status
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
 
-  const handleStatus  = () =>{
-    
+        },
+      }).then((res) => {
+        toast.success(res?.data?.message)
+        fetchCoupons()
+        setLoading(false)
+      }).catch((err) => {
+        toast.error(err?.message)
+        setLoading(false)
+      })
+    } catch (error) {
+      console.log(error);
+      setLoading(false)
+    }
   }
   return (
     <>
@@ -39,27 +66,56 @@ const CouponsTable = ({ dataArray }) => {
                     return (
                       <tr
                         key={index}
-                        className="border-b-2 border-slate-100 bg-white odd:bg-gray-100"
+                        className="border-b-2 border-slate-100 bg-white odd:bg-gray-50"
                       >
-                        <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                        <td className=" px-4 py-2 gap-2 font-light">
                           {data?.code}
                         </td>
-                        <td className="cursor-pointer px-4 py-2 gap-2 font-medium bg-slate-300 ">
+                        <td className=" px-4 py-2 gap-2 font-medium  ">
                           {data?.percentOff}%
                         </td>
-                        <td className="cursor-pointer px-4 py-2 gap-2 font-light">
+                        <td className="px-4 py-2 gap-2 font-light">
                           {data?.maxAmount}
                         </td>
-                        <td className="cursor-pointer px-4 py-2 gap-2 font-light">
-                        {moment(data?.timestamp).utc().format('DD/MM/YY')}
+                        <td className=" px-4 py-2 gap-2 font-light">
+                          {moment(data?.timestamp).utc().format('DD/MM/YY')}
                         </td>
-                        <td className="cursor-pointer px-2 py-2 gap-2 flex justify-center font-light ">
-                    
-                          <button className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-1 px-5 rounded-full">
-                            {data?.disabled ? "Enabled" : "Disable"}
-                          </button>
-
-
+                        <td  className=" px-2 py-2 gap-2 flex justify-center font-light ">
+                          {/* 
+                        <button
+                            disabled={loading}
+                            onClick={() => {
+                              handleUpdate(data?._id, data?.disabled);
+                            }}
+                            className={`${
+                              data?.disabled
+                                ? "bg-red-500 hover:bg-red-600"
+                                : "bg-green-400 hover:bg-green-500"
+                            } text-white font-bold py-1 px-5 rounded-full`}
+                          >
+                            {data?.disabled ? "Enable" : "Disable"}
+                          </button> */}
+                          
+                            <input
+                              type="checkbox"
+                              className="hidden"
+                              checked={data?.disabled}
+                              disabled={loading}
+                              onChange={() => handleUpdate(data?._id, data?.disabled)}
+                              id={`update-${index}`}
+                            />
+                            
+                          
+                            <label 
+                        htmlFor={`update-${index}`}
+                        className={`flex items-center  w-10 h-fit p-0.5 bg-gray-400 rounded-full ${loading ? 'cursor-default' : 'cursor-pointer'} transition-colors ${data?.disabled ? "bg-green-400" : "bg-gray-400"
+                          }`}
+                      >
+                        <span 
+                          className={`w-4 h-4 bg-white rounded-full shadow-md transform ${loading ? 'cursor-default' : 'cursor-pointer'} transition-transform ${data?.disabled ? "translate-x-5" : "translate-x-0"
+                            }`}
+                        ></span>
+                      </label>
                         </td>
                       </tr>
                     );

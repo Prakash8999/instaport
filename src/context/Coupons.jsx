@@ -12,22 +12,29 @@ const CouponsContext = ({ children }) => {
 
 
   const token = localStorage.getItem("token");
+
+
+const fetchCoupons =() =>{
+  try {
+    axios(`${server}/coupons`, {
+      headers: {
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      
+      setCouponData(res.data.coupons);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
   useEffect(() => {
-    try {
-      axios(`${server}/coupons`, {
-        headers: {
-          // Authorization: `Bearer ${localStorage.getItem("token")}`,
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        
-        setCouponData(res.data.coupons);
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    fetchCoupons()
   }, []);
-  return <CouponsDataContext.Provider value={{couponData, setCouponData }}>{children}</CouponsDataContext.Provider>;
+  return <CouponsDataContext.Provider value={{couponData, setCouponData , fetchCoupons}}>{children}</CouponsDataContext.Provider>;
 };
 
 const UseCouponsContext = () => {

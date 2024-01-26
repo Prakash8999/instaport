@@ -15,7 +15,7 @@ const AvailableRiderTable = ({ dataArray, fetchRider }) => {
   };
 
 
-  console.log(dataArray);
+  
   const handleUpdate = async (id, status) => {
 
     try {

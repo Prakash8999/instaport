@@ -68,9 +68,9 @@ const Dashboard = () => {
             </div>
             <div className=" flex justify-center items-start w-[76vw]  h-[80vh] overflow-y-scroll mt-6 ">
               <div className="w-full">
-                <table className=" border-2 w-full">
+                <table className="border  w-full">
                   <thead className=" sticky top-0 z-50 bg-white">
-                    <tr className=" border-2 border-slate-200 h-10">
+                    <tr className=" border border-slate-200 h-10">
                       {/* {thead.map((head, index) => (
         <th key={index} className=" px-4 py-2 gap-2">
           {head.tablehead}

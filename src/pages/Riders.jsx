@@ -19,7 +19,7 @@ const Riders = () => {
   // const [showRiders, setShowRiders] = useState([])
   const router = useLocation();
   const [serachParams, setSearchParams] = useSearchParams();
-  const fetchRider = () =>{
+  const fetchRider = () => {
     try {
       axios(`${server}/rider/riders`, {
         headers: {
@@ -134,7 +134,7 @@ const Riders = () => {
             </div>
           </div>
           <Layout2 loading={isLoading}>
-            <AvailableRiderTable dataArray={searchResults}  fetchRider ={fetchRider}/>
+            <AvailableRiderTable dataArray={searchResults} fetchRider={fetchRider} />
           </Layout2>
         </Layout>
       </div>

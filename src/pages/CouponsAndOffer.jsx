@@ -31,6 +31,7 @@ const CouponsAndOffer = () => {
     );
     setSearchResults(filteredData);
   };
+
   return (
     <div>
 

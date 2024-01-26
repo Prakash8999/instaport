@@ -63,7 +63,7 @@ const Order = () => {
         recipientPhoneNumber:data?.order?.phone_number,
         deliveryType:data?.order?.delivery_type
       });
-      console.log("data :: fetchOrderByID", data);
+      
 
       setLoading(false);
     } catch (error) {
