@@ -7,6 +7,11 @@ import moment from "moment";
 
 const CouponsTable = ({ dataArray }) => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
+
+
+  const handleStatus  = () =>{
+    
+  }
   return (
     <>
       {modal.show && (
@@ -53,6 +58,8 @@ const CouponsTable = ({ dataArray }) => {
                           <button className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-1 px-5 rounded-full">
                             {data?.disabled ? "Enabled" : "Disable"}
                           </button>
+
+
                         </td>
                       </tr>
                     );

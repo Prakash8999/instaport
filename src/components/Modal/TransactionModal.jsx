@@ -15,22 +15,22 @@ const TransactionModal = ({ dataModal, setModal }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		try {
-			await axios(`${server}/api/rider/pay/${dataModal?._id}`, {
+			await axios(`${server}/rider/pay/${dataModal?._id}`, {
 				method: "PATCH",
 				data: {
 					transactionID: transactionID
 				},
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem("token")}`,
-
 				},
-
 			}
 			).then((res) => {
 				console.log(res);
+			}).catch((err) => {
+				console.log(err);
 			})
 		} catch (error) {
-
+			console.log(error);
 		}
 	}
 
@@ -78,11 +78,14 @@ const TransactionModal = ({ dataModal, setModal }) => {
 							<InputComp type="text" onChange={(e) => {
 								setTransactionId(e.target.value)
 							}}
+							value={dataModal?.transactionID}
 								className={'w-[50%] '}
 								placeholder={"Enter TransactionId"}
+								required={true}
+								disabled={dataModal?.completed}
 							/>
 
-							<button type='submit' className='bg-blue-600 text-white rounded-lg text-xl px-3 py-1 w-fit'>
+							<button type='submit' className={`${dataModal?.completed ? 'bg-gray-300 text-white opacity-100' : 'bg-blue-500 text-white'}  rounded-lg text-xl px-3 py-1 w-fit `} disabled={dataModal?.completed}>
 
 								Submit
 							</button>

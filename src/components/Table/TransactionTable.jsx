@@ -5,7 +5,7 @@ import TransactionModal from "../Modal/TransactionModal";
 
 const TransactionTable = ({ dataArray }) => {
   const [modal, setModal] = useState({ show: false, datamodal: {} });
-console.log(dataArray);
+
   return (
     <>
     {
