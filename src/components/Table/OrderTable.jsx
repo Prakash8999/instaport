@@ -76,7 +76,7 @@ const OrderTable = ({ dataArray }) => {
                       {data?.customer?.fullname}
                     </td>
                     <td className="cursor-pointer px-2 py-2  font-light">
-                      {data?.phone_number}
+                      {data?.customer?.mobileno}
                     </td>
                     <td className="cursor-pointer px-2 py-2  font-light">
                       {data?.delivery_type}

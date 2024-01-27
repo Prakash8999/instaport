@@ -60,10 +60,11 @@ const Orders = () => {
       
         const filteredData = orders?.filter(
           
-          (data) =>( data?.status.toLowerCase().includes(serachParams.get("query")) &&
+          (data) => data?.status.toLowerCase().includes(serachParams.get("query")) &&
+          (
         data?.customer?.fullname?.toLowerCase().includes(
           e?.target?.value?.toLowerCase()
-        ) ) ||
+        ) ||
         data?.customer?.mobileno?.toLowerCase().includes(
           e?.target?.value?.toLowerCase()
         ) ||
@@ -72,7 +73,7 @@ const Orders = () => {
         
         data?._id?.toLowerCase().includes(e.target.value?.toLowerCase())
 
-        );
+        ));
         // setShowOrders(filteredData);
         setSearchResults(filteredData);
   
