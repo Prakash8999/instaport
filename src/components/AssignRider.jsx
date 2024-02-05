@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import AsyncSelect from 'react-select/async';
 import { server } from '..';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const filterRiders = (inputValue, query) => {
 	return inputValue?.filter((rider) => {
@@ -59,7 +60,13 @@ export default ({ order }) => {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},
 		}).then((res) => {
-			console.log(res);
+			if (!res?.data?.error) {
+				toast.success(res?.data?.message)
+			}
+			toast.error(res?.data?.message)
+
+		}).catch((err)=>{
+toast.error(err?.message)
 		})
 	}
 
