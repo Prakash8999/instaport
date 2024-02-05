@@ -182,11 +182,11 @@ const Dashboard = () => {
                   ) : (
                     <div className="absolute w-[100%]  mt-12  px-8  ">
                       <div className="flex justify-around h-full items-center">
-                        {/* <div className="flex flex-col justify-center  items-center  gap-y-10"> */}
-                        <span className="font-semibold  text-3xl">
-                          Data not available.
-                        </span>
+                        {/* <div className="flex flex-col justify-center  items-center  gap-y-10"> 
+                        
+                        
                         {/* </div> */}
+                        Data not available.
                       </div>
                     </div>
                   )}

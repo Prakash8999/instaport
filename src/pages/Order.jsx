@@ -11,7 +11,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import InputComp from "../components/InputComp";
 import Spinner from "../components/Spinner";
 import toast from "react-hot-toast";
-
+import AssignRider from "../components/AssignRider";
 const Order = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
@@ -28,8 +28,9 @@ const Order = () => {
     packageValue: "",
     courierWithDeliveryBag: "",
     notifyBySms: "",
-    recipientPhoneNumber:"",
-    deliveryType:""
+    recipientPhoneNumber: "",
+    deliveryType: "",
+    rider: ""
   });
   const [isEditable, setisEditable] = useState(false);
 
@@ -60,10 +61,11 @@ const Order = () => {
         packageValue: data?.order.amount,
         courierWithDeliveryBag: data?.order.courier_bag,
         notifyBySms: data?.order.notify_sms,
-        recipientPhoneNumber:data?.order?.phone_number,
-        deliveryType:data?.order?.delivery_type
+        recipientPhoneNumber: data?.order?.phone_number,
+        deliveryType: data?.order?.delivery_type,
+        rider: data?.order?.rider
       });
-      
+
 
       setLoading(false);
     } catch (error) {
@@ -111,9 +113,9 @@ const Order = () => {
           amount: order.packageValue,
           package: order.package,
           courier_bag: order.courierWithDeliveryBag,
-          notify_sms  : order.notifyBySms,
-          phone_number:order.recipientPhoneNumber,
-          delivery_type:order.deliveryType
+          notify_sms: order.notifyBySms,
+          phone_number: order.recipientPhoneNumber,
+          delivery_type: order.deliveryType
         },
       })
         .then((res) => {
@@ -239,7 +241,7 @@ const Order = () => {
                 value={order?.customerName}
                 label={"Customer Name:"}
                 onChange={handleChange}
-                disabled 
+                disabled
                 id={"customerName"}
               />
               <InputComp
@@ -251,7 +253,7 @@ const Order = () => {
               />
               <InputComp
                 value={order?.recipientPhoneNumber}
-                label={"Ewcipient Phone Number:"}
+                label={"Recipient Phone Number:"}
                 onChange={handleChange}
                 disabled={!isEditable}
                 id={"recipientPhoneNumber"}
@@ -260,7 +262,7 @@ const Order = () => {
                 value={order?.deliveryType}
                 label={"Delivery Type:"}
                 onChange={handleChange}
-                disabled= {!isEditable}
+                disabled={!isEditable}
                 id={"deliveryType"}
               />
               <InputComp
@@ -291,6 +293,18 @@ const Order = () => {
                 disabled={!isEditable}
                 id={"packageValue"}
               />
+
+              <div className=" w-full  items-center justify-between">
+
+                <label htmlFor="" className="pb-[4px] font-semibold">
+                  Rider:
+                </label>
+                
+
+                <AssignRider order={order} />
+                
+
+              </div>
 
               {/* /// */}
               <div className="flex">
@@ -359,10 +373,10 @@ const Order = () => {
               </div>
             </div>
             <div className="flex justify-center  px-5">
-          
+
 
               {
-            order?.status  == "cancelled" || order?.status == "delivered" ? <div className="">
+                order?.status == "cancelled" || order?.status == "delivered" ? <div className="">
 
                   <DownloadInvoice
                     downloadFileName={order?._id}
