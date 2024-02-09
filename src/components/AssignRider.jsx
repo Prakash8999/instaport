@@ -60,11 +60,15 @@ export default ({ order }) => {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},
 		}).then((res) => {
+			console.log(res);
 			if (!res?.data?.error) {
 				toast.success(res?.data?.message)
 			}
-		}).catch((err)=>{
-toast.error(err?.message)
+			else {
+				toast.error(res?.data?.message)
+			}
+		}).catch((err) => {
+			toast.error(err?.message)
 		})
 	}
 

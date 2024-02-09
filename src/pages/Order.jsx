@@ -206,6 +206,29 @@ const Order = () => {
       : "bg-white";
   };
 
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = `
+      @media print {
+        input[type="checkbox"] {
+          -webkit-print-color-adjust: exact;
+        }
+        input[type="checkbox"]:checked + label {
+          background-color: #34d399;
+        }
+        input[type="checkbox"] + label {
+          background-color: #e5e7eb;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+
   return (
     <div className="">
       <Layout>
