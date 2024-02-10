@@ -25,7 +25,7 @@ const AvailableRiderTable = ({ dataArray, fetchRider }) => {
       await axios(`${server}/rider/riderstatus`, {
         method: "PATCH",
         data: {
-          status: status == 'available' ? 'disabled' : 'available',
+          status: status == 'online' ? 'disabled' : 'online',
           _id: id,
         },
         headers: {
@@ -92,11 +92,11 @@ const AvailableRiderTable = ({ dataArray, fetchRider }) => {
                     <td>
 
 
-                      <button disabled={buttonLoading} title={`Click Here to ${data?.status == 'available' ? 'Disable' : 'Enable'} Rider ${data?.fullname}`} onClick={() => {
+                      <button disabled={buttonLoading} title={`Click Here to ${data?.status == 'online' ? 'Disable' : 'Enable'} Rider ${data?.fullname}`} onClick={() => {
                         handleUpdate(data?._id, data?.status)
-                      }} className={`order px-2 py-1 shadow hover:shadow-md  rounded-md duration-150 ${data?.status == 'available' ? 'bg-red-500 text-white' : 'bg-green-600 text-white'}`}>
+                      }} className={`order px-2 py-1 shadow hover:shadow-md  rounded-md duration-150 ${data?.status == 'online' ? 'bg-red-500 text-white' : 'bg-green-600 text-white'}`}>
                         {
-                          data?.status == 'available' ? 'Disable' : 'Enable'
+                          data?.status == 'online' ? 'Disable' : 'Enable'
                         }
                         {/* <div
 							className={`w-12 h-6 rounded-full  border transition-color ${  data?.status == 'available' ? 'bg-green-500' : 'bg-red-500'}`}

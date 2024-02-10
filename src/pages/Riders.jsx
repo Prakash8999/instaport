@@ -13,7 +13,7 @@ import Buttons from "../components/Buttons";
 
 const Riders = () => {
   const [searchResults, setSearchResults] = useState([]);
-  const [activeButton, setActiveButton] = useState("available");
+  const [activeButton, setActiveButton] = useState("online");
   const [isLoading, setLoading] = useState(true);
   const [riderdata, setriderdata] = useState([]);
   // const [showRiders, setShowRiders] = useState([])
@@ -28,7 +28,7 @@ const Riders = () => {
         },
       }).then((res) => {
         setriderdata(res?.data?.rider);
-
+        console.log(res);
         setLoading(false);
       });
     } catch (error) {
@@ -102,10 +102,10 @@ const Riders = () => {
                 />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                    "available"
+                    "online"
                   )}`}
                   onclick={() => {
-                    setSearchParams({ ["query"]: "available" });
+                    setSearchParams({ ["query"]: "online" });
                   }}
                   buttonText={"Online"}
                 />

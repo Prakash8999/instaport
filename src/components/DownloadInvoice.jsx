@@ -3,7 +3,9 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
 const DownloadInvoice = ({ rootElementId, downloadFileName }) => {
-  const downloadPdfDocument = () => {
+  const downloadPdfDocument =async () => {
+    
+
     // let printContents = document.getElementById(rootElementId).innerHTML;
     // let iframe = document.createElement('iframe');
     // iframe.style.display = 'none'; // Hide the iframe
@@ -16,6 +18,12 @@ const DownloadInvoice = ({ rootElementId, downloadFileName }) => {
     //         let link = document.createElement('link');
     //         link.href = styleSheet.href;
     //         link.rel = 'stylesheet';
+    //         link.onload = () => {
+    //             console.log('Stylesheet loaded:', styleSheet.href);
+    //         };
+    //         link.onerror = (error) => {
+    //             console.error('Error loading stylesheet:', styleSheet.href, error);
+    //         };
     //         doc.head.appendChild(link);
     //     } else if (styleSheet.cssRules) { // Inline stylesheet
     //         let style = document.createElement('style');
@@ -33,42 +41,12 @@ const DownloadInvoice = ({ rootElementId, downloadFileName }) => {
     // // Clean up: remove the iframe after printing
     // document.body.removeChild(iframe);
 
-    let printContents = document.getElementById(rootElementId).innerHTML;
-    let iframe = document.createElement('iframe');
-    iframe.style.display = 'none'; // Hide the iframe
-    document.body.appendChild(iframe);
-    let doc = iframe.contentDocument || iframe.contentWindow.document;
 
-    // Copy stylesheets from parent document to iframe document
-    Array.from(document.styleSheets).forEach(styleSheet => {
-        if (styleSheet.href) { // External stylesheet
-            let link = document.createElement('link');
-            link.href = styleSheet.href;
-            link.rel = 'stylesheet';
-            link.onload = () => {
-                console.log('Stylesheet loaded:', styleSheet.href);
-            };
-            link.onerror = (error) => {
-                console.error('Error loading stylesheet:', styleSheet.href, error);
-            };
-            doc.head.appendChild(link);
-        } else if (styleSheet.cssRules) { // Inline stylesheet
-            let style = document.createElement('style');
-            Array.from(styleSheet.cssRules).forEach(cssRule => {
-                style.appendChild(document.createTextNode(cssRule.cssText));
-            });
-            doc.head.appendChild(style);
-        }
+    const pdf = new jsPDF("portrait", "pt", "a4");
+    const data = await document.getElementById(rootElementId);
+    pdf.html(data).then(() => {
+      pdf.save("shipping_label.pdf");
     });
-
-    // Set the contents and print
-    doc.body.innerHTML = printContents;
-    iframe.contentWindow.print();
-
-    // Clean up: remove the iframe after printing
-    document.body.removeChild(iframe);
-
-
   };
   return (
     <>

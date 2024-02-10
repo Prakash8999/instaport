@@ -40,7 +40,7 @@ const Order = () => {
   // const [showModal, setShowModal] = useState(false);
   const [activeButton, setActiveButton] = useState("proccessing");
   //   const [serachParams, setSearchParams] = useSearchParams();
-
+  const [savingDataLoading, setSavingDataLoading] = useState(false)
   const fetchOrderById = async () => {
     try {
       setLoading(true);
@@ -49,6 +49,8 @@ const Order = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+
+      console.log(data);
       setOrder({
         status: data?.order.status,
         _id: data?.order._id,
@@ -56,7 +58,7 @@ const Order = () => {
         customerName: data?.order.customer?.fullname,
         customerNo: data?.order.customer?.mobileno,
         pickupAddress: data?.order.pickup?.text,
-        dropAddress: data?.order.payment_address?.text,
+        dropAddress: data?.order?.drop?.text,
         package: data?.order.package,
         packageValue: data?.order.amount,
         courierWithDeliveryBag: data?.order.courier_bag,
@@ -123,14 +125,20 @@ const Order = () => {
             toast.success(res?.data?.message);
             setisEditable(!isEditable);
             fetchOrderById()
+            setLoading(false)
+
           } else {
             toast.error(res?.data?.message);
+            setLoading(false)
           }
           console.log(res);
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally(() => {
+          setLoading(false)
+        })
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -322,10 +330,10 @@ const Order = () => {
                 <label htmlFor="" className="pb-[4px] font-semibold">
                   Rider:
                 </label>
-                
+
 
                 <AssignRider order={order} />
-                
+
 
               </div>
 
@@ -414,6 +422,7 @@ const Order = () => {
                       <button
                         type="button"
                         onClick={handleUpdateOrder}
+                        disabled={loading}
                         className={
                           "text-white border-yellow-300 self-center bg-yellow-400 h-11 px-4 py-1 w-48 rounded-3xl"
                         }
