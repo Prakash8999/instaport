@@ -44,7 +44,7 @@ setSearchResults(transactionData)
 
         data?.rider?.fullname?.toLowerCase().includes(e.target.value.toLowerCase()) ||
         data?.rider?.mobileno?.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        data?._id.toLowerCase().includes(e.target.value.toLowerCase())
+        data?._id?.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setSearchResults(filteredData);
   };

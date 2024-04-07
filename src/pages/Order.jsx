@@ -12,9 +12,13 @@ import InputComp from "../components/InputComp";
 import Spinner from "../components/Spinner";
 import toast from "react-hot-toast";
 import AssignRider from "../components/AssignRider";
+import PastRiders from "../components/Modal/PastRiders";
+import AddressModal from "../components/Modal/AddressModal";
 const Order = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
+  const [modal, setmodal] = useState({ show: false, datamodal: {} });
+  const [modalAddress, setmodalAddress] = useState({ show: false, datamodal: {} });
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState({
     status: "",
@@ -30,7 +34,10 @@ const Order = () => {
     notifyBySms: "",
     recipientPhoneNumber: "",
     deliveryType: "",
-    rider: ""
+    rider: "",
+    parcel_weight:"",
+    pastrider: [],
+    droplocations: []
   });
   const [isEditable, setisEditable] = useState(false);
 
@@ -57,15 +64,19 @@ const Order = () => {
         paymentType: data?.order.payment_method,
         customerName: data?.order.customer?.fullname,
         customerNo: data?.order.customer?.mobileno,
-        pickupAddress: data?.order.pickup?.text,
-        dropAddress: data?.order?.drop?.text,
+        pickupAddress: data?.order.pickup,
+        dropAddress: data?.order?.drop,
         package: data?.order.package,
         packageValue: data?.order.amount,
         courierWithDeliveryBag: data?.order.courier_bag,
         notifyBySms: data?.order.notify_sms,
+        parcel_weight: data?.order.parcel_weight,
         recipientPhoneNumber: data?.order?.phone_number,
         deliveryType: data?.order?.delivery_type,
-        rider: data?.order?.rider
+        rider: data?.order?.rider,
+        pastrider: data?.order?.pastRiders,
+        droplocations: data?.order?.droplocations
+
       });
 
 
@@ -117,7 +128,8 @@ const Order = () => {
           courier_bag: order.courierWithDeliveryBag,
           notify_sms: order.notifyBySms,
           phone_number: order.recipientPhoneNumber,
-          delivery_type: order.deliveryType
+          delivery_type: order.deliveryType,
+
         },
       })
         .then((res) => {
@@ -239,19 +251,48 @@ const Order = () => {
 
   return (
     <div className="">
+      {modal.show && (
+        <PastRiders
+          datamodal={modal.show && modal.datamodal}
+          setmodal={setmodal}
+        />
+      )}
+
+      {modalAddress.show && (
+        <AddressModal
+          datamodal={modalAddress.show && modalAddress.datamodal}
+          setmodalAddress={setmodalAddress}
+        />
+      )}
+
+
       <Layout>
         <div className="flex">
           <SideNav className={"w-[20vw]"} />
           {/* <Layout2 loading={loading} className="h-[95vh]"> */}
           <div className="p-5 absolute right-5 h-[95vh] mt-5 overflow-hidden w-[76vw] shadow-lg bg-white rounded-lg flex  flex-col   md:gap-y-1  gap-y">
-            <div className="rounded-lg px-4 py-2 w-[10vw] mr-2 text-center border-2 text-base flex justify-center font-semibold bg-[#ffd12e] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm">
-              {order?.status ? (
-                order?.status?.charAt(0).toUpperCase() + order?.status?.slice(1)
-              ) : (
-                <Spinner />
-              )}
-            </div>
+            <div className="flex justify-between">
+              <div className="capitalize rounded-lg px-4 py-2 w-[10vw] mr-2 text-center border-2 text-base flex justify-center font-semibold bg-[#ffd12e] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm">
+                {order?.status ? (
+                  order?.status
+                ) : (
+                  <Spinner />
+                )}
 
+
+
+              </div>
+              <button
+                onClick={() => {
+                  setmodal({ show: true, datamodal: order?.pastrider });
+                }}
+                className="capitalize rounded-lg px-4 py-2 w-[10vw]  text-center border-2 text-base flex justify-center font-semibold bg-[#ffd12e] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm">
+
+                Past Riders
+              </button>
+
+
+            </div>
             <div
               className="w-full grid grid-cols-2 gap-y-2 gap-x-6 pt-2 p-5"
               id="testid"
@@ -296,20 +337,7 @@ const Order = () => {
                 disabled={!isEditable}
                 id={"deliveryType"}
               />
-              <InputComp
-                value={order?.pickupAddress}
-                label={"Pickup Address:"}
-                onChange={handleChange}
-                disabled={!isEditable}
-                id={"pickupAddress"}
-              />
-              <InputComp
-                value={order?.dropAddress}
-                label={"Drop Address:"}
-                onChange={handleChange}
-                disabled={!isEditable}
-                id={"dropAddress"}
-              />
+
               <InputComp
                 label={"Package Type:"}
                 value={order?.package}
@@ -325,6 +353,21 @@ const Order = () => {
                 id={"packageValue"}
               />
 
+              <InputComp
+                value={order?.pickupAddress?.text}
+                label={"Pickup Address:"}
+                onChange={handleChange}
+                disabled={!isEditable}
+                id={"pickupAddress"}
+              />
+              <InputComp
+                value={order?.droplocations?.length > 0 ? order?.droplocations[order?.droplocations?.length - 1]?.text : order.dropAddress?.text}
+                label={"Drop Address:"}
+                onChange={handleChange}
+                disabled={!isEditable}
+                id={"dropAddress"}
+              />
+
               <div className=" w-full  items-center justify-between">
 
                 <label htmlFor="" className="pb-[4px] font-semibold">
@@ -338,9 +381,22 @@ const Order = () => {
               </div>
 
               {/* /// */}
-              <div className="flex">
+              <div className="flex w-full">
                 <div className="flex flex-col gap-y-2">
-                  <p className="font-semibold">Additional Services</p>
+                  <div className="flex justify-between w-full">
+
+                    <p className="font-semibold">
+                      Additional Services
+                    </p>
+
+                    <button onClick={() => {
+                      setmodalAddress({ show: true,  datamodal:  { "PickupAddress" :order?.pickupAddress,  "Droplocations" : order?.droplocations , "parcel_weight" : order.parcel_weight  , "DropPoint" : order?.dropAddress, id: order._id} });
+                    }} className="items-end font-semibold text-[#ffd12e]  text-xl">
+
+                      Addresses
+                    </button>
+
+                  </div>
                   <div className="flex gap-x-2 items-center justify-between w-full ">
                     <p>Prefer Currier with Delivery Bag</p>
                     <div className="flex items-center">
