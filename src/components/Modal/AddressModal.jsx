@@ -94,6 +94,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 					source, destination
 				}
 			})
+			console.log(response.data);
 			return response.data;
 		} catch (error) {
 			console.log(error);
@@ -102,7 +103,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 		}
 	}
 
-	const fetchDistanceAndCost = () => {
+	const fetchDistanceAndCost = async (save) => {
 
 		setLoadingFair(true)
 
@@ -111,7 +112,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 				let priceData = res.data?.priceManipulation;
 				console.log(droplocations.length)
 				const mainDistance = await calculateDistance(pickup, drop);
-				let distance = 0;
+				let distance = mainDistance;
 				let price = 0;
 				if (droplocations.length != 0) {
 					price = mainDistance * priceData?.per_kilometer_charge;
@@ -143,22 +144,23 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 						setLoadingFair(false)
 					}
 				}
+				console.log(distance)
 				let finalAmount = datamodal?.parcel_weight === weight[0] || datamodal?.parcel_weight == weight[1] ? price : datamodal?.parcel_weight === weight[2] ? price + 50 : datamodal?.parcel_weight === weight[3] ? price + 100 : price + 150
 				if (mainDistance == 0) {
 					setAmount(0)
 					setLoadingFair(false)
-
 				} else {
 					setAmount(finalAmount)
 					setLoadingFair(false)
 				}
-
-
+				if(save){
+					handleUpdateAddress(finalAmount)
+				}
 			})
 	}
 
 	const token = localStorage.getItem("token");
-	const handleUpdateAddress = async () => {
+	const handleUpdateAddress = async (finalAmount) => {
 		setLoading(true)
 
 		try {
@@ -171,33 +173,17 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 				},
 				data: {
 					_id: datamodal.id,
-
-					pickup: { ...pickup },
-
+					amount: finalAmount,
+					pickup: pickup,
 					droplocations: droplocations,
-
-					drop: {
-						address: drop.address,
-						date: drop.date,
-						building_and_flat: drop.building_and_flat,
-						floor_and_wing: drop.floor_and_wing,
-						fromtime: drop.fromtime,
-						instructions: drop.instructions,
-						key: drop.key,
-						latitude: drop.latitude,
-						longitude: drop.longitude,
-						name: drop.name,
-						phone_number: drop.phone_number,
-						text: drop.text,
-						totime: drop.totime
-					}
+					drop: drop
 				},
 			})
 				.then((res) => {
 					if (!res?.data?.error) {
 						toast.success(res?.data?.message)
 						setLoading(false)
-						window.location.reload()
+						// window.location.reload()
 
 					} else {
 						toast.error(res?.data?.message)
@@ -478,27 +464,27 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 
 								<button
 
-									onClick={fetchDistanceAndCost} 
+									onClick={() => fetchDistanceAndCost(false)} 
 									disabled={loadingFair}
-									className="text-white border-yellow-300 self-center bg-yellow-400 h-11 w-32 px-3 py-1  rounded-3xl">
+									className="disabled:cursor-not-allowed text-white border-yellow-300 self-center bg-yellow-400 h-11 w-32 px-3 py-1  rounded-3xl">
 
-									{loadingFair ? 'Calculating' : 'Calculate Fair'}
+									{loadingFair ? 'Calculating' : 'Calculate Fare'}
 
 								</button>
 								<p>
-									{amount} Rs
+									{amount ?  amount.toFixed(2)  : datamodal?.amount?.toFixed(2)} Rs
 								</p>
 							</div>
 
 							{/* {isEditable ? ( */}
 							<div className="">
 								<button
-									disabled={loading}
+									disabled={loading || loadingFair}
 									type="button"
-									onClick={handleUpdateAddress}
+									onClick={() => fetchDistanceAndCost(true)} 
 									// disabled={loading}
 									className={
-										"text-white border-yellow-300 self-center bg-yellow-400 h-11 px-4 py-1 w-32 rounded-3xl"
+										"disabled:cursor-not-allowed text-white border-yellow-300 self-center bg-yellow-400 h-11 px-4 py-1 w-32 rounded-3xl"
 									}
 								>
 									{

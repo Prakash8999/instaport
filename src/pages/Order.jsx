@@ -29,13 +29,14 @@ const Order = () => {
     pickupAddress: "",
     dropAddress: "",
     package: "",
-    packageValue: "",
+    packageValue: 0,
+    amount: 0,
     courierWithDeliveryBag: "",
     notifyBySms: "",
     recipientPhoneNumber: "",
     deliveryType: "",
     rider: "",
-    parcel_weight:"",
+    parcel_weight: "",
     pastrider: [],
     droplocations: []
   });
@@ -67,7 +68,8 @@ const Order = () => {
         pickupAddress: data?.order.pickup,
         dropAddress: data?.order?.drop,
         package: data?.order.package,
-        packageValue: data?.order.amount,
+        packageValue: data?.order.parcel_value,
+        amount: data?.order.amount,
         courierWithDeliveryBag: data?.order.courier_bag,
         notifyBySms: data?.order.notify_sms,
         parcel_weight: data?.order.parcel_weight,
@@ -284,7 +286,7 @@ const Order = () => {
               </div>
               <button
                 onClick={() => {
-                  setmodal({ show: true, datamodal: order?.pastrider });
+                  setmodal({ show: true, datamodal: order?.pastrider?.reverse() });
                 }}
                 className="capitalize rounded-lg px-4 py-2 w-[10vw]  text-center border-2 text-base flex justify-center font-semibold bg-[#ffd12e] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm">
 
@@ -346,7 +348,7 @@ const Order = () => {
                 id={"package"}
               />
               <InputComp
-                value={order?.packageValue}
+                value={order?.packageValue?.toFixed(2)}
                 label={"Package Value:"}
                 onChange={handleChange}
                 disabled={!isEditable}
@@ -368,6 +370,7 @@ const Order = () => {
                 id={"dropAddress"}
               />
 
+
               <div className=" w-full  items-center justify-between">
 
                 <label htmlFor="" className="pb-[4px] font-semibold">
@@ -380,25 +383,39 @@ const Order = () => {
 
               </div>
 
+              <InputComp
+                value={order?.amount.toFixed(2)}
+                label={"Amount:"}
+                onChange={handleChange}
+                disabled={!isEditable}
+                id={"dropAddress"}
+              />
+
+              {/* <div className="flex justify-center items-center flex-col">
+                
+              <label htmlFor="" className="pb-[4px] font-semibold opacity-0 pointer-events-none">
+                  Rider:
+                </label>
+                <button onClick={() => {
+                  setmodalAddress({ show: true, datamodal: { "PickupAddress": order?.pickupAddress, "Droplocations": order?.droplocations, "parcel_weight": order.parcel_weight, "DropPoint": order?.dropAddress, id: order._id } });
+                }} className="text-white border-yellow-300 self-center bg-yellow-400 h-11 w-24 px-4 py-1  rounded-3xl">
+                  Address
+                </button>
+              </div> */}
               {/* /// */}
-              <div className="flex w-full">
+              <div className="hidden w-full">
                 <div className="flex flex-col gap-y-2">
                   <div className="flex justify-between w-full">
 
-                    <p className="font-semibold">
+                    <p className="font-semibold ">
                       Additional Services
                     </p>
 
-                    <button onClick={() => {
-                      setmodalAddress({ show: true,  datamodal:  { "PickupAddress" :order?.pickupAddress,  "Droplocations" : order?.droplocations , "parcel_weight" : order.parcel_weight  , "DropPoint" : order?.dropAddress, id: order._id} });
-                    }} className="items-end font-semibold text-[#ffd12e]  text-xl">
 
-                      Addresses
-                    </button>
 
                   </div>
-                  <div className="flex gap-x-2 items-center justify-between w-full ">
-                    <p>Prefer Currier with Delivery Bag</p>
+                  <div className="gap-x-2 items-center justify-between w-full flex ">
+                    <p>Prefer Courier with Delivery Bag</p>
                     <div className="flex items-center">
                       <input
                         type="checkbox"
@@ -504,6 +521,11 @@ const Order = () => {
                     downloadFileName={order?._id}
                     rootElementId={"testid"}
                   />
+                  <button onClick={() => {
+                    setmodalAddress({ show: true, datamodal: { "PickupAddress": order?.pickupAddress, "Droplocations": order?.droplocations, "parcel_weight": order.parcel_weight, "DropPoint": order?.dropAddress, id: order._id, amount: order?.amount } });
+                  }} className="text-white border-yellow-300 self-center bg-yellow-400 h-11 w-48 px-4 py-1  rounded-3xl">
+                  Address
+                  </button>
                   <Buttons
                     buttonText={"Cancel Order"}
                     className={
@@ -511,6 +533,8 @@ const Order = () => {
                     }
                     onclick={handleCancleOrder}
                   />
+
+
                 </div>
 
 

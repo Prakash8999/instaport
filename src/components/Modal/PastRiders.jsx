@@ -15,19 +15,6 @@ const PastRiders = ({ datamodal, setmodal }) => {
 	};
 
 	console.log(datamodal);
-	const data = [
-		{ id: 1, riderName: 'John Doe', riderNo: 'RD001' },
-		{ id: 2, riderName: 'Jane Smith', riderNo: 'RD002' },
-		{ id: 3, riderName: 'Alice Johnson', riderNo: 'RD003' },
-		{ id: 4, riderName: 'Alice Johnson', riderNo: 'RD003' },
-		{ id: 5, riderName: 'Alice Johnson', riderNo: 'RD003' },
-		{ id: 6, riderName: 'Alice Johnson', riderNo: 'RD003' },
-		{ id: 7, riderName: 'Alice Johnson', riderNo: 'RD003' },
-		{ id: 8, riderName: 'Alice Johnson', riderNo: 'RD003' },
-		// Add more data as needed
-	];
-
-
 
 
 
