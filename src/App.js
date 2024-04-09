@@ -24,34 +24,43 @@ import DashboardChart from './pages/DashboardChart';
 function App() {
   return (
     <>
-      <Router>
-        <Context>
-          <CouponsContext>
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/test/create-order" element={<TestForm />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/dashboard/chart" element={<DashboardChart />} />
-              <Route path="/layout" element={<Layouttest />} />
-              <Route path="/" element={<Login />} />
-              {/* <Route path="/" element={<Signup />} /> */}
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/order/:id" element={<Order />} />
-              <Route path="/riders" element={<Riders />} />
-              <Route path="/riders/active" element={<ActiveRider />} />
-              <Route path="/price-manipulation" element={<PriceManipulation />} />
-              <Route path="/pending" element={<ApproveARider />} />
-              {/* <Route path="/approve-rider/approved" element={<ApprovedRiderPage />} /> */}
-              <Route path="/transaction" element={<Transaction />} />
-              <Route path="/coupons-and-offers" element={<CouponsAndOffer />} />
-              <Route path="/add-city" element={<AddCity />} />
-              {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
-            </Routes>
-            <Toaster />
-          </CouponsContext>
 
-        </Context>
-      </Router>
+      <div className='block md:hidden text-2xl text-center text-yellow-500 my-auto mt-10'>
+      For the complete view, use a bigger device to access the Dashboard.
+      </div>
+      <div className="hidden md:block">
+
+
+
+        <Router >
+          <Context>
+            <CouponsContext>
+              <Routes>
+                <Route path="/home" element={<Home />} />
+                <Route path="/test/create-order" element={<TestForm />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard/chart" element={<DashboardChart />} />
+                <Route path="/layout" element={<Layouttest />} />
+                <Route path="/" element={<Login />} />
+                {/* <Route path="/" element={<Signup />} /> */}
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/order/:id" element={<Order />} />
+                <Route path="/riders" element={<Riders />} />
+                <Route path="/riders/active" element={<ActiveRider />} />
+                <Route path="/price-manipulation" element={<PriceManipulation />} />
+                <Route path="/pending" element={<ApproveARider />} />
+                {/* <Route path="/approve-rider/approved" element={<ApprovedRiderPage />} /> */}
+                <Route path="/transaction" element={<Transaction />} />
+                <Route path="/coupons-and-offers" element={<CouponsAndOffer />} />
+                <Route path="/add-city" element={<AddCity />} />
+                {/* <Route path="/riders/availablerider" element={<AvailableRiderTable />} /> */}
+              </Routes>
+              <Toaster />
+            </CouponsContext>
+
+          </Context>
+        </Router>
+      </div>
     </>
   );
 }

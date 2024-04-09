@@ -80,7 +80,14 @@ const fetchData = () =>  axios(`${server}/order/orders`, {
 
 
 
-  return <Datacontext.Provider value={{ orders, loading }}>{children}</Datacontext.Provider>;
+  return <Datacontext.Provider value={{ orders, loading }}>
+    
+    
+
+    {children}
+    
+    
+    </Datacontext.Provider>;
 };
 
 const ContextAuth = () => {

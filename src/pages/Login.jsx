@@ -69,6 +69,11 @@ const Login = () => {
     }
   };
   return (
+
+<>
+
+
+
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="flex flex-col justify-center items-center bg-[#F1F1F1] w-[50%] h-screen gap-6">
         <div className="items-center">
@@ -132,6 +137,7 @@ const Login = () => {
       </div>
 
     </div>
+</>
   );
 };
 
