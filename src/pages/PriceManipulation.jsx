@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 const PriceManipulation = () => {
   const [modal, setmodal] = useState({ show: false, datamodal: {} });
   const [isLoading, setLoading] = useState(true);
+  const [updateLoading, setUpdateLoading] = useState(false)
   const [isEditable, setIsEditable] = useState(false);
   const setEditable = () => {
     setIsEditable(!isEditable);
@@ -25,6 +26,9 @@ const PriceManipulation = () => {
     instaport_commission: Number(),
     per_kilometer_charge: Number(),
     security_fees_charges: Number(),
+    withdrawalCharges: Number(),
+    cancellationCharges: Number()
+
   });
 
   const token = localStorage.getItem("token");
@@ -53,6 +57,8 @@ const PriceManipulation = () => {
           instaport_commission: data?.priceManipulation?.instaport_commission,
           per_kilometer_charge: data?.priceManipulation?.per_kilometer_charge,
           security_fees_charges: data?.priceManipulation?.security_fees_charges,
+          cancellationCharges: data?.priceManipulation?.cancellationCharges,
+          withdrawalCharges: data?.priceManipulation?.withdrawalCharges
         });
 
         // console.log("DATA : ", prices);
@@ -83,10 +89,11 @@ const PriceManipulation = () => {
   };
 
   const hanldeUpdate = () => {
+    setUpdateLoading(true)
     try {
       axios(`${server}/price/update`, {
         method: "PATCH",
-
+        
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -101,22 +108,28 @@ const PriceManipulation = () => {
           instaport_commission: prices.instaport_commission,
           per_kilometer_charge: prices.per_kilometer_charge,
           security_fees_charges: prices.security_fees_charges,
+          cancellationCharges: prices?.cancellationCharges,
+          withdrawalCharges: prices?.withdrawalCharges
         },
         //  ...prices
       })
-        .then((res) => {
-          if (!res?.data?.error) {
-            toast.success(res?.data?.message);
-            setIsEditable(!isEditable);
-          } else {
-            toast.error(res?.data?.message);
-          }
-          console.log(res);
-        })
-        .catch((err) => {
+      .then((res) => {
+        if (!res?.data?.error) {
+          toast.success(res?.data?.message);
+          setIsEditable(!isEditable);
+          setUpdateLoading(false)
+        } else {
+          toast.error(res?.data?.message);
+          setUpdateLoading(false)
+        }
+        console.log(res);
+      })
+      .catch((err) => {
+          setUpdateLoading(false)
           toast.error("Something went wrong");
         });
-    } catch (error) {
+      } catch (error) {
+      setUpdateLoading(false)
       console.log(error);
     }
   };
@@ -134,11 +147,11 @@ const PriceManipulation = () => {
         <Layout>
           <div className="flex pl-5">
 
-        <SideNav className={'w-[20vw]'}/>
-          <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
-            <h1 className="text-4xl ">Price Manipulation</h1>
+            <SideNav className={'w-[20vw]'} />
+            <div className="pt-10 flex    justify-between w-[79vw] px-7 ">
+              <h1 className="text-4xl ">Price Manipulation</h1>
 
-          </div>
+            </div>
           </div>
           <Layout2 loading={isLoading}>
             <div className="flex flex-col justify-center">
@@ -200,10 +213,26 @@ const PriceManipulation = () => {
                   id={"additional_drop_charge"}
                   disabled={!isEditable}
                 />
+                <InputComp
+                  onChange={handleChange}
+                  value={prices.cancellationCharges}
+                  label={"Cancellation Charges"}
+                  className={"p-4"}
+                  id={"cancellationCharges"}
+                  disabled={!isEditable}
+                />
+                <InputComp
+                  onChange={handleChange}
+                  value={prices.withdrawalCharges}
+                  label={"Withdrawal Charges"}
+                  className={"p-4"}
+                  id={"withdrawalCharges"}
+                  disabled={!isEditable}
+                />
               </div>
             </div>
             <div className=" flex justify-center  mt-7">
-            
+
               {!isEditable ? (
                 <button
                   className={
@@ -216,11 +245,12 @@ const PriceManipulation = () => {
               ) : (
                 <button
                   className={
-                    "text-white border-yellow-300 self-center bg-yellow-400 px-10 py-2  w-48  h-11 rounded-3xl"
+                    `${updateLoading ? 'cursor-not-allowed' : 'cursor-pointer'} text-white border-yellow-300 self-center bg-yellow-400 px-10 py-2  w-48  h-11 rounded-3xl`
                   }
                   onClick={hanldeUpdate}
                 >
-                  save
+                  { 
+                  updateLoading ? "Saving" : "Save"}
                 </button>
               )}
             </div>
