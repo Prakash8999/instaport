@@ -83,9 +83,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 	};
 
 	const calculateDistance = async (source, destination) => {
-
-		console.log(source);
-		console.log(destination);
 		try {
 			let url = 'https://instaport-backend-main.vercel.app/distance';
 			const response = await axios(url, {
@@ -94,7 +91,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 					source, destination
 				}
 			})
-			console.log(response.data);
 			return response.data;
 		} catch (error) {
 			console.log(error);
@@ -110,7 +106,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 		axios("https://instaport-backend-main.vercel.app/price/get")
 			.then(async (res) => {
 				let priceData = res.data?.priceManipulation;
-				console.log(droplocations.length)
 				const mainDistance = await calculateDistance(pickup, drop);
 				let distance = mainDistance;
 				let price = 0;
@@ -135,7 +130,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 						price = priceData?.per_kilometer_charge * distance + priceData?.base_order_charges
 					}
 				} else {
-					console.log(mainDistance)
 					if (mainDistance < 1.0) {
 						price = priceData?.base_order_charges
 						setLoadingFair(false)
@@ -144,7 +138,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 						setLoadingFair(false)
 					}
 				}
-				console.log(distance)
 				let finalAmount = datamodal?.parcel_weight === weight[0] || datamodal?.parcel_weight == weight[1] ? price : datamodal?.parcel_weight === weight[2] ? price + 50 : datamodal?.parcel_weight === weight[3] ? price + 100 : price + 150
 				if (mainDistance == 0) {
 					setAmount(0)
@@ -162,7 +155,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 	const token = localStorage.getItem("token");
 	const handleUpdateAddress = async (finalAmount) => {
 		setLoading(true)
-
 		try {
 			await axios(`${server}/order/update`, {
 				method: "PATCH",
@@ -172,7 +164,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 					"Content-Type": "application/json",
 				},
 				data: {
-					_id: datamodal.id,
+					_id: datamodal?.id,
 					amount: finalAmount,
 					pickup: pickup,
 					droplocations: droplocations,
@@ -189,10 +181,11 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 						toast.error(res?.data?.message)
 						setLoading(false)
 					}
-
+					
 				})
 				.catch((err) => {
 					setLoading(false)
+					toast.error("Something Wet Wrong!")
 					console.log(err);
 				})
 
@@ -366,6 +359,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 								Array.isArray(droplocations) && droplocations?.map((value, index) => (
 
 									<PlacesAutocomplete
+									key={index}
 										searchOptions={{
 											componentRestrictions: {
 												country: ['in']
