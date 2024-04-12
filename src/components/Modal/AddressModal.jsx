@@ -183,7 +183,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 					if (!res?.data?.error) {
 						toast.success(res?.data?.message)
 						setLoading(false)
-						// window.location.reload()
+						window.location.reload()
 
 					} else {
 						toast.error(res?.data?.message)
