@@ -172,6 +172,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 				},
 			})
 				.then((res) => {
+					console.log(res);
 					if (!res?.data?.error) {
 						toast.success(res?.data?.message)
 						setLoading(false)
@@ -185,7 +186,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 				})
 				.catch((err) => {
 					setLoading(false)
-					toast.error("Something Wet Wrong!")
+					toast.error("Something Went Wrong!")
 					console.log(err);
 				})
 

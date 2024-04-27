@@ -62,9 +62,9 @@ const PastRiders = ({ datamodal, setmodal }) => {
 									<tbody>
 										{datamodal.map((value, index) => (
 											<tr key={index} className="text-center">
-												<td className="border px-4 py-2">#{value._id?.slice(-5)}</td>
+												<td title={`${index === 0 ? 'Active' : ''}`} className={`${index === 0 ? ' text-green-700' : 'text-black'}   border px-4 py-2 `}>#{value._id?.slice(-5)}</td>
 												<td className="border px-4 py-2">{value?.fullname}</td>
-												<td className="border px-4 py-2">{value?.mobileno}</td>
+												<td className="border px-4 py-2 ">{ value?.mobileno  }</td>
 											</tr>
 										))}
 									</tbody>
