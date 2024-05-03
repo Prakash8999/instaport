@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LogoComp from "./LogoComp";
 // import { RiDashboardFill } from "react-icons/ri";
 // import { BsBoxFill } from "react-icons/bs";
@@ -9,12 +9,23 @@ import LogoComp from "./LogoComp";
 // import { RiCoupon2Fill } from "react-icons/ri";
 import Profile from "./Profile";
 import { NavLink } from "react-router-dom";
+import LogoutModal from "./Modal/LogoutModal";
 
 const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
+  const [modal, setModal] = useState({ show: false })
   return (
     <>
+
+      {
+        modal?.show && (
+          <LogoutModal datamodal={modal.show}
+            setmodal={setModal}
+          />
+
+        )
+      }
       <div
-        className={`mt-5 h-[95vh] pt-5   bg-white   flex flex-col items-center justify-start  shadow-lg rounded-2xl  ${className}`}
+        className={`mt-5 h-[95vh] py-5   bg-white   flex flex-col items-center justify-between  shadow-lg rounded-2xl  ${className}`}
       >
         <div className="flex flex-col gap-y-2 ">
           <LogoComp className={"w-[15vw]"} />
@@ -76,6 +87,17 @@ const SideNav = ({ className, classNameRider, classNameApprovedrider }) => {
             City
           </NavLink>
         </div>
+
+        <button
+
+          onClick={() => {
+            setModal({ show: true });
+          }}
+
+          className={` outline-none rounded-lg border-2 text-base font-semibold shadow hover:shadow-lg  duration-300   border-yellow-300 p-2   lg:w-[15vw]   text-black flex  items-center justify-center`}
+        >
+          Logout
+        </button>
       </div>
     </>
   );
