@@ -480,12 +480,19 @@ const Order = () => {
 
 
               {
-                order?.status == "cancelled" || order?.status == "delivered" ? <div className="">
+                order?.status == "cancelled" || order?.status == "delivered" ? <div className="flex justify-center gap-x-[94px] w-full">
 
                   <DownloadInvoice
                     downloadFileName={order?._id}
                     rootElementId={"testid"}
                   />
+
+                  <button onClick={() => {
+                    setmodalAddress({ show: true, datamodal: { "PickupAddress": order?.pickupAddress, "Droplocations": order?.droplocations, "parcel_weight": order.parcel_weight, "DropPoint": order?.dropAddress, id: order._id, amount: order?.amount } });
+                  }} className="text-white border-yellow-300 self-center bg-yellow-400 h-11 w-48 px-4 py-1  rounded-3xl">
+                    Address
+                  </button>
+
 
                 </div> : <div className="flex justify-between w-full px-5">
 
@@ -524,7 +531,7 @@ const Order = () => {
                   <button onClick={() => {
                     setmodalAddress({ show: true, datamodal: { "PickupAddress": order?.pickupAddress, "Droplocations": order?.droplocations, "parcel_weight": order.parcel_weight, "DropPoint": order?.dropAddress, id: order._id, amount: order?.amount } });
                   }} className="text-white border-yellow-300 self-center bg-yellow-400 h-11 w-48 px-4 py-1  rounded-3xl">
-                  Address
+                    Address
                   </button>
                   <Buttons
                     buttonText={"Cancel Order"}
