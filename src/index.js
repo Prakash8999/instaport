@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-// export const server = 'http://localhost:1000'
+// export const server = 'http://192.168.124.196:1000'
 export const server = 'https://instaport-backend-main.vercel.app'
 // instaport-backend-main.vercel.app
 

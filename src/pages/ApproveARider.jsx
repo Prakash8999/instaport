@@ -14,6 +14,7 @@ import ridercardData from "../components/Data/RiderCardData";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { server } from "..";
+import InputComp from "../components/InputComp";
 
 
 const ApproveARider = () => {
@@ -22,6 +23,14 @@ const ApproveARider = () => {
   const [appliedRider, setAppliedRider] = useState('')
   const [buttonLoading, setButtonLoading] = useState(false)
   const [openDocument, setOpenDocument] = useState({ show: false, data: undefined });
+  const InitialReasonData = {
+    imageReason: "",
+    aadhaarReason: "",
+    panReason: "",
+    drivinglicenseReason: "",
+    rcBookReason: "",
+  }
+  const [reason, setReason] = useState(InitialReasonData)
 
   useEffect(() => {
     try {
@@ -123,7 +132,7 @@ const ApproveARider = () => {
   }
 
   const handleDocumentStatus = async (id, data) => {
-    console.log(id)
+    console.log(data)
     setButtonLoading(true)
     try {
       await axios(`${server}/rider/admin/update/${id}`, {
@@ -146,6 +155,13 @@ const ApproveARider = () => {
     }
   }
 
+  const handleReasonChange = (e) => {
+    setReason({
+      ...reason,
+      [e.target.id]: e.target.value
+    })
+  }
+
   return (
     <>
       {
@@ -153,7 +169,7 @@ const ApproveARider = () => {
           <div className="w-[50vw] bg-white rounded-lg h-[65vh] flex flex-col">
             <div className="px-3 text-xl font-bold flex justify-between items-center py-2">
               <p>  Documents</p>
-              <span onClick={() => setOpenDocument({show: false, data: undefined})} className="cursor-pointer h-8 w-8 flex items-center justify-center bg-gray-200 rounded-full"><IoClose /></span>
+              <span onClick={() => setOpenDocument({ show: false, data: undefined })} className="cursor-pointer h-8 w-8 flex items-center justify-center bg-gray-200 rounded-full"><IoClose /></span>
             </div>
             <div className="w-full flex flex-1">
               <Swiper
@@ -165,8 +181,15 @@ const ApproveARider = () => {
                   <img alt={openDocument?.data?.image?.status === "upload" && "No image"} src={openDocument?.data?.image?.url} className="flex-1 w-full h-[50vh]" />
                   <div className="flex items-center gap-3 justify-center mt-2">
                     <p>Image</p>
-                    <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "reject" } }) }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
-                    <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "approve" } }) }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
+                    <InputComp value={reason.imageReason} onChange={handleReasonChange} id={"imageReason"} placeholder={"Image reason"} />
+                    <button onClick={() => {
+                      if (reason.imageReason !== "") {
+                        handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "reject", reason: reason.imageReason } })
+                      } else {
+                        alert("Please mention the reason")
+                      }
+                    }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
+                    <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "approve", reason: "" } }) }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
                     <p className="opacity-0 pointer-events-none">Image</p>
                   </div>
                 </SwiperSlide>
@@ -175,7 +198,14 @@ const ApproveARider = () => {
                   <div className="flex items-center gap-3 justify-center mt-2">
                     <p>Aadhaar</p>
                     <div className="flex gap-3">
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "aadhar_number": { ...openDocument?.data?.aadhar_number, status: "reject" } }) }} disabled={openDocument?.data?.aadhar_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
+                      <InputComp value={reason.aadhaarReason} onChange={handleReasonChange} id={"aadhaarReason"} placeholder={"Image reason"} />
+                      <button onClick={() => {
+                        if (reason.aadhaarReason !== "") {
+                          handleDocumentStatus(openDocument.data._id, { "aadhar_number": { ...openDocument?.data?.aadhar_number, status: "reject", reason: reason.aadhaarReason } })
+                        } else {
+                          alert("Please mention the reason")
+                        }
+                      }} disabled={openDocument?.data?.aadhar_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
                       <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "aadhar_number": { ...openDocument?.data?.aadhar_number, status: "approve" } }) }} disabled={openDocument?.data?.aadhar_number?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
                     </div>
                     <p className="opacity-0 pointer-events-none">Aadhaar</p>
@@ -186,7 +216,14 @@ const ApproveARider = () => {
                   <div className="flex items-center gap-3 justify-center mt-2">
                     <p>PAN card</p>
                     <div className="flex gap-3">
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "pan_number": { ...openDocument?.data?.pan_number, status: "reject" } }) }} disabled={openDocument?.data?.pan_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
+                      <InputComp value={reason.panReason} onChange={handleReasonChange} id={"panReason"} placeholder={"Image reason"} />
+                      <button onClick={() => {
+                        if (reason.panReason !== "") {
+                          handleDocumentStatus(openDocument.data._id, { "pan_number": { ...openDocument?.data?.pan_number, status: "reject", reason: reason.panReason } })
+                        } else {
+                          alert("Please mention the reason")
+                        }
+                      }} disabled={openDocument?.data?.pan_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
                       <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "pan_number": { ...openDocument?.data?.pan_number, status: "approve" } }) }} disabled={openDocument?.data?.pan_number?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
                     </div>
                     <p className="opacity-0 pointer-events-none">PAN card</p>
@@ -197,7 +234,14 @@ const ApproveARider = () => {
                   <div className="flex items-center gap-3 justify-center mt-2">
                     <p>Driving License</p>
                     <div className="flex gap-3">
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "drivinglicense": { ...openDocument?.data?.drivinglicense, status: "reject" } }) }} disabled={openDocument?.data?.drivinglicense?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
+                      <InputComp value={reason.drivinglicenseReason} onChange={handleReasonChange} id={"drivinglicenseReason"} placeholder={"Image reason"} />
+                      <button onClick={() => {
+                        if (reason.drivinglicenseReason !== "") {
+                          handleDocumentStatus(openDocument.data._id, { "drivinglicense": { ...openDocument?.data?.drivinglicense, status: "reject", reason: reason.drivinglicenseReason } })
+                        } else {
+                          alert("Please mention the reason")
+                        }
+                      }} disabled={openDocument?.data?.drivinglicense?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
                       <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "drivinglicense": { ...openDocument?.data?.drivinglicense, status: "approve" } }) }} disabled={openDocument?.data?.drivinglicense?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
                     </div>
                     <p className="opacity-0 pointer-events-none">Driving License</p>
@@ -208,7 +252,14 @@ const ApproveARider = () => {
                   <div className="flex items-center gap-3 justify-center mt-2">
                     <p>RC book</p>
                     <div className="flex gap-3">
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "rc_book": { ...openDocument?.data?.rc_book, status: "reject" } }) }} disabled={openDocument?.data?.rc_book?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
+                      <InputComp value={reason.rcBookReason} onChange={handleReasonChange} id={"rcBookReason"} placeholder={"Image reason"} />
+                      <button onClick={() => {
+                        if (reason.rcBookReason !== "") {
+                          handleDocumentStatus(openDocument.data._id, { "rc_book": { ...openDocument?.data?.rc_book, status: "reject", reason: reason.rcBookReason } })
+                        } else {
+                          alert("Please mention the reason")
+                        }
+                      }} disabled={openDocument?.data?.rc_book?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
                       <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "rc_book": { ...openDocument?.data?.rc_book, status: "approve" } }) }} disabled={openDocument?.data?.rc_book?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
                     </div>
                     <p className="opacity-0 pointer-events-none">RC book</p>
@@ -217,7 +268,7 @@ const ApproveARider = () => {
               </Swiper>
             </div>
           </div>
-        </div>
+        </div >
       }
       <div>
         <Layout>
