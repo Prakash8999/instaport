@@ -64,7 +64,7 @@ const ApproveARider = () => {
       await axios(`${server}/rider/riderstatus`, {
         method: "PATCH",
         data: {
-          approve: !status,
+          approve: status,
           _id: id,
         },
         headers: {
@@ -308,7 +308,7 @@ const ApproveARider = () => {
                                 console.log(data)
                                 setOpenDocument({ show: true, data: data })
                               }}>
-                                <img src={Avtar} alt="" />
+                                <img src={data?.image?.url || Avtar} alt="" className={`w-20 h-20 rounded-lg border-2 ${data?.approve ? "border-green-600" : "border-red-600"}`} />
                               </div>
                               <div className="flex flex-col">
                                 <div className="font-semibold">
@@ -328,14 +328,14 @@ const ApproveARider = () => {
                             </div>
                             <div className="flex  items-center gap-[1vw]">
                               <button onClick={() => {
-                                acceptRider(data?._id, data?.approve)
+                                acceptRider(data?._id, true)
                               }}
                                 disabled={buttonLoading}
                                 className="border-2 bg-[#FFFDE6] text-black px-6 py-2 rounded-xl  border-green-400 hover:border-green-500 hover:border-dashed hover:bg-green-100  hover:shadow-lg ">
                                 Confirm
                               </button>
                               <button disabled={buttonLoading} onClick={() => {
-                                handleDelete(data?._id)
+                                acceptRider(data?._id, false)
                               }} className="border-2 bg-[#FFFDE6] text-black px-8 py-2 rounded-xl   border-red-600 hover:border-red-500 hover:border-dashed hover:bg-red-100  hover:shadow-lg">
                                 Delete
                               </button>
