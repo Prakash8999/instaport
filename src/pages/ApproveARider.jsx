@@ -7,6 +7,7 @@ import Search from "../components/Search";
 import Avtar from "../images/Avtar.png";
 import datanotfound from "../images/datanotfound (2).svg";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import { IoClose } from "react-icons/io5";
 
@@ -15,6 +16,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { server } from "..";
 import InputComp from "../components/InputComp";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 
 const ApproveARider = () => {
@@ -55,41 +57,72 @@ const ApproveARider = () => {
     setSearchResults(appliedRider);
   }, [appliedRider]);
 
-  const acceptRider = async (id, status) => {
-
+  const acceptRider = async (id, status, openDocument) => {
     try {
-      setButtonLoading(true)
+      if (status) {
+        if (openDocument.data && openDocument.data?.aadhar_number.status == "approve" && openDocument.data?.image.status == "approve" && openDocument.data?.pan_number.status == "approve") {
+          setButtonLoading(true)
+          await axios(`${server}/rider/riderstatus`, {
+            method: "PATCH",
+            data: {
+              approve: true,
+              _id: id,
+            },
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
 
+          }).then((res) => {
+            if (!res?.data?.error) {
+              setLoading(false)
+              toast.success(res?.data?.message)
+              setButtonLoading(false)
+              window.location.reload();
+            }
 
-      await axios(`${server}/rider/riderstatus`, {
-        method: "PATCH",
-        data: {
-          approve: status,
-          _id: id,
-        },
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+            else {
+              toast.error(res?.message)
+              window.location.reload();
 
-        },
-
-      }).then((res) => {
-        // setAppliedRider(res?.data?.rider);
-
-        if (!res?.data?.error) {
-          setLoading(false)
-          toast.success(res?.data?.message)
-          setButtonLoading(false)
-          window.location.reload();
+            }
+          }).catch((err) => {
+            toast.error(err?.message)
+          })
+        } else {
+          toast.error("Approve all the required documents")
         }
+      } else {
+        setButtonLoading(true)
+        await axios(`${server}/rider/riderstatus`, {
+          method: "PATCH",
+          data: {
+            approve: false,
+            _id: id,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
 
-        else {
-          toast.error(res?.message)
-          window.location.reload();
+          },
 
-        }
-      }).catch((err) => {
-        toast.error(err?.message)
-      })
+        }).then((res) => {
+          // setAppliedRider(res?.data?.rider);
+
+          if (!res?.data?.error) {
+            setLoading(false)
+            toast.success(res?.data?.message)
+            setButtonLoading(false)
+            window.location.reload();
+          }
+
+          else {
+            toast.error(res?.message)
+            window.location.reload();
+
+          }
+        }).catch((err) => {
+          toast.error(err?.message)
+        })
+      }
     } catch (error) {
       toast.error('Something went Wrong!')
 
@@ -142,6 +175,7 @@ const ApproveARider = () => {
         },
         data: data
       }).then((res) => {
+        setOpenDocument({ show: true, data: res.data?.rider })
         toast.success(res?.data?.message)
         setButtonLoading(false)
       }).catch((err) => {
@@ -171,98 +205,104 @@ const ApproveARider = () => {
               <p>  Documents</p>
               <span onClick={() => setOpenDocument({ show: false, data: undefined })} className="cursor-pointer h-8 w-8 flex items-center justify-center bg-gray-200 rounded-full"><IoClose /></span>
             </div>
-            <div className="w-full flex flex-1">
+            <div className="w-full flex flex-1 relative">
+              <p className="flex items-center justify-center cursor-pointer -translate-y-1/2 h-10 w-10 bg-amber-400 rounded-full z-50 prev absolute top-1/2 left-4"><FaArrowLeft /></p>
+              <p className="flex items-center justify-center cursor-pointer -translate-y-1/2 h-10 w-10 bg-amber-400 rounded-full z-50 next absolute top-1/2 right-4"><FaArrowRight /></p>
               <Swiper
+                modules={[Navigation]}
+                navigation={{
+                  prevEl: '.prev',
+                  nextEl: '.next',
+                }}
                 spaceBetween={50}
                 className="w-full"
                 slidesPerView={1}
               >
-                <SwiperSlide className="flex flex-col">
-                  <img alt={openDocument?.data?.image?.status === "upload" && "No image"} src={openDocument?.data?.image?.url} className="flex-1 w-full h-[50vh]" />
+                <SwiperSlide className="flex flex-col relative">
+                  <p className="absolute top-5 left-5 bg-amber-400 px-3 py-1 rounded-md text-sm">Image</p>
+                  <img alt={openDocument?.data?.image?.status === "upload" && "No image"} src={openDocument?.data?.image?.url} className="flex-1 w-full h-[50vh] object-cover" />
                   <div className="flex items-center gap-3 justify-center mt-2">
-                    <p>Image</p>
-                    <InputComp value={reason.imageReason} onChange={handleReasonChange} id={"imageReason"} placeholder={"Image reason"} />
-                    <button onClick={() => {
-                      if (reason.imageReason !== "") {
-                        handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "reject", reason: reason.imageReason } })
-                      } else {
-                        alert("Please mention the reason")
-                      }
-                    }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
-                    <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "approve", reason: "" } }) }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
-                    <p className="opacity-0 pointer-events-none">Image</p>
+                    {openDocument?.data?.image?.status !== "approve" && <InputComp value={reason.imageReason} onChange={handleReasonChange} id={"imageReason"} placeholder={"Image reason"} />}
+                    {openDocument?.data?.image?.status !== "approve" &&
+                      <button onClick={() => {
+                        if (reason.imageReason !== "") {
+                          handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "reject", reason: reason.imageReason } })
+                        } else {
+                          alert("Please mention the reason")
+                        }
+                      }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
+                    }
+                    <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "image": { ...openDocument?.data?.image, status: "approve", reason: "" } }) }} disabled={openDocument?.data?.image?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">{openDocument?.data?.image?.status === "approve" ? "Accepted" : "Accept"}</button>
                   </div>
                 </SwiperSlide>
-                <SwiperSlide className="flex flex-col">
-                  <img alt={openDocument?.data?.aadhar_number?.status === "upload" && "No image"} src={openDocument?.data?.aadhar_number?.url} className="flex-1 w-full h-[50vh]" />
+                <SwiperSlide className="flex flex-col relative">
+                  <p className="absolute top-5 left-5 bg-amber-400 px-3 py-1 rounded-md text-sm">Aadhaar</p>
+                  <img alt={openDocument?.data?.aadhar_number?.status === "upload" && "No image"} src={openDocument?.data?.aadhar_number?.url} className="flex-1 w-full h-[50vh] object-cover" />
                   <div className="flex items-center gap-3 justify-center mt-2">
-                    <p>Aadhaar</p>
                     <div className="flex gap-3">
-                      <InputComp value={reason.aadhaarReason} onChange={handleReasonChange} id={"aadhaarReason"} placeholder={"Image reason"} />
-                      <button onClick={() => {
+                      {openDocument?.data?.aadhar_number?.status !== "approve" && <InputComp value={reason.aadhaarReason} onChange={handleReasonChange} id={"aadhaarReason"} placeholder={"Image reason"} />}
+                      {openDocument?.data?.aadhar_number?.status !== "approve" && < button onClick={() => {
                         if (reason.aadhaarReason !== "") {
                           handleDocumentStatus(openDocument.data._id, { "aadhar_number": { ...openDocument?.data?.aadhar_number, status: "reject", reason: reason.aadhaarReason } })
                         } else {
                           alert("Please mention the reason")
                         }
-                      }} disabled={openDocument?.data?.aadhar_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "aadhar_number": { ...openDocument?.data?.aadhar_number, status: "approve" } }) }} disabled={openDocument?.data?.aadhar_number?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
+                      }} disabled={openDocument?.data?.aadhar_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</ button>}
+                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "aadhar_number": { ...openDocument?.data?.aadhar_number, status: "approve" } }) }} disabled={openDocument?.data?.aadhar_number?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">{openDocument?.data?.aadhar_number?.status === "approve" ? "Accepted" : "Accept"}</button>
                     </div>
-                    <p className="opacity-0 pointer-events-none">Aadhaar</p>
                   </div>
                 </SwiperSlide>
-                <SwiperSlide className="flex flex-col">
-                  <img alt={openDocument?.data?.pan_number?.status === "upload" && "No image"} src={openDocument?.data?.pan_number?.url} className="flex-1 w-full h-[50vh]" />
-                  <div className="flex items-center gap-3 justify-center mt-2">
-                    <p>PAN card</p>
+                <SwiperSlide className="relative flex flex-col">
+                  <p className="absolute top-5 left-5 bg-amber-400 px-3 py-1 rounded-md text-sm">PAN card</p>
+                  <img alt={openDocument?.data?.pan_number?.status !== "upload" && "No image"} src={openDocument?.data?.pan_number?.url} className="flex-1 w-full h-[50vh] object-cover" />
+                  <div className="relative flex items-center gap-3 justify-center mt-2">
                     <div className="flex gap-3">
-                      <InputComp value={reason.panReason} onChange={handleReasonChange} id={"panReason"} placeholder={"Image reason"} />
-                      <button onClick={() => {
+                      {openDocument?.data?.pan_number?.status !== "approve" && <InputComp value={reason.panReason} onChange={handleReasonChange} id={"panReason"} placeholder={"Image reason"} />}
+                      {openDocument?.data?.pan_number?.status !== "approve" && <button onClick={() => {
                         if (reason.panReason !== "") {
                           handleDocumentStatus(openDocument.data._id, { "pan_number": { ...openDocument?.data?.pan_number, status: "reject", reason: reason.panReason } })
                         } else {
                           alert("Please mention the reason")
                         }
-                      }} disabled={openDocument?.data?.pan_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "pan_number": { ...openDocument?.data?.pan_number, status: "approve" } }) }} disabled={openDocument?.data?.pan_number?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
+                      }} disabled={openDocument?.data?.pan_number?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>}
+                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "pan_number": { ...openDocument?.data?.pan_number, status: "approve" } }) }} disabled={openDocument?.data?.pan_number?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">{openDocument?.data?.pan_number?.status === "approve" ? "Accepted" : "Accept"}</button>
                     </div>
-                    <p className="opacity-0 pointer-events-none">PAN card</p>
                   </div>
                 </SwiperSlide>
-                <SwiperSlide className="flex flex-col">
-                  <img alt={openDocument?.data?.drivinglicense?.status === "upload" && "No image"} src={openDocument?.data?.drivinglicense?.url} className="flex-1 w-full h-[50vh]" />
+                <SwiperSlide className="flex flex-col relative">
+                  <p className="absolute top-5 left-5 bg-amber-400 px-3 py-1 rounded-md text-sm">Driving License</p>
+                  <img alt={openDocument?.data?.drivinglicense?.status === "upload" && "No image"} src={openDocument?.data?.drivinglicense?.url} className="flex-1 w-full h-[50vh] object-cover" />
                   <div className="flex items-center gap-3 justify-center mt-2">
-                    <p>Driving License</p>
                     <div className="flex gap-3">
-                      <InputComp value={reason.drivinglicenseReason} onChange={handleReasonChange} id={"drivinglicenseReason"} placeholder={"Image reason"} />
-                      <button onClick={() => {
+                      {openDocument?.data?.drivinglicense?.status !== "approve" && <InputComp value={reason.drivinglicenseReason} onChange={handleReasonChange} id={"drivinglicenseReason"} placeholder={"Image reason"} />}
+                      {openDocument?.data?.drivinglicense?.status !== "approve" && <button onClick={() => {
                         if (reason.drivinglicenseReason !== "") {
                           handleDocumentStatus(openDocument.data._id, { "drivinglicense": { ...openDocument?.data?.drivinglicense, status: "reject", reason: reason.drivinglicenseReason } })
                         } else {
                           alert("Please mention the reason")
                         }
-                      }} disabled={openDocument?.data?.drivinglicense?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "drivinglicense": { ...openDocument?.data?.drivinglicense, status: "approve" } }) }} disabled={openDocument?.data?.drivinglicense?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
+                      }} disabled={openDocument?.data?.drivinglicense?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>}
+                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "drivinglicense": { ...openDocument?.data?.drivinglicense, status: "approve" } }) }} disabled={openDocument?.data?.drivinglicense?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">{openDocument?.data?.drivinglicense?.status === "approve" ? "Accepted" : "Accept"}</button>
                     </div>
-                    <p className="opacity-0 pointer-events-none">Driving License</p>
                   </div>
                 </SwiperSlide>
-                <SwiperSlide className="flex flex-col">
-                  <img alt={openDocument?.data?.rc_book?.status === "upload" && "No image"} src={openDocument?.data?.rc_book?.url} className="flex-1 w-full h-[50vh]" />
+                <SwiperSlide className="flex flex-col relative">
+                  <p className="absolute top-5 left-5 bg-amber-400 px-3 py-1 rounded-md text-sm">RC book</p>
+                  <img alt={openDocument?.data?.rc_book?.status === "upload" && "No image"} src={openDocument?.data?.rc_book?.url} className="flex-1 w-full h-[50vh] object-cover" />
                   <div className="flex items-center gap-3 justify-center mt-2">
-                    <p>RC book</p>
                     <div className="flex gap-3">
-                      <InputComp value={reason.rcBookReason} onChange={handleReasonChange} id={"rcBookReason"} placeholder={"Image reason"} />
-                      <button onClick={() => {
-                        if (reason.rcBookReason !== "") {
-                          handleDocumentStatus(openDocument.data._id, { "rc_book": { ...openDocument?.data?.rc_book, status: "reject", reason: reason.rcBookReason } })
-                        } else {
-                          alert("Please mention the reason")
-                        }
-                      }} disabled={openDocument?.data?.rc_book?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
-                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "rc_book": { ...openDocument?.data?.rc_book, status: "approve" } }) }} disabled={openDocument?.data?.rc_book?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">Accept</button>
+                      {openDocument?.data?.rc_book?.status !== "approve" && <InputComp value={reason.rcBookReason} onChange={handleReasonChange} id={"rcBookReason"} placeholder={"Image reason"} />}
+                      {
+                        openDocument?.data?.rc_book?.status !== "approve" && <button onClick={() => {
+                          if (reason.rcBookReason !== "") {
+                            handleDocumentStatus(openDocument.data._id, { "rc_book": { ...openDocument?.data?.rc_book, status: "reject", reason: reason.rcBookReason } })
+                          } else {
+                            alert("Please mention the reason")
+                          }
+                        }} disabled={openDocument?.data?.rc_book?.status === "upload"} className="w-36 px-3 py-2 bg-red-600 rounded-lg text-white">Reject</button>
+                      }
+                      <button onClick={() => { handleDocumentStatus(openDocument.data._id, { "rc_book": { ...openDocument?.data?.rc_book, status: "approve" } }) }} disabled={openDocument?.data?.rc_book?.status === "upload"} className="w-36 px-3 py-2 bg-green-600 rounded-lg text-white">{openDocument?.data?.rc_book?.status === "approve" ? "Accepted" : "Accept"}</button>
                     </div>
-                    <p className="opacity-0 pointer-events-none">RC book</p>
                   </div>
                 </SwiperSlide>
               </Swiper>
@@ -328,14 +368,14 @@ const ApproveARider = () => {
                             </div>
                             <div className="flex  items-center gap-[1vw]">
                               <button onClick={() => {
-                                acceptRider(data?._id, true)
+                                acceptRider(data?._id, true, { data })
                               }}
                                 disabled={buttonLoading}
                                 className="border-2 bg-[#FFFDE6] text-black px-6 py-2 rounded-xl  border-green-400 hover:border-green-500 hover:border-dashed hover:bg-green-100  hover:shadow-lg ">
-                                Confirm
+                                Onboard
                               </button>
                               <button disabled={buttonLoading} onClick={() => {
-                                acceptRider(data?._id, false)
+                                acceptRider(data?._id, false, { data })
                               }} className="border-2 bg-[#FFFDE6] text-black px-8 py-2 rounded-xl   border-red-600 hover:border-red-500 hover:border-dashed hover:bg-red-100  hover:shadow-lg">
                                 Delete
                               </button>
