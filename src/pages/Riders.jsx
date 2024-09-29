@@ -93,12 +93,12 @@ const Riders = () => {
               <div className="flex gap-4  ">
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
-                    "active"
+                    "available"
                   )}`}
                   onclick={() => {
-                    setSearchParams({ ["query"]: "active" });
+                    setSearchParams({ ["query"]: "available" });
                   }}
-                  buttonText={"Active"}
+                  buttonText={"Available"}
                 />
                 <Buttons
                   className={`rounded-lg px-4 py-2 mr-2 text-center border-2 text-base font-semibold w-[10vw] border-yellow-300 outline-yellow-400  hover:shadow-md  shadow-sm  ${getButtonClass(
