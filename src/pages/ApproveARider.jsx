@@ -44,7 +44,7 @@ const ApproveARider = () => {
         },
       }).then((res) => {
 
-        setAppliedRider(res?.data?.rider);
+        setAppliedRider(res?.data?.rider?.filter((item) => item?.verified));
 
         setLoading(false)
       });
