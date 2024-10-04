@@ -27,7 +27,7 @@ const Riders = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }).then((res) => {
-        setriderdata(res?.data?.rider);
+        setriderdata(res?.data?.rider?.filter((item) => item?.verified));
         console.log(res);
         setLoading(false);
       });
