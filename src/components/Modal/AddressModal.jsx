@@ -147,13 +147,14 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 					setLoadingFair(false)
 				}
 				if(save){
-					handleUpdateAddress(finalAmount)
+					handleUpdateAddress(finalAmount, distance) 
 				}
 			})
 	}
 
 	const token = localStorage.getItem("token");
-	const handleUpdateAddress = async (finalAmount) => {
+	const handleUpdateAddress = async (finalAmount, distance) => {
+	
 		setLoading(true)
 		try {
 			await axios(`${server}/order/update`, {
@@ -168,7 +169,8 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 					amount: finalAmount,
 					pickup: pickup,
 					droplocations: droplocations,
-					drop: drop
+					drop: drop,
+					distances:distance
 				},
 			})
 				.then((res) => {
