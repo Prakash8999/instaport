@@ -46,7 +46,6 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
   const token = localStorage.getItem("token");
 
   const createCoupon = async () => {
-    console.log("COUPON DATA :: ", couponData);
     if (token) {
       try {
         axios(`${server}/coupons/create`, {
@@ -68,12 +67,10 @@ const CouponsandOffers = ({ setmodal, datamodal }) => {
               let array = [...couponData];
               array.push(res.data.coupon);
               setCouponData(array);
-              console.log(array);
               closeModal();
             } else {
               toast.error(res?.data?.error);
             }
-            console.log(res);
           })
           .catch((err) => {
             toast.error(

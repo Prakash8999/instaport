@@ -28,7 +28,6 @@ const TransactionModal = ({ dataModal, setModal }) => {
 				},
 			}
 			).then((res) => {
-				console.log(res);
 				setModal(true)
 				toast.success(res?.data?.message)
 

@@ -31,7 +31,6 @@ const AddCityModal = ({ datamodal, setmodal }) => {
         },
       })
         .then((res) => {
-console.log(res);
 if (!res?.data?.error) {
   setCity("")
   setSLug("")
@@ -48,11 +47,9 @@ else if(res?.data?.error?.split(" ")?.includes("duplicate")){
         }
         })
         .catch((err) => {
-          // console.log(err);
           toast.error(err?.message)
         });
     } catch (error) {
-      // console.log(error);
       toast.error('Something Went Wrong! Unable to Add City.')
     }
   };

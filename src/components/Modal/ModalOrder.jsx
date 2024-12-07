@@ -29,7 +29,6 @@ const ModalOrder = ({ datamodal, setmodal }) => {
         },
       })
         .then((res) => {
-          console.log(res)
           // setisEditable(false);
           // setFormstate(res.data);
           // window.location.reload();
@@ -74,12 +73,8 @@ const ModalOrder = ({ datamodal, setmodal }) => {
         .then((res) => {
           setFormstate(res.data.order);
 
-          console.log(res.data.order);
         })
-        .then(() => {
-          // console.log(formState?._id);
-          
-        });
+        
     } catch (error) {
       console.log(error);
     }

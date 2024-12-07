@@ -12,7 +12,6 @@ import CouponsAndOffer from './pages/CouponsAndOffer';
 import Layouttest from './components/Layouttest';
 import Home from './pages/Home';
 import ApprovedRiderPage from './pages/ApprovedRiderPage';
-import TestForm from './components/Test.jsx/TestForm';
 import ActiveRider from './pages/RidersActive';
 import { Toaster } from 'react-hot-toast';
 import { Context } from './context/Context';
@@ -37,7 +36,6 @@ function App() {
             <CouponsContext>
               <Routes>
                 <Route path="/home" element={<Home />} />
-                <Route path="/test/create-order" element={<TestForm />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/dashboard/chart" element={<DashboardChart />} />
                 <Route path="/layout" element={<Layouttest />} />

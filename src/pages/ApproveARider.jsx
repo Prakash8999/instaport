@@ -165,7 +165,6 @@ const ApproveARider = () => {
   }
 
   const handleDocumentStatus = async (id, data) => {
-    console.log(data)
     setButtonLoading(true)
     try {
       await axios(`${server}/rider/admin/update/${id}`, {
@@ -345,7 +344,6 @@ const ApproveARider = () => {
                           >
                             <div className="flex  items-start  gap-8">
                               <div onClick={() => {
-                                console.log(data)
                                 setOpenDocument({ show: true, data: data })
                               }}>
                                 <img src={data?.image?.url || Avtar} alt="" className={`w-20 h-20 rounded-lg border-2 ${data?.approve ? "border-green-600" : "border-red-600"}`} />

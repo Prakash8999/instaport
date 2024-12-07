@@ -44,7 +44,6 @@ const PriceManipulation = () => {
             },
           }
         );
-        // console.log("PRICES : ", data);
         setPrices({
           id: data?.priceManipulation?._id,
           additional_drop_charge:
@@ -61,12 +60,14 @@ const PriceManipulation = () => {
           withdrawalCharges: data?.priceManipulation?.withdrawalCharges
         });
 
-        // console.log("DATA : ", prices);
       } catch (error) {
-        console.log("ERROR in getPrice pages/PriceManipulation.jsx : ", error);
+        alert("An error occurred", error)
+        console.log("An error occurred", error);
       }
     } else {
-      console.log("ERROR OCURED ");
+      // alert('No token found please login again!')
+      toast.error("No token found please login again!")
+      console.log("No token found please login again!");
     }
   };
 
@@ -122,7 +123,6 @@ const PriceManipulation = () => {
           toast.error(res?.data?.message);
           setUpdateLoading(false)
         }
-        console.log(res);
       })
       .catch((err) => {
           setUpdateLoading(false)
@@ -134,7 +134,6 @@ const PriceManipulation = () => {
     }
   };
 
-  // console.log(prices.id)
   return (
     <>
       {modal.show && (

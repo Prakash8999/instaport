@@ -14,7 +14,6 @@ const PastRiders = ({ datamodal, setmodal }) => {
 		}, 300); // Wait for the closing animation to complete (300ms)
 	};
 
-	console.log(datamodal);
 
 
 

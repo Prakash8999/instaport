@@ -16,7 +16,7 @@ const LogoutModal = ({ datamodal, setmodal }) => {
 		localStorage.clear()
 		toast.success("Logged Out Sucessfully")
 		// navigate('/login')
-		window.location.href = '/login'
+		window.location.href = '/'
 	}
 	return (
 		<>

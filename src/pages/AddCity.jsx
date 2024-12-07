@@ -21,7 +21,6 @@ const AddCity = () => {
         },
       })
         .then((res) => {
-          console.log(res.data);
           setCity(res?.data?.city);
         })
         .catch((err) => {

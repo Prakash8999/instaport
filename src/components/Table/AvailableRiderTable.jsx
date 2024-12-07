@@ -7,7 +7,6 @@ import { server } from "../..";
 import toast from "react-hot-toast";
 
 const AvailableRiderTable = ({ dataArray, fetchRider }) => {
-  // console.log(dataArray);
   const [isToggled, setToggled] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false)
   const handleToggle = () => {

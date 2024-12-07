@@ -6,7 +6,6 @@ import { Line } from "react-chartjs-2";
 
 const DashboardChart = () => {
   const { orders } = ContextAuth();
-  console.log("orders : :: ", orders);
 
   return (
     <Line

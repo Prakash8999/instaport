@@ -18,9 +18,7 @@ const DownloadInvoice = ({ rootElementId, downloadFileName }) => {
             let link = document.createElement('link');
             link.href = styleSheet.href;
             link.rel = 'stylesheet';
-            link.onload = () => {
-                console.log('Stylesheet loaded:', styleSheet.href);
-            };
+
             link.onerror = (error) => {
                 console.error('Error loading stylesheet:', styleSheet.href, error);
             };

@@ -58,7 +58,6 @@ const Order = () => {
         },
       });
 
-      console.log(data);
       setOrder({
         status: data?.order.status,
         _id: data?.order._id,
@@ -145,7 +144,6 @@ const Order = () => {
             toast.error(res?.data?.message);
             setLoading(false)
           }
-          console.log(res);
         })
         .catch((err) => {
           console.log(err);
@@ -208,7 +206,6 @@ const Order = () => {
         },
       });
 
-      console.log("data", data);
       if (data.error === false) {
         fetchOrderById()
         toast.success(data?.message);

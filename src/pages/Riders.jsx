@@ -28,7 +28,6 @@ const Riders = () => {
         },
       }).then((res) => {
         setriderdata(res?.data?.rider);
-        console.log(res);
         setLoading(false);
       });
     } catch (error) {
@@ -59,7 +58,6 @@ const Riders = () => {
   };
 
   const handleSearch = (e) => {
-    // console.log("search input :: ", e);
     if (e.target.value.length > 0) {
       const filteredData = riderdata?.filter(
         (data) =>

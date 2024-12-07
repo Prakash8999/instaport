@@ -93,7 +93,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 			})
 			return response.data;
 		} catch (error) {
-			console.log(error);
 			alert("Something went wrong! Try reloading the page!");
 			return 0;
 		}
@@ -174,7 +173,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 				},
 			})
 				.then((res) => {
-					console.log(res);
 					if (!res?.data?.error) {
 						toast.success(res?.data?.message)
 						setLoading(false)
@@ -188,7 +186,7 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 				})
 				.catch((err) => {
 					setLoading(false)
-					toast.error("Something Went Wrong!")
+					toast.error("Failed to update address!")
 					console.log(err);
 				})
 
@@ -334,7 +332,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 												const style = suggestion.active
 													? { backgroundColor: '#eee', cursor: 'pointer' }
 													: { backgroundColor: '#ffffff', cursor: 'pointer' };
-												// console.log(suggestion);
 
 												return (
 													<div
@@ -426,7 +423,6 @@ const AddressModal = ({ datamodal, setmodalAddress }) => {
 														const style = suggestion.active
 															? { backgroundColor: '#eee', cursor: 'pointer' }
 															: { backgroundColor: '#ffffff', cursor: 'pointer' };
-														// console.log(suggestion);
 
 														return (
 															<div

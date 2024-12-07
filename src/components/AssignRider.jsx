@@ -48,7 +48,6 @@ export default ({ order }) => {
 
 
 	const assignRider = () => {
-		console.log(rider.value);
 		axios(`${server}/rider/admin/reassign/${order?._id}`, {
 			method: "PATCH",
 			data: {
@@ -60,7 +59,6 @@ export default ({ order }) => {
 				Authorization: `Bearer ${localStorage.getItem("token")}`,
 			},
 		}).then((res) => {
-			console.log(res);
 			if (!res?.data?.error) {
 				toast.success(res?.data?.message)
 			}
